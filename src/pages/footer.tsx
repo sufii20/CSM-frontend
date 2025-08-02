@@ -136,11 +136,11 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Footer Bottom */}
-          <div className="border-t border-gray-200 pt-5 flex flex-col lg:flex-row justify-between items-center gap-5">
+          <div className="border-t border-gray-200 pt-5 flex flex-col lg:flex-row justify-between items-center gap-2">
             <div className="text-gray-600 text-sm">
               © 2025 Capital Smart Motors
             </div>
-            <div className="flex flex-wrap justify-center lg:justify-end gap-8">
+            <div className="flex flex-wrap justify-center lg:justify-end gap-3">
               {legalLinks.map((link) => (
                 <a
                   key={link.label}
