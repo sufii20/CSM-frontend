@@ -22,67 +22,43 @@ const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
   const [currentCarSlide, setCurrentCarSlide] = useState(0);
 
-  // Hero banners data - using corrected imported variables
+  // Hero banners data - only images, no text or background
   const heroBanners = [
     {
       id: 1,
-      title: "Zeekr X",
-      subtitle: "European tech-luxury in a sleek, urban-first design.",
-      image: ZeekrBanner,
-      bgColor: "from-blue-400 to-blue-600"
+      image: ZeekrBanner
     },
     {
       id: 2,
-      title: "Forthing Banner",
-      subtitle: "Innovation meets performance",
-      image: ForthingBanner,
-      bgColor: "from-green-400 to-green-600"
+      image: ForthingBanner
     },
     {
       id: 3,
-      title: "JMEV",
-      subtitle: "Electric mobility for the future",
-      image: JMEVBanner,
-      bgColor: "from-purple-400 to-purple-600"
+      image: JMEVBanner
     },
     {
       id: 4,
-      title: "Riddara",
-      subtitle: "Luxury redefined",
-      image: RiddaraBanner,
-      bgColor: "from-red-400 to-red-600"
+      image: RiddaraBanner
     }
   ];
 
-  // Car slider data - using corrected imported variables
+  // Car slider data - clean images only
   const cars = [
     {
       id: 1,
-      brand: "ZEEKR",
-      model: "X",
       image: image1,
-      logo: LogoMain
     },
     {
       id: 2,
-      brand: "RIDDARA",
-      model: "Luxury",
       image: image2,
-      logo: LogoMain
     },
     {
       id: 3,
-      brand: "JMEV",
-      model: "Electric",
       image: image3,
-      logo: LogoMain
     },
     {
       id: 4,
-      brand: "FORTHING",
-      model: "Urban",
       image: image4,
-      logo: LogoMain
     }
   ];
 
@@ -155,7 +131,7 @@ const Homepage = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Banner Section */}
+      {/* Hero Banner Section - Clean images only */}
       <section className="relative h-96 md:h-[500px] overflow-hidden">
         {heroBanners.map((banner, index) => (
           <div
@@ -164,23 +140,11 @@ const Homepage = () => {
               index === currentHeroBanner ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <div className={`bg-gradient-to-r ${banner.bgColor} h-full flex items-center relative`}>
-              <div className="absolute inset-0">
-                <img 
-                  src={banner.image} 
-                  alt={banner.title}
-                  className="w-full h-full object-cover mix-blend-overlay"
-                />
-              </div>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="text-white">
-                    <h2 className="text-4xl md:text-6xl font-bold mb-4">{banner.title}</h2>
-                    <p className="text-xl md:text-2xl mb-6">{banner.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img 
+              src={banner.image} 
+              alt={`Banner ${banner.id}`}
+              className="w-full h-full object-cover"
+            />
           </div>
         ))}
         
@@ -205,22 +169,12 @@ const Homepage = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {cars.map((car, index) => (
                 <div key={car.id} className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200">
+                  <div className="relative h-80 w-full">
                     <img 
                       src={car.image} 
-                      alt={car.brand}
+                      alt={`Car ${car.id}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4">
-                      <img src={car.logo} alt={`${car.brand} logo`} className="h-8" />
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{car.brand}</h3>
-                    <p className="text-gray-600">{car.model}</p>
-                    <button className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                      Learn More
-                    </button>
                   </div>
                 </div>
               ))}
@@ -333,18 +287,18 @@ const Homepage = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-blue-600">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Stay Connected</h2>
-            <p className="text-blue-100 mb-8">Join Our Mailing List For News & Updates</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Connected</h2>
+            <p className="text-gray-600 mb-8">Join Our Mailing List For News & Updates</p>
             <div className="max-w-md mx-auto flex">
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-l-lg focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:border-blue-500"
               />
-              <button className="bg-white text-blue-600 px-6 py-3 rounded-r-lg hover:bg-gray-100 transition-colors">
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-r-lg hover:bg-blue-700 transition-colors">
                 Subscribe
               </button>
             </div>

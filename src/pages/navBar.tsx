@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, Star } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import logo from '../assets/Logo-main.svg'; // Ensure the path is correct
+import starIcon from '../assets/icon.svg'; // Import the star icon
 
 const Navbar = () => {
   const [isBrandsOpen, setIsBrandsOpen] = useState(false);
@@ -110,10 +111,12 @@ const Navbar = () => {
 
           {/* Right Side - Rating */}
           <div className="flex items-center">
-            <div className="flex items-center bg-gray-50 px-3 py-2 rounded-md border border-gray-200">
-              <Star className="w-4 h-4 text-gray-600 mr-2 fill-current" />
-              <span className="text-black font-bold text-sm">789,967</span>
-            </div>
+            <img 
+              src={starIcon} 
+              alt="Star" 
+              className="w-8 h-8 text-gray-600 mr-3"
+            />
+            <span className="text-black font-bold text-lg">789,967</span>
           </div>
 
           {/* Mobile Menu Button */}
