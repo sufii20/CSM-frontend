@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Star } from 'lucide-react';
+import logo from '../assets/Logo-main.svg'; // Ensure the path is correct
 
 const Navbar = () => {
   const [isBrandsOpen, setIsBrandsOpen] = useState(false);
@@ -22,12 +23,13 @@ const Navbar = () => {
           
           {/* Left Side - Logo */}
           <div className="flex items-center">
-            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-              <span className="text-white font-bold text-sm">CSM</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="Capital Smart Motors Logo" 
+              className="h-12 w-auto mr-4"
+            />
             <div className="flex flex-col">
-              <span className="text-black font-bold text-lg leading-tight tracking-wide">CAPITAL SMART</span>
-              <span className="text-black font-bold text-lg leading-tight tracking-wide">MOTORS</span>
+          
             </div>
           </div>
 
