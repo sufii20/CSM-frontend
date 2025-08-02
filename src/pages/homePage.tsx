@@ -17,6 +17,13 @@ import image4 from '../assets/CardSliderImg/image4.png';
 import RiddaraVideo from '../assets/RiddaraVideo.mp4';
 import ServiceImage from '../assets/Home-v2.png';
 import LogoMain from '../assets/Logo-main.svg';
+import CSMGeely from '../assets/insights/CSM-GEELY-MOU.png';
+import  autoMob from '../assets/insights/auto-mob-future.png';
+import sareena from '../assets/insights/SERENA-hotel-isb.png';
+import accessories from '../assets/services/accesories.png';
+import call from '../assets/services/callCenter.png';
+import merchandise from '../assets/services/MErchandise.png';
+
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
@@ -68,22 +75,20 @@ const Homepage = () => {
       id: 1,
       title: "Merchandise",
       description: "A Capital Selection Of Premium Branded Merchandise That Embodies The Spirit Of Innovation And Style.",
-      image: ServiceImage,
-      icon: "🛍️"
+      image: merchandise,
+      
     },
     {
       id: 2,
       title: "Call Centre",
       description: "A Dedicated Customer Care Service, Offering Personalized Support And Seamless Communication For All Inquiries.",
-      image: ServiceImage,
-      icon: "📞"
+      image: call,
     },
     {
       id: 3,
       title: "Parts/Accessories",
       description: "Authentic Parts And Refined Accessories, Engineered To Enhance Performance And Elevate Your Driving Experience.",
-      image: ServiceImage,
-      icon: "🔧"
+      image: accessories,
     }
   ];
 
@@ -200,7 +205,6 @@ const Homepage = () => {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center mb-3">
-                    <span className="text-2xl mr-3">{service.icon}</span>
                     <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
                   </div>
                   <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
@@ -265,19 +269,19 @@ const Homepage = () => {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">News & Insights</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src={ServiceImage} alt="News 1" className="w-full h-48 object-cover" />
+              <img src={CSMGeely} alt="News 1" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">CSM & GEELY Signed MOU To Launch Zeekr In Pakistan</h4>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src={ServiceImage} alt="News 2" className="w-full h-48 object-cover" />
+              <img src={sareena} alt="News 2" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">Dealer Meetup Organized By Capital Smart City At Serena Hotel, Islamabad</h4>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src={ServiceImage} alt="News 3" className="w-full h-48 object-cover" />
+              <img src={autoMob} alt="News 3" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">Zeging Excellence For Pakistan's Automotive Future</h4>
               </div>
