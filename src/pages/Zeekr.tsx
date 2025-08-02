@@ -1,95 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
+import Zeeke from './assets/hero banners 1440x/Zeekr banner.png';
+import Forting from './assets/hero banners 1440x/Forthing Banner.png';
+import Riddara from './assets/hero banners 1440x/Riddara banner.png';
+import RiddaraVideo from './assets/Riddaka Video 144.mp4';
+import image1 from './assets/card slider 470x580/image 1.png';
+import image2 from './assets/card slider 470x580/image 2 (2).png';
+import image3 from './assets/card slider 470x580/image 3.png';      
+import image4 from './assets/card slider 470x580/image 4.png';
+import Video from './assets/Riddaka Video 144.mp4';
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
   const [currentCarSlide, setCurrentCarSlide] = useState(0);
 
-  // Hero banners data - using public folder paths (recommended approach)
+  // Hero banners data - using assets folder paths
   const heroBanners = [
     {
       id: 1,
       title: "Zeekr X",
       subtitle: "European tech-luxury in a sleek, urban-first design.",
-      image: "/assets/hero banners 1440x/Zeekr banner.png",
+      image:  "ZEEKR",
       bgColor: "from-blue-400 to-blue-600"
     },
     {
       id: 2,
       title: "Forthing Banner",
       subtitle: "Innovation meets performance",
-      image: "/assets/hero banners 1440x/Forthing Banner.png",
+      image: "Forting",
       bgColor: "from-green-400 to-green-600"
     },
     {
       id: 3,
       title: "JMEV",
       subtitle: "Electric mobility for the future",
-      image: "/assets/hero banners 1440x/JMEV Banner.png",
+      image: "JMEV",
       bgColor: "from-purple-400 to-purple-600"
     },
     {
       id: 4,
       title: "Riddara",
       subtitle: "Luxury redefined",
-      image: "/assets/hero banners 1440x/Riddara banner.png",
+      image: "Riddara",
       bgColor: "from-red-400 to-red-600"
     }
   ];
 
-  // Car slider data - using public folder paths
+  // Car slider data - using assets folder paths
   const cars = [
     {
       id: 1,
       brand: "ZEEKR",
       model: "X",
-      image: "/assets/card slider 470x580/image 1.png",
-      logo: "/assets/Logo-main (1).png"
+      image: "./assets/card slider 470x580/image 1.png",
+      logo: "./assets/Logo-main (1).png"
     },
     {
       id: 2,
       brand: "RIDDARA",
       model: "Luxury",
-      image: "/assets/card slider 470x580/image 2 (2).png",
-      logo: "/assets/Logo-main (1).png"
+      image: "./assets/card slider 470x580/image 2 (2).png",
+      logo: "./assets/Logo-main (1).png"
     },
     {
       id: 3,
       brand: "JMEV",
       model: "Electric",
-      image: "/assets/card slider 470x580/image 3.png",
-      logo: "/assets/Logo-main (1).png"
+      image: "./assets/card slider 470x580/image 3.png",
+      logo: "./assets/Logo-main (1).png"
     },
     {
       id: 4,
       brand: "FORTHING",
       model: "Urban",
-      image: "/assets/card slider 470x580/image 4.png",
-      logo: "/assets/Logo-main (1).png"
+      image: "./assets/card slider 470x580/image 4.png",
+      logo: "./assets/Logo-main (1).png"
     }
   ];
 
-  // Services data - using public folder paths
+  // Services data - using assets folder paths
   const services = [
     {
       id: 1,
       title: "Merchandise",
       description: "A Capital Selection Of Premium Branded Merchandise That Embodies The Spirit Of Innovation And Style.",
-      image: "/assets/Home v2.png",
+      image: "./assets/Home v2.png",
       icon: "🛍️"
     },
     {
       id: 2,
       title: "Call Centre",
       description: "A Dedicated Customer Care Service, Offering Personalized Support And Seamless Communication For All Inquiries.",
-      image: "/assets/Home v2.png",
+      image: "./assets/Home v2.png",
       icon: "📞"
     },
     {
       id: 3,
       title: "Parts/Accessories",
       description: "Authentic Parts And Refined Accessories, Engineered To Enhance Performance And Elevate Your Driving Experience.",
-      image: "/assets/Home v2.png",
+      image: "./assets/Home v2.png",
       icon: "🔧"
     }
   ];
@@ -271,7 +280,7 @@ const Homepage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden">
             <video 
-              src="/assets/Riddaka Video 144.mp4"
+              src="./assets/Riddaka Video 144.mp4"
               className="w-full h-full object-cover"
               autoPlay
               loop
@@ -294,19 +303,19 @@ const Homepage = () => {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">News & Insights</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="/assets/Home v2.png" alt="News 1" className="w-full h-48 object-cover" />
+              <img src="./assets/Home v2.png" alt="News 1" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">CSM & GEELY Signed MOU To Launch Zeekr In Pakistan</h4>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="/assets/Home v2.png" alt="News 2" className="w-full h-48 object-cover" />
+              <img src="./assets/Home v2.png" alt="News 2" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">Dealer Meetup Organized By Capital Smart City At Serena Hotel, Islamabad</h4>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img src="/assets/Home v2.png" alt="News 3" className="w-full h-48 object-cover" />
+              <img src="./assets/Home v2.png" alt="News 3" className="w-full h-48 object-cover" />
               <div className="p-6">
                 <h4 className="font-bold text-gray-900 mb-2">Zeging Excellence For Pakistan's Automotive Future</h4>
               </div>
