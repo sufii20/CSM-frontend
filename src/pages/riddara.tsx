@@ -1,0 +1,472 @@
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import RiddaraFullBanner from '../assets/RiddaraFullBanner.png';
+import blackCar from '../assets/car_black.webp';
+import blueCar from '../assets/car_blue.webp';
+import greyCar from '../assets/car_gray.webp';
+import greenCar from '../assets/car_green.webp';
+//slider images
+import slideA from '../assets/IntSlideA.png';
+import slideB from '../assets/IntSlideB.png';
+import slideC from '../assets/IntSlideC.png';
+import slideD from '../assets/IntSlideD.png';
+import slideE from '../assets/IntSlideE.png';
+//banner and additional images
+import FrontGrid from '../assets/FrontGrillWide.png';
+import GrillWhite from '../assets/GrillCard.png';
+import Backlight from '../assets/BacklightCard.png';
+
+export const RiddaraShowcase = () => {
+  const [currentCarIndex, setCurrentCarIndex] = useState(3); // Start with green car as shown in image
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0); // Add missing state for slides
+  const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0); // State for second slider
+  
+  const cars = [
+    {
+      image: blackCar,
+      color: 'black',
+      bgColor: 'bg-gray-800'
+    },
+    {
+      image: blueCar, 
+      color: 'blue',
+      bgColor: 'bg-blue-600'
+    },
+    {
+      image: greyCar,
+      color: 'grey', 
+      bgColor: 'bg-gray-500'
+    },
+    {
+      image: greenCar,
+      color: 'green',
+      bgColor: 'bg-green-400'
+    }
+  ];
+
+   // Advanced Driving Dynamics slides data
+  const slides = [
+    {
+      image: slideA,
+      title: "815mm Water-Wading Depth",
+      description: "Easily Navigates Rivers And Shallow Waters With A Class-Leading Wading Depth Of 815mm."
+    },
+    {
+      image: slideB,
+      title: "45° Incline Capability", 
+      description: "Effortlessly Tackles Steep Slopes And Rugged Terrain With A Powerful Climbing Ability For Supreme Off-Road Performance."
+    },
+    {
+      image: slideC,
+      title: "Intelligent Color Switch",
+      description: "Advanced color-changing technology adapts to different environments and driving conditions."
+    },
+    {
+      image: slideD,
+      title: "Smart Drive Assistance",
+      description: "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain."
+    },
+    {
+      image: slideE,
+      title: "Extreme Performance",
+      description: "Built for the most challenging conditions with superior engineering and robust design."
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlideIndex((prev) => {
+      // Calculate how many groups of 3 we can show
+      const maxIndex = Math.max(0, slides.length - 3);
+      return prev >= maxIndex ? 0 : prev + 1;
+    });
+  };
+
+  const prevSlide = () => {
+    setCurrentSlideIndex((prev) => {
+      const maxIndex = Math.max(0, slides.length - 3);
+      return prev <= 0 ? maxIndex : prev - 1;
+    });
+  };
+
+  // Functions for second slider
+  const nextSlide2 = () => {
+    setCurrentSlideIndex2((prev) => {
+      // Calculate how many groups of 3 we can show
+      const maxIndex = Math.max(0, slides.length - 3);
+      return prev >= maxIndex ? 0 : prev + 1;
+    });
+  };
+
+  const prevSlide2 = () => {
+    setCurrentSlideIndex2((prev) => {
+      const maxIndex = Math.max(0, slides.length - 3);
+      return prev <= 0 ? maxIndex : prev - 1;
+    });
+  };
+
+  const nextCar = () => {
+    setCurrentCarIndex((prev) => (prev + 1) % cars.length);
+  };
+
+  const prevCar = () => {
+    setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
+  };
+
+  const selectCar = (index) => {
+    setCurrentCarIndex(index);
+  };
+
+  return (
+    <div className="w-full">
+      {/* Hero Banner Section */}
+      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${RiddaraFullBanner})`}}>
+        <div className="absolute inset-0"></div>
+        <div className="relative z-10 h-full flex flex-col">
+          {/* Text positioned on left side */}
+          <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
+            <div className="text-white max-w-lg">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-8">
+                UNSTOPPABLE<br/>
+                UNFORGETTABLE<br/>
+                EVERYWHERE
+              </h1>
+            </div>
+          </div>
+          
+          {/* Buttons positioned at bottom right */}
+          <div className="absolute bottom-8 right-8 flex space-x-4">
+            <button className="px-8 py-3 border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-medium tracking-wide">
+              BOOK NOW
+            </button>
+            <button className="px-8 py-3 border border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-medium tracking-wide">
+              BROCHURE
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Specifications Section */}
+      <div className="bg-white py-16 px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="flex flex-col items-center px-8">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">UP TO</p>
+              <h3 className="text-3xl font-light text-gray-700 mb-1">632 Km*</h3>
+              <p className="text-gray-500 text-sm">Driving Range</p>
+            </div>
+            <div className="flex flex-col items-center px-8 border-l border-r border-gray-200">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">AS FAST AS</p>
+              <h3 className="text-3xl font-light text-gray-700 mb-1">4.5 Sec*</h3>
+              <p className="text-gray-500 text-sm">To Reach 100</p>
+            </div>
+            <div className="flex flex-col items-center px-8">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">UP TO</p>
+              <h3 className="text-3xl font-light text-gray-700 mb-1">86.56 KWh*</h3>
+              <p className="text-gray-500 text-sm">Capacity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Car Gallery Section */}
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
+        <div className="max-w-7xl mx-auto relative">
+          
+          {/* Color selector dots - positioned top right */}
+          <div className="absolute top-4 right-4 z-20 flex space-x-2">
+            <button
+              onClick={() => selectCar(3)}
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                currentCarIndex === 3 ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+              } bg-green-400`}
+            />
+            <button
+              onClick={() => selectCar(1)}
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                currentCarIndex === 1 ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+              } bg-blue-600`}
+            />
+            <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+            <div className="w-4 h-4 rounded-full bg-gray-600"></div>
+            <div className="w-4 h-4 rounded-full bg-gray-200"></div>
+            <div className="w-4 h-4 rounded-full bg-green-300"></div>
+            <div className="w-4 h-4 rounded-full bg-gray-400"></div>
+          </div>
+
+          {/* Navigation arrows on sides */}
+          <button 
+            onClick={prevCar}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button 
+            onClick={nextCar}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Car image centered */}
+          <div className="flex justify-center items-center h-full py-12">
+            <div className="w-full max-w-4xl">
+              <img 
+                src={cars[currentCarIndex].image} 
+                alt={`Riddara ${cars[currentCarIndex].color} car`}
+                className="w-full h-auto object-contain transition-all duration-500"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Advanced Driving Dynamics Section */}
+      <div className="bg-white py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-gray-800 mb-4 tracking-wide">
+              ADVANCED DRIVING DYNAMICS
+            </h2>
+            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+          </div>
+
+          {/* Slider Container */}
+          <div className="relative">
+            {/* Main Slide Display - Show 3 at a time */}
+            <div className="relative overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out gap-6"
+                style={{ transform: `translateX(-${currentSlideIndex * (100/3)}%)` }}
+              >
+                {slides.map((slide, index) => (
+                  <div key={index} className="w-1/3 flex-shrink-0 px-2">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                      {/* Image */}
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.title}
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                      
+                      {/* Text Content Below Image */}
+                      <div className="p-6 bg-gray-100">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                          {slide.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {slide.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button 
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Slide Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: Math.max(1, slides.length - 2) }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlideIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlideIndex === index 
+                      ? 'bg-gray-800 w-8' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* New Banner and Images Section */}
+      <div className="bg-white py-8 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="space-y-4">
+            {/* Top - Large banner image spanning full width */}
+            <div className="rounded-lg overflow-hidden">
+              <img 
+                src={FrontGrid} 
+                alt="Riddara Banner"
+                className="w-full h-64 md:h-80 lg:h-96 object-cover"
+              />
+            </div>
+            
+            {/* Bottom - Two smaller images side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={GrillWhite} 
+                  alt="Riddara Detail 1"
+                  className="w-full h-48 md:h-56 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={Backlight} 
+                  alt="Riddara Detail 2"
+                  className="w-full h-48 md:h-56 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Second Advanced Driving Dynamics Section */}
+      <div className="bg-gray-50 py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-gray-800 mb-4 tracking-wide">
+              ADVANCED DRIVING DYNAMICS
+            </h2>
+            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+          </div>
+
+          {/* Slider Container */}
+          <div className="relative">
+            {/* Main Slide Display - Show 3 at a time */}
+            <div className="relative overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out gap-6"
+                style={{ transform: `translateX(-${currentSlideIndex2 * (100/3)}%)` }}
+              >
+                {slides.map((slide, index) => (
+                  <div key={index} className="w-1/3 flex-shrink-0 px-2">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                      {/* Image */}
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.title}
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                      
+                      {/* Text Content Below Image */}
+                      <div className="p-6 bg-gray-100">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                          {slide.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {slide.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevSlide2}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button 
+              onClick={nextSlide2}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Slide Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: Math.max(1, slides.length - 2) }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlideIndex2(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlideIndex2 === index 
+                      ? 'bg-gray-800 w-8' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Final Image Gallery Section */}
+      <div className="bg-white py-8 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="space-y-4">
+            {/* Top - Large banner image spanning full width */}
+            <div className="rounded-lg overflow-hidden">
+              <img 
+                src={RiddaraFullBanner} 
+                alt="Riddara Final Banner"
+                className="w-full h-48 md:h-64 lg:h-72 object-cover"
+              />
+            </div>
+            
+            {/* First row - Two images side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={slideA} 
+                  alt="Riddara Feature 1"
+                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={slideB} 
+                  alt="Riddara Feature 2"
+                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Second row - Two more images side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={slideC} 
+                  alt="Riddara Feature 3"
+                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={slideD} 
+                  alt="Riddara Feature 4"
+                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RiddaraShowcase;
