@@ -89,22 +89,24 @@ const Homepage = () => {
       name: "Azuish Pandey",
       location: "Sindh, Pakistan",
       rating: 5,
-      text: "The listing Was Very Nice Than I'll Make. Everything Worked Perfect Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Likes Good Analytics On It."
-    
+      text: "The listing Was Very Nice Than I'll Make. Everything Worked Perfect Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Likes Good Analytics On It.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       id: 2,
       name: "Milano Nascimento",
       location: "Punjab, Pakistan",
       rating: 5,
-      text: "The Listing Was Not Upto Than I Till Build. Everything Worked Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Didn't Need Analytics On That."
+      text: "The Listing Was Not Upto Than I Till Build. Everything Worked Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Didn't Need Analytics On That.",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     },
     {
       id: 3,
       name: "Eve Aritt",
       location: "Islamabad, Pakistan",
       rating: 5,
-      text: "The Listing Was Too Much Than I'll Make. Everything Worked Perfect Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Likes Good Analytics On It."
+      text: "The Listing Was Too Much Than I'll Make. Everything Worked Perfect Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Likes Good Analytics On It.",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
     }
   ];
 
@@ -273,7 +275,13 @@ const Homepage = () => {
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="bg-white rounded-lg shadow-lg p-6">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div>
                     <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
                     <p className="text-sm text-gray-600">{testimonial.location}</p>
@@ -284,7 +292,7 @@ const Homepage = () => {
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed">{testimonial.text}</p>
+                <p className="text-gray-700 text-sm leading-relaxed text-left">{testimonial.text}</p>
               </div>
             ))}
           </div>
