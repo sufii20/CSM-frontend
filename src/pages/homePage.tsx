@@ -90,6 +90,7 @@ const Homepage = () => {
       location: "Sindh, Pakistan",
       rating: 5,
       text: "The listing Was Very Nice Than I'll Make. Everything Worked Perfect Well. We Appreciated A Simple Decision Using Page That With A Video, Full Sections. Course Stamps – Everything Was Great And We Likes Good Analytics On It."
+    
     },
     {
       id: 2,
@@ -153,17 +154,9 @@ const Homepage = () => {
         ))}
         
         {/* Right-side Navigation Controls */}
-        <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4 z-20">
-          {/* Previous Button */}
-          <button
-            onClick={prevHeroBanner}
-            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
-          >
-            <ChevronLeft className="w-5 h-5 text-white" />
-          </button>
-          
+        <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col items-center z-20">
           {/* Pagination Dots */}
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-3 mb-6">
             {heroBanners.map((_, index) => (
               <button
                 key={index}
@@ -177,13 +170,24 @@ const Homepage = () => {
             ))}
           </div>
           
-          {/* Next Button */}
-          <button
-            onClick={nextHeroBanner}
-            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
-          >
-            <ChevronRight className="w-5 h-5 text-white" />
-          </button>
+          {/* Arrow Navigation - Left and Right Together */}
+          <div className="flex space-x-2">
+            {/* Previous Button */}
+            <button
+              onClick={prevHeroBanner}
+              className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
+            >
+              <ChevronLeft className="w-5 h-5 text-white" />
+            </button>
+            
+            {/* Next Button */}
+            <button
+              onClick={nextHeroBanner}
+              className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
+            >
+              <ChevronRight className="w-5 h-5 text-white" />
+            </button>
+          </div>
         </div>
       </section>
 
