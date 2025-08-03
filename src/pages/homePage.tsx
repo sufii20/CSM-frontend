@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Hero banners
 import ZeekrBanner from '../assets/HeroBanner/ZeekrBanner.png';
@@ -36,10 +36,30 @@ const Homepage = () => {
   ];
 
   const cars = [
-    { id: 1, image: image1 },
-    { id: 2, image: image2 },
-    { id: 3, image: image3 },
-    { id: 4, image: image4 }
+    { 
+      id: 1, 
+      image: image1, 
+      brand: "ZEEKR",
+      logo: "Z"
+    },
+    { 
+      id: 2, 
+      image: image2, 
+      brand: "RIDDARA",
+      logo: "R"
+    },
+    { 
+      id: 3, 
+      image: image3, 
+      brand: "FORTHING",
+      logo: "F"
+    },
+    { 
+      id: 4, 
+      image: image4, 
+      brand: "JMEV",
+      logo: "J"
+    }
   ];
 
   const services = [
@@ -94,6 +114,31 @@ const Homepage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const nextHeroBanner = () => {
+    setCurrentHeroBanner((prev) => (prev + 1) % heroBanners.length);
+  };
+
+  const prevHeroBanner = () => {
+    setCurrentHeroBanner((prev) => (prev - 1 + heroBanners.length) % heroBanners.length);
+  };
+
+  const nextCarSlide = () => {
+    setCurrentCarSlide((prev) => (prev + 1) % cars.length);
+  };
+
+  const prevCarSlide = () => {
+    setCurrentCarSlide((prev) => (prev - 1 + cars.length) % cars.length);
+  };
+
+  const getVisibleCars = () => {
+    const visible = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentCarSlide + i) % cars.length;
+      visible.push(cars[index]);
+    }
+    return visible;
+  };
+
   return (
     <div className="bg-white">
       {/* Hero Banner Section */}
@@ -106,28 +151,92 @@ const Homepage = () => {
             <img src={banner.image} alt={`Banner ${banner.id}`} className="w-full h-full object-cover" />
           </div>
         ))}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-          {heroBanners.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentHeroBanner(index)}
-              className={`w-3 h-3 rounded-full ${index === currentHeroBanner ? 'bg-white' : 'bg-white/50'}`}
-            />
-          ))}
+        
+        {/* Right-side Navigation Controls */}
+        <div className="absolute right-6 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4 z-20">
+          {/* Previous Button */}
+          <button
+            onClick={prevHeroBanner}
+            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
+          
+          {/* Pagination Dots */}
+          <div className="flex flex-col space-y-3">
+            {heroBanners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentHeroBanner(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentHeroBanner 
+                    ? 'bg-white scale-125' 
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+          
+          {/* Next Button */}
+          <button
+            onClick={nextHeroBanner}
+            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 shadow-lg"
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
         </div>
       </section>
 
-      {/* Car Slider */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {cars.map((car) => (
-              <div key={car.id} className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                <div className="relative h-80 w-full">
-                  <img src={car.image} alt={`Car ${car.id}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+      {/* Car Slider - Updated Design */}
+      <section className="relative py-20 bg-gray-50 overflow-hidden">
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevCarSlide}
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-4 transition-all duration-300 shadow-lg"
+        >
+          <ChevronLeft className="w-6 h-6 text-gray-700" />
+        </button>
+        
+        <button
+          onClick={nextCarSlide}
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-4 transition-all duration-300 shadow-lg"
+        >
+          <ChevronRight className="w-6 h-6 text-gray-700" />
+        </button>
+
+        {/* Slider Container */}
+        <div className="w-full overflow-hidden">
+          <div className="flex transition-transform duration-500 ease-in-out">
+            {getVisibleCars().map((car, index) => (
+              <div key={`${car.id}-${currentCarSlide}-${index}`} className="w-1/3 flex-shrink-0">
+                {/* Car Card */}
+                <div className="relative h-[600px] overflow-hidden group">
+                  {/* Background Image */}
+                  <img 
+                    src={car.image} 
+                    alt={`Car ${car.id}`} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  
+                  {/* Learn More Button */}
+                  <div className="absolute bottom-8 left-8">
+                    <button className="px-8 py-3 border-2 border-white/40 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/60 transition-all duration-300 text-white font-medium tracking-wide">
+                      Learn More
+                      <ChevronRight className="inline-block w-4 h-4 ml-2" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Bottom spacing for "Our Services" text */}
+        <div className="mt-16 text-center">
+          <div className="flex items-center justify-center space-x-6">
+            <div className="h-px bg-gray-400 w-32"></div>
+            <h2 className="text-3xl font-bold text-gray-700 tracking-wide">Our Services</h2>
+            <div className="h-px bg-gray-400 w-32"></div>
           </div>
         </div>
       </section>
@@ -135,7 +244,6 @@ const Homepage = () => {
       {/* Our Services */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service) => (
               <div key={service.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -221,7 +329,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Newsletter Section (Updated) */}
+      {/* Newsletter Section */}
       <section className="py-16 bg-white relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-2 sm:px-6 lg:px-4">
           <div className="flex flex-col md:flex-row items-center justify-between relative z-10">
