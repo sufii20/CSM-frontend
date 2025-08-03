@@ -464,7 +464,7 @@ export const RiddaraShowcase = () => {
               <img 
                 src={RiddaraSpec} 
                 alt="Riddara Final Banner"
-                className="w-full h-48 md:h-64 lg:h-72 object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
             
@@ -474,14 +474,14 @@ export const RiddaraShowcase = () => {
                 <img 
                   src={airbag} 
                   alt="Riddara Feature 1"
-                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
               <div className="rounded-lg overflow-hidden">
                 <img 
                   src={cameraTech} 
                   alt="Riddara Feature 2"
-                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </div>
@@ -492,14 +492,14 @@ export const RiddaraShowcase = () => {
                 <img 
                   src={DriveAssist} 
                   alt="Riddara Feature 3"
-                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
               <div className="rounded-lg overflow-hidden">
                 <img 
                   src={ModernTrunk} 
                   alt="Riddara Feature 4"
-                  className="w-full h-40 md:h-48 lg:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </div>
