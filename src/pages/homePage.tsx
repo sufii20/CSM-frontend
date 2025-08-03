@@ -327,42 +327,83 @@ const Homepage = () => {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Our Customer Feedback
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="bg-white rounded-lg shadow-lg p-6"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-gray-600">
-                      {testimonial.location}
-                    </p>
-                  </div>
+          <div className="flex justify-center items-end gap-8">
+            {/* Left smaller testimonial - positioned lower */}
+            <div className="bg-white rounded-lg shadow-lg p-5 w-72 mb-8">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 rounded-full mr-3 overflow-hidden">
+                  <img
+                    src={testimonials[0].image}
+                    alt={testimonials[0].name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
-                    />
-                  ))}
+                <div>
+                  <h4 className="font-bold text-blue-800 text-sm">
+                    Orlaith Parastu
+                  </h4>
+                  <p className="text-xs text-blue-800">Bought BYD Dolphin</p>
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed text-left">
-                  {testimonial.text}
-                </p>
               </div>
-            ))}
+              <p className="text-black text-xs leading-relaxed text-left">
+                The Listing Was Hot (More Than 170 Bids). Everything Worked
+                Well. We Appreciated A Simple Process.Listing Page, Chat With A
+                Seller, The Auction, Escrow Service – Everything Was Great And
+                We Didn't Need Anything On Top.
+              </p>
+            </div>
+
+            {/* Center larger testimonial - full height */}
+            <div className="bg-white rounded-lg shadow-lg p-8 w-96">
+              <div className="flex items-center mb-4">
+                <div className="w-14 h-14 rounded-full mr-4 overflow-hidden">
+                  <img
+                    src={testimonials[1].image}
+                    alt={testimonials[1].name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold text-blue-800 text-lg">
+                    Melina Nesterenko
+                  </h4>
+                  <p className="text-sm text-blue-800">
+                    Bought Tesla Model 3
+                  </p>
+                </div>
+              </div>
+              <p className="text-black text-sm leading-relaxed text-left">
+                The Listing Was Hot (More Than 170 Bids). Everything Worked
+                Well. We Appreciated A Simple Process.Listing Page, Chat With A
+                Seller, The Auction, Escrow Service – Everything Was Great And
+                We Didn't Need Anything On Top.
+              </p>
+            </div>
+
+            {/* Right smaller testimonial - positioned lower */}
+            <div className="bg-white rounded-lg shadow-lg p-5 w-72 mb-8">
+              <div className="flex items-center mb-3">
+                <div className="w-10 h-10 rounded-full mr-3 overflow-hidden">
+                  <img
+                    src={testimonials[2].image}
+                    alt={testimonials[2].name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold text-blue-800 text-sm">Eve Artie</h4>
+                  <p className="text-xs text-blue-800">
+                    Bought A Riddara 
+                  </p>
+                </div>
+              </div>
+              <p className="text-black text-xs leading-relaxed text-left">
+                The Listing Was Hot (More Than 170 Bids). Everything Worked
+                Well. We Appreciated A Simple Process.Listing Page, Chat With A
+                Seller, The Auction, Escrow Service – Everything Was Great And
+                We Didn't Need Anything On Top.
+              </p>
+            </div>
           </div>
         </div>
       </section>
