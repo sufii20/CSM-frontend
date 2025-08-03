@@ -173,8 +173,8 @@ const Homepage = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Banner Section */}
-      <section className="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+      {/* Hero Banner Section - Optimized for 1440x450 aspect ratio with extra text space */}
+      <section className="relative h-[160px] sm:h-[200px] md:h-[280px] lg:h-[380px] xl:h-[520px] overflow-hidden">
         {heroBanners.map((banner, index) => (
           <div
             key={banner.id}
@@ -185,7 +185,7 @@ const Homepage = () => {
             <img
               src={banner.image}
               alt={`Banner ${banner.id}`}
-              className="w-full h-full object-contain md:object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         ))}
