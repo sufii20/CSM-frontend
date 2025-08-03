@@ -32,12 +32,20 @@ import zeekrInterior from "../assets/interiorView/ZeekrInterior.png";
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
   const [currentCarSlide, setCurrentCarSlide] = useState(0);
+  const [currentInteriorBanner, setCurrentInteriorBanner] = useState(0);
 
   const heroBanners = [
     { id: 1, image: ZeekrBanner },
     { id: 2, image: ForthingBanner },
     { id: 3, image: JMEVBanner },
     { id: 4, image: RiddaraBanner },
+  ];
+
+  const interiorBanners = [
+    { id: 1, image: fortingInterior, title: "Forthing Interior" },
+    { id: 2, image: jmeVInterior, title: "JMEV Interior" },
+    { id: 3, image: zeekrX, title: "Zeekr X Interior" },
+    { id: 4, image: zeekrInterior, title: "Zeekr Interior" },
   ];
 
   const cars = [
@@ -367,9 +375,7 @@ const Homepage = () => {
                   <h4 className="font-bold text-blue-800 text-lg">
                     Melina Nesterenko
                   </h4>
-                  <p className="text-sm text-blue-800">
-                    Bought Tesla Model 3
-                  </p>
+                  <p className="text-sm text-blue-800">Bought Tesla Model 3</p>
                 </div>
               </div>
               <p className="text-black text-sm leading-relaxed text-left">
@@ -392,9 +398,7 @@ const Homepage = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-blue-800 text-sm">Eve Artie</h4>
-                  <p className="text-xs text-blue-800">
-                    Bought A Riddara 
-                  </p>
+                  <p className="text-xs text-blue-800">Bought A Riddara</p>
                 </div>
               </div>
               <p className="text-black text-xs leading-relaxed text-left">
@@ -406,6 +410,25 @@ const Homepage = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Interior Banner Section */}
+      <section className="relative h-96 md:h-[500px] overflow-hidden">
+        {interiorBanners.map((banner, index) => (
+          <div
+            key={banner.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentInteriorBanner ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={banner.image}
+              alt={banner.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20"></div>
+          </div>
+        ))}
       </section>
 
       {/* News & Insights */}
