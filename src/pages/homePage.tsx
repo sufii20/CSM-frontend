@@ -23,6 +23,11 @@ import sareena from '../assets/insights/SERENA-hotel-isb.png';
 import accessories from '../assets/services/accesories.png';
 import call from '../assets/services/callCenter.png';
 import merchandise from '../assets/services/MErchandise.png';
+//Interior images
+import fortingInterior from '../assets/interiorView/ForthingInterior.png';
+import jmeVInterior from '../assets/interiorView/JMeVInterior.png';
+import zeekrX from '../assets/interiorView/ZeekeX.png';
+import zeekrInterior   from '../assets/interiorView/ZeekrInterior.png';
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
