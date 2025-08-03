@@ -251,7 +251,7 @@ const Homepage = () => {
                 className="w-full md:w-1/3 flex-shrink-0"
               >
                 {/* Car Card */}
-                <div className="relative h-[400px] md:h-[600px] overflow-hidden group mx-2">
+                <div className="relative h-[400px] md:h-[600px] overflow-hidden group">
                   {/* Background Image */}
                   <img
                     src={car.image}
