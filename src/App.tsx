@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       {/* Navbar at the top */}
       <Navbar />
-      <Homepage />
+      {/* <Homepage /> */}
       <RiddaraShowcase />
       <Footer/>
 
