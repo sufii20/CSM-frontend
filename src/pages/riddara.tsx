@@ -19,6 +19,7 @@ import slideD from '../assets/IntSlideD.png';
 import slideE from '../assets/IntSlideE.png';
 //banner and additional images
 import FrontGrid from '../assets/FrontGrillWide.png';
+import FrameRD from '../assets/FrameRD.png';
 import GrillWhite from '../assets/GrillCard.png';
 import Backlight from '../assets/BacklightCard.png';
 import RiddaraSpec from '../assets/RiddaraSpecs.png';
@@ -160,17 +161,13 @@ export const RiddaraShowcase = () => {
   return (
     <div className="w-full">
       {/* Hero Banner Section */}
-      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${RiddaraFullBanner})`}}>
+      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${FrameRD})`}}>
         <div className="absolute inset-0"></div>
         <div className="relative z-10 h-full flex flex-col">
           {/* Text positioned on left side */}
           <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
             <div className="text-white max-w-lg">
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-8">
-                UNSTOPPABLE<br/>
-                UNFORGETTABLE<br/>
-                EVERYWHERE
-              </h1>
+             
             </div>
           </div>
           
