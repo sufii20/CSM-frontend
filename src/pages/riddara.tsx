@@ -289,12 +289,7 @@ export const RiddaraShowcase = () => {
             </div>
           </div>
 
-          {/* Car color name display - only show for non-gradient colors */}
-          {!cars[currentCarIndex].color.includes('with black top') && (
-            <div className="text-left ml-8 mt-4">
-              <p className="text-lg font-light text-gray-700">{cars[currentCarIndex].color}</p>
-            </div>
-          )}
+          {/* Car color name display - removed to hide color names */}
 
         </div>
       </div>
@@ -320,21 +315,25 @@ export const RiddaraShowcase = () => {
               >
                 {slides.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
-                    <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-                      {/* Image */}
-                      <div className="relative overflow-hidden">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
+                      {/* Image with hover zoom effect */}
+                      <div className="relative overflow-hidden h-96">
                         <img 
                           src={slide.image} 
                           alt={slide.title}
-                          className="w-full h-64 object-cover"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
                       
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                          {slide.title}
-                        </h3>
+                        {/* Title with line above */}
+                        <div className="mb-3">
+                          <div className="w-12 h-px bg-gray-400 mb-3"></div>
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            {slide.title}
+                          </h3>
+                        </div>
                         <p className="text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
@@ -433,21 +432,25 @@ export const RiddaraShowcase = () => {
               >
                 {slides2.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
-                    <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-                      {/* Image */}
-                      <div className="relative overflow-hidden">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
+                      {/* Image with hover zoom effect */}
+                      <div className="relative overflow-hidden h-96">
                         <img 
                           src={slide.image} 
                           alt={slide.title}
-                          className="w-full h-64 object-cover"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
                       
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                          {slide.title}
-                        </h3>
+                        {/* Title with line above */}
+                        <div className="mb-3">
+                          <div className="w-12 h-px bg-gray-400 mb-3"></div>
+                          <h3 className="text-lg font-semibold text-gray-800">
+                            {slide.title}
+                          </h3>
+                        </div>
                         <p className="text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
