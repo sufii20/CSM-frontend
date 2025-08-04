@@ -18,6 +18,63 @@ interface SocialLink {
   bgColor: string;
 }
 
+const Newsletter = () => {
+  return (
+    <section className="py-16 bg-white relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-2 sm:px-6 lg:px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between relative z-10">
+          {/* Text Block */}
+          <div className="mb-6 md:mb-0 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              Stay Connected
+            </h2>
+            <p className="text-gray-600">
+              Join Our Mailing List For News &amp; Updates
+            </p>
+          </div>
+
+          {/* Input + Button */}
+          <div className="relative w-full max-w-md">
+            <input
+              type="email"
+              placeholder="Enter Your Email"
+              className="w-full px-5 py-3 border border-gray-400 focus:outline-none focus:border-black"
+            />
+            <button
+              type="submit"
+              className="absolute top-0 right-0 h-full px-5 bg-black text-white flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Watermark Background Logo */}
+      <div className="absolute inset-0 opacity-5 flex justify-end items-center pr-10 md:pr-20 pointer-events-none">
+        <img
+          src={logoMain}
+          alt="Watermark"
+          className="w-32 md:w-48 lg:w-64 xl:w-72"
+        />
+      </div>
+    </section>
+  );
+};
+
 const Footer: React.FC = () => {
   // Footer data
   const footerColumns: FooterColumn[] = [
@@ -88,74 +145,86 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-5">
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-5 py-10">
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-10">
-            {/* Left Section: Logo and Social */}
-            <div className="flex flex-col items-start gap-5">
-              {/* Logo Section */}
-              <div className="flex items-center gap-3">
-                <img 
-                  src={logoMain} 
-                  alt="Capital Smart Motors" 
-                  className="w-100 h-120" 
-                />
-              </div>
-              
-              {/* Social Links */}
-              <div className="flex gap-2.5">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className={`w-9 h-9 ${social.bgColor} rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity`}
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
+    <footer className="bg-white border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-5 py-10">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-10">
+          {/* Left Section: Logo and Social */}
+          <div className="flex flex-col items-start gap-5">
+            {/* Logo Section */}
+            <div className="flex items-center gap-3">
+              <img 
+                src={logoMain} 
+                alt="Capital Smart Motors" 
+                className="w-100 h-120" 
+              />
             </div>
-
-            {/* Footer Columns - Each in its own grid column */}
-            {footerColumns.map((column, columnIndex) => (
-              <div key={columnIndex} className="flex flex-col gap-4 items-start">
-                {column.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-gray-600 text-sm hover:text-gray-800 transition-colors text-left"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            ))}
+            
+            {/* Social Links */}
+            <div className="flex gap-2.5">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className={`w-9 h-9 ${social.bgColor} rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity`}
+                  aria-label={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Footer Bottom */}
-          <div className="border-t border-gray-200 pt-5 flex flex-col lg:flex-row justify-between items-center gap-2">
-            <div className="text-gray-600 text-sm">
-              © 2025 Capital Smart Motors
-            </div>
-            <div className="flex flex-wrap justify-center lg:justify-end gap-3">
-              {legalLinks.map((link) => (
+          {/* Footer Columns - Each in its own grid column */}
+          {footerColumns.map((column, columnIndex) => (
+            <div key={columnIndex} className="flex flex-col gap-4 items-start">
+              {column.links.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-600 text-sm hover:text-gray-800 transition-colors"
+                  className="text-gray-600 text-sm hover:text-gray-800 transition-colors text-left"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
+          ))}
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="border-t border-white-200 pt-5 -mx-5 px-5 pb-5">
+          <div className="bg-white-200 -mx-5 px-5 py-5">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-2 max-w-7xl mx-auto">
+              <div className="text-gray-600 text-sm">
+                © 2025 Capital Smart Motors
+              </div>
+              <div className="flex flex-wrap justify-start lg:justify-end gap-3">
+                {legalLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-gray-600 text-sm hover:text-gray-800 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </footer>
+      </div>
+    </footer>
+  );
+};
+
+// Combined component showing both Newsletter and Footer
+const NewsletterFooterComponent: React.FC = () => {
+  return (
+    <div>
+      <Newsletter />
+      <Footer />
     </div>
   );
 };
 
-export default Footer;
+export default NewsletterFooterComponent;
