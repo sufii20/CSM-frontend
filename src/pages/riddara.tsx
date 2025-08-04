@@ -289,20 +289,26 @@ export const RiddaraShowcase = () => {
             </div>
           </div>
 
-          {/* Car color name display - removed to hide color names */}
+          {/* Gallery Bottom Line - Small decorative line */}
+          <div className="flex items-center justify-center mt-4 mb-8">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
+          </div>
 
         </div>
       </div>
 
-      {/* Advanced Driving Dynamics Section */}
+       {/* Advanced Driving Dynamics Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title */}
+          {/* Section Title with Lines on Both Sides */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-800 mb-4 tracking-wide">
-              ADVANCED DRIVING DYNAMICS
-            </h2>
-            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
+                ADVANCED DRIVING DYNAMICS
+              </h2>
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+            </div>
           </div>
 
           {/* Slider Container */}
@@ -327,9 +333,9 @@ export const RiddaraShowcase = () => {
                       
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
-                        {/* Title with line above */}
+                        {/* Title with small line above */}
                         <div className="mb-3">
-                          <div className="w-12 h-px bg-gray-400 mb-3"></div>
+                          <div className="w-8 h-px bg-gray-400 mb-3"></div>
                           <h3 className="text-lg font-semibold text-gray-800">
                             {slide.title}
                           </h3>
@@ -386,7 +392,7 @@ export const RiddaraShowcase = () => {
               <img 
                 src={FrontGrid} 
                 alt="Riddara Banner"
-                className="w-full h-64 md:h-80 lg:h-96 object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
             
@@ -396,14 +402,14 @@ export const RiddaraShowcase = () => {
                 <img 
                   src={GrillWhite} 
                   alt="Riddara Detail 1"
-                  className="w-full h-48 md:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
               <div className="rounded-lg overflow-hidden">
                 <img 
                   src={Backlight} 
                   alt="Riddara Detail 2"
-                  className="w-full h-48 md:h-56 object-cover"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </div>
@@ -411,15 +417,14 @@ export const RiddaraShowcase = () => {
         </div>
       </div>
 
-      {/* Second Advanced Driving Dynamics Section */}
+      {/* Interior Features Section */}
       <div className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-800 mb-4 tracking-wide">
-              INTERIOR EXCELLENCE
+          {/* Section Title - Left Aligned */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-gray-800 text-left">
+              Interior Features
             </h2>
-            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
           </div>
 
           {/* Slider Container */}
@@ -444,9 +449,9 @@ export const RiddaraShowcase = () => {
                       
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
-                        {/* Title with line above */}
+                        {/* Title with small line above */}
                         <div className="mb-3">
-                          <div className="w-12 h-px bg-gray-400 mb-3"></div>
+                          <div className="w-8 h-px bg-gray-400 mb-3"></div>
                           <h3 className="text-lg font-semibold text-gray-800">
                             {slide.title}
                           </h3>
@@ -491,6 +496,13 @@ export const RiddaraShowcase = () => {
               ))}
             </div>
           </div>
+
+          {/* Brochure Button - Bottom Right */}
+          <div className="flex justify-end mt-8">
+            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '4px'}}>
+              BROCHURE
+            </button>
+          </div>
         </div>
       </div>
 
@@ -529,18 +541,23 @@ export const RiddaraShowcase = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="rounded-lg overflow-hidden">
                 <img 
-                  src={DriveAssist} 
+                  src={ModernTrunk} 
                   alt="Riddara Feature 3"
                   className="w-full h-auto object-contain"
                 />
               </div>
               <div className="rounded-lg overflow-hidden">
                 <img 
-                  src={ModernTrunk} 
+                  src={DriveAssist} 
                   alt="Riddara Feature 4"
                   className="w-full h-auto object-contain"
                 />
               </div>
+            </div>
+
+            {/* Final decorative line at the bottom */}
+            <div className="flex items-center justify-center pt-8">
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
             </div>
           </div>
         </div>
