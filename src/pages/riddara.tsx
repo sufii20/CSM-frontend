@@ -30,34 +30,56 @@ import DriveAssist from '../assets/DriveAssist.png';
 import ModernTrunk from '../assets/ModernTrunk.png';
 
 export const RiddaraShowcase = () => {
-  const [currentCarIndex, setCurrentCarIndex] = useState(3); // Start with green car as shown in image
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0); // Add missing state for slides
-  const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0); // State for second slider
+  const [currentCarIndex, setCurrentCarIndex] = useState(0); // Start with green with black top
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
   
   const cars = [
     {
-      image: whiteCar,
-      color: 'white',
-      bgColor: 'bg-gray-800'
+      image: greenCar,
+      color: 'Green with black top',
+      bgColor: 'bg-gradient-to-b from-black to-green-700',
+      colorCode: '#65775D'
     },
     {
-      image: blueCar, 
-      color: 'blue',
-      bgColor: 'bg-blue-600'
+      image: blueCar,
+      color: 'Blue',
+      bgColor: 'bg-blue-900',
+      colorCode: '#033146'
     },
     {
       image: greyCar,
-      color: 'grey', 
-      bgColor: 'bg-gray-500'
+      color: 'Grey',
+      bgColor: 'bg-gray-400',
+      colorCode: '#ACB3C0'
+    },
+    {
+      image: whiteCar,
+      color: 'White with black top',
+      bgColor: 'bg-gradient-to-b from-black to-white',
+      colorCode: '#FFFFFF'
+    },
+    {
+      image: whiteCar,
+      color: 'White',
+      bgColor: 'bg-white',
+      colorCode: '#FFFFFF'
+    },
+    {
+      image: whiteCar, // Using white car as placeholder for black
+      color: 'Black',
+      bgColor: 'bg-black',
+      colorCode: '#000000'
     },
     {
       image: greenCar,
-      color: 'green',
-      bgColor: 'bg-green-400'
+      color: 'Green',
+      bgColor: 'bg-green-700',
+      colorCode: '#65775D'
     }
   ];
 
-   // First Advanced Driving Dynamics slides data
+  // First Advanced Driving Dynamics slides data
   const slides = [
     {
       image: slidea,
@@ -117,7 +139,6 @@ export const RiddaraShowcase = () => {
 
   const nextSlide = () => {
     setCurrentSlideIndex((prev) => {
-      // Calculate how many groups of 3 we can show
       const maxIndex = Math.max(0, slides.length - 3);
       return prev >= maxIndex ? 0 : prev + 1;
     });
@@ -133,7 +154,6 @@ export const RiddaraShowcase = () => {
   // Functions for second slider
   const nextSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      // Calculate how many groups of 3 we can show
       const maxIndex = Math.max(0, slides2.length - 3);
       return prev >= maxIndex ? 0 : prev + 1;
     });
@@ -154,6 +174,24 @@ export const RiddaraShowcase = () => {
     setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
   };
 
+  // Helper function to create gradient style for two-tone colors
+  const getColorStyle = (index) => {
+    const car = cars[index];
+    if (car.color === 'Green with black top') {
+      return {
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+      };
+    } else if (car.color === 'White with black top') {
+      return {
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+      };
+    } else {
+      return {
+        backgroundColor: car.colorCode
+      };
+    }
+  };
+
   const selectCar = (index) => {
     setCurrentCarIndex(index);
   };
@@ -171,12 +209,12 @@ export const RiddaraShowcase = () => {
             </div>
           </div>
           
-          {/* Buttons positioned at bottom right */}
+           {/* Buttons positioned at bottom right with 5% rounded corners */}
           <div className="absolute bottom-8 right-8 flex space-x-4">
-            <button className="px-8 py-3 border border-white text-black bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-medium tracking-wide">
+            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
               BOOK NOW
             </button>
-            <button className="px-8 py-3 border border-white text-black bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-medium tracking-wide">
+            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
               BROCHURE
             </button>
           </div>
@@ -184,23 +222,23 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Specifications Section */}
-      <div className="bg-white py-16 px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="flex flex-col items-center px-8">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">UP TO</p>
-              <h3 className="text-3xl font-light text-gray-700 mb-1">632 Km*</h3>
-              <p className="text-gray-500 text-sm">Driving Range</p>
+      <div className="bg-white py-12 px-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 text-center">
+            <div className="flex flex-col items-center px-6">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
+              <h3 className="text-2xl font-light text-gray-700 mb-1">632 Km*</h3>
+              <p className="text-gray-500 text-xs">Driving Range</p>
             </div>
-            <div className="flex flex-col items-center px-8 border-l border-r border-gray-200">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">AS FAST AS</p>
-              <h3 className="text-3xl font-light text-gray-700 mb-1">4.5 Sec*</h3>
-              <p className="text-gray-500 text-sm">To Reach 100</p>
+            <div className="flex flex-col items-center px-6 border-l border-r border-gray-200">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">AS FAST AS</p>
+              <h3 className="text-2xl font-light text-gray-700 mb-1">4.5 Sec*</h3>
+              <p className="text-gray-500 text-xs">To Reach 100</p>
             </div>
-            <div className="flex flex-col items-center px-8">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-widest">UP TO</p>
-              <h3 className="text-3xl font-light text-gray-700 mb-1">86.56 KWh*</h3>
-              <p className="text-gray-500 text-sm">Capacity</p>
+            <div className="flex flex-col items-center px-6">
+              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
+              <h3 className="text-2xl font-light text-gray-700 mb-1">86.56 KWh*</h3>
+              <p className="text-gray-500 text-xs">Capacity</p>
             </div>
           </div>
         </div>
@@ -212,23 +250,17 @@ export const RiddaraShowcase = () => {
           
           {/* Color selector dots - positioned top right */}
           <div className="absolute top-4 right-4 z-20 flex space-x-2">
-            <button
-              onClick={() => selectCar(3)}
-              className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                currentCarIndex === 3 ? 'ring-2 ring-gray-600 ring-offset-2' : ''
-              } bg-green-400`}
-            />
-            <button
-              onClick={() => selectCar(1)}
-              className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                currentCarIndex === 1 ? 'ring-2 ring-gray-600 ring-offset-2' : ''
-              } bg-blue-600`}
-            />
-            <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-            <div className="w-4 h-4 rounded-full bg-gray-600"></div>
-            <div className="w-4 h-4 rounded-full bg-gray-200"></div>
-            <div className="w-4 h-4 rounded-full bg-green-300"></div>
-            <div className="w-4 h-4 rounded-full bg-gray-400"></div>
+            {cars.map((car, index) => (
+              <button
+                key={index}
+                onClick={() => selectCar(index)}
+                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${
+                  currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+                }`}
+                style={getColorStyle(index)}
+                title={car.color}
+              />
+            ))}
           </div>
 
           {/* Navigation arrows on sides */}
@@ -256,6 +288,13 @@ export const RiddaraShowcase = () => {
               />
             </div>
           </div>
+
+          {/* Car color name display - only show for non-gradient colors */}
+          {!cars[currentCarIndex].color.includes('with black top') && (
+            <div className="text-left ml-8 mt-4">
+              <p className="text-lg font-light text-gray-700">{cars[currentCarIndex].color}</p>
+            </div>
+          )}
 
         </div>
       </div>
@@ -291,8 +330,8 @@ export const RiddaraShowcase = () => {
                         />
                       </div>
                       
-                      {/* Text Content Below Image */}
-                      <div className="p-6 bg-gray-100">
+                      {/* Text Content Below Image - Left Aligned */}
+                      <div className="p-6 bg-gray-100 text-left">
                         <h3 className="text-lg font-semibold text-gray-800 mb-3">
                           {slide.title}
                         </h3>
@@ -404,8 +443,8 @@ export const RiddaraShowcase = () => {
                         />
                       </div>
                       
-                      {/* Text Content Below Image */}
-                      <div className="p-6 bg-gray-100">
+                      {/* Text Content Below Image - Left Aligned */}
+                      <div className="p-6 bg-gray-100 text-left">
                         <h3 className="text-lg font-semibold text-gray-800 mb-3">
                           {slide.title}
                         </h3>
