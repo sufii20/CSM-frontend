@@ -4,6 +4,7 @@ import Navbar from "./pages/navBar";
 import Footer from "./pages/footer";
 import Homepage from "./pages/homePage";
 import { Newsletter } from "./pages/newsLetter";
+import EVTestDrive from "./pages/testDrive";
 import RiddaraShowcase from "./pages/riddara";
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       {/* Navbar at the top */}
       <Navbar />
       {/* <Homepage /> */}
-      <RiddaraShowcase />
+      {/* <RiddaraShowcase /> */}
+      <EVTestDrive />
+      {/* Newsletter section */}
       <Footer/>
 
 
