@@ -7,14 +7,10 @@ const Navbar = () => {
   const [isBrandsOpen, setIsBrandsOpen] = useState(false);
 
   const brands = [
-    'BMW',
-    'Mercedes-Benz', 
-    'Audi',
-    'Toyota',
-    'Honda',
-    'Nissan',
-    'Volkswagen',
-    'Hyundai'
+    'ZEEKR', 
+    'RIDDARA',
+    'FORTHING',
+    'JMEV',
   ];
 
   return (

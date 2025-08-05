@@ -6,6 +6,7 @@ import Homepage from "./pages/homePage";
 import { Newsletter } from "./pages/newsLetter";
 import EVTestDrive from "./pages/testDrive";
 import RiddaraShowcase from "./pages/riddara";
+import Forthing from "./pages/forthing";
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,8 @@ function App() {
       <Navbar />
       {/* <Homepage /> */}
       {/* <RiddaraShowcase /> */}
-      <EVTestDrive />
+      {/* <EVTestDrive /> */}
+      <Forthing />
       {/* Newsletter section */}
       <Footer/>
 
