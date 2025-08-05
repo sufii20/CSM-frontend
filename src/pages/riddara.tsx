@@ -33,7 +33,7 @@ export const RiddaraShowcase = () => {
   const [currentCarIndex, setCurrentCarIndex] = useState(0); // Start with green with black top
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
-  
+
   const cars = [
     {
       image: greenCar,
@@ -88,7 +88,7 @@ export const RiddaraShowcase = () => {
     },
     {
       image: slideb,
-      title: "45° Incline Capability", 
+      title: "45° Incline Capability",
       description: "Effortlessly Tackles Steep Slopes And Rugged Terrain With A Powerful Climbing Ability For Supreme Off-Road Performance."
     },
     {
@@ -117,7 +117,7 @@ export const RiddaraShowcase = () => {
     },
     {
       image: slideB,
-      title: "Advanced Infotainment", 
+      title: "Advanced Infotainment",
       description: "State-of-the-art entertainment and navigation system with intuitive touch controls."
     },
     {
@@ -199,22 +199,22 @@ export const RiddaraShowcase = () => {
   return (
     <div className="w-full">
       {/* Hero Banner Section */}
-      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${FrameRD})`}}>
+      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${FrameRD})` }}>
         <div className="absolute inset-0"></div>
         <div className="relative z-10 h-full flex flex-col">
           {/* Text positioned on left side */}
           <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
             <div className="text-white max-w-lg">
-             
+
             </div>
           </div>
-          
-           {/* Buttons positioned at bottom right with 5% rounded corners */}
+
+          {/* Buttons positioned at bottom right with 5% rounded corners */}
           <div className="absolute bottom-8 right-8 flex space-x-4">
-            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
+            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '8px' }}>
               BOOK NOW
             </button>
-            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
+            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '8px' }}>
               BROCHURE
             </button>
           </div>
@@ -247,16 +247,15 @@ export const RiddaraShowcase = () => {
       {/* Car Gallery Section */}
       <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
         <div className="max-w-7xl mx-auto relative">
-          
+
           {/* Color selector dots - positioned top right */}
           <div className="absolute top-4 right-4 z-20 flex space-x-2">
             {cars.map((car, index) => (
               <button
                 key={index}
                 onClick={() => selectCar(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${
-                  currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
-                }`}
+                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+                  }`}
                 style={getColorStyle(index)}
                 title={car.color}
               />
@@ -264,14 +263,14 @@ export const RiddaraShowcase = () => {
           </div>
 
           {/* Navigation arrows on sides */}
-          <button 
+          <button
             onClick={prevCar}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          
-          <button 
+
+          <button
             onClick={nextCar}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
           >
@@ -281,8 +280,8 @@ export const RiddaraShowcase = () => {
           {/* Car image centered */}
           <div className="flex justify-center items-center h-full py-12">
             <div className="w-full max-w-4xl">
-              <img 
-                src={cars[currentCarIndex].image} 
+              <img
+                src={cars[currentCarIndex].image}
                 alt={`Riddara ${cars[currentCarIndex].color} car`}
                 className="w-full h-auto object-contain transition-all duration-500"
               />
@@ -297,7 +296,7 @@ export const RiddaraShowcase = () => {
         </div>
       </div>
 
-       {/* Advanced Driving Dynamics Section */}
+      {/* Advanced Driving Dynamics Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Title with Lines on Both Sides */}
@@ -315,22 +314,22 @@ export const RiddaraShowcase = () => {
           <div className="relative">
             {/* Main Slide Display - Show 3 at a time */}
             <div className="relative overflow-hidden">
-              <div 
+              <div
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex * (100/3)}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex * (100 / 3)}%)` }}
               >
                 {slides.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
                       {/* Image with hover zoom effect */}
                       <div className="relative overflow-hidden h-96">
-                        <img 
-                          src={slide.image} 
+                        <img
+                          src={slide.image}
                           alt={slide.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
-                      
+
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
                         {/* Title with small line above */}
@@ -351,14 +350,14 @@ export const RiddaraShowcase = () => {
             </div>
 
             {/* Navigation Arrows */}
-            <button 
+            <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            
-            <button 
+
+            <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
@@ -371,11 +370,10 @@ export const RiddaraShowcase = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlideIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSlideIndex === index 
-                      ? 'bg-gray-800 w-8' 
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlideIndex === index
+                      ? 'bg-gray-800 w-8'
                       : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -389,25 +387,25 @@ export const RiddaraShowcase = () => {
           <div className="space-y-4">
             {/* Top - Large banner image spanning full width */}
             <div className="rounded-lg overflow-hidden">
-              <img 
-                src={FrontGrid} 
+              <img
+                src={FrontGrid}
                 alt="Riddara Banner"
                 className="w-full h-auto object-contain"
               />
             </div>
-            
+
             {/* Bottom - Two smaller images side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={GrillWhite} 
+                <img
+                  src={GrillWhite}
                   alt="Riddara Detail 1"
                   className="w-full h-auto object-contain"
                 />
               </div>
               <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={Backlight} 
+                <img
+                  src={Backlight}
                   alt="Riddara Detail 2"
                   className="w-full h-auto object-contain"
                 />
@@ -431,22 +429,22 @@ export const RiddaraShowcase = () => {
           <div className="relative">
             {/* Main Slide Display - Show 3 at a time */}
             <div className="relative overflow-hidden">
-              <div 
+              <div
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex2 * (100/3)}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex2 * (100 / 3)}%)` }}
               >
                 {slides2.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
                       {/* Image with hover zoom effect */}
                       <div className="relative overflow-hidden h-96">
-                        <img 
-                          src={slide.image} 
+                        <img
+                          src={slide.image}
                           alt={slide.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
-                      
+
                       {/* Text Content Below Image - Left Aligned */}
                       <div className="p-6 bg-gray-100 text-left">
                         {/* Title with small line above */}
@@ -467,14 +465,14 @@ export const RiddaraShowcase = () => {
             </div>
 
             {/* Navigation Arrows */}
-            <button 
+            <button
               onClick={prevSlide2}
               className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
-            
-            <button 
+
+            <button
               onClick={nextSlide2}
               className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
@@ -487,11 +485,10 @@ export const RiddaraShowcase = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlideIndex2(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSlideIndex2 === index 
-                      ? 'bg-gray-800 w-8' 
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlideIndex2 === index
+                      ? 'bg-gray-800 w-8'
                       : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -499,7 +496,7 @@ export const RiddaraShowcase = () => {
 
           {/* Brochure Button - Bottom Right */}
           <div className="flex justify-end mt-8">
-            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '4px'}}>
+            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '4px' }}>
               BROCHURE
             </button>
           </div>
@@ -512,45 +509,45 @@ export const RiddaraShowcase = () => {
           <div className="space-y-4">
             {/* Top - Large banner image spanning full width */}
             <div className="rounded-lg overflow-hidden">
-              <img 
-                src={RiddaraSpec} 
+              <img
+                src={RiddaraSpec}
                 alt="Riddara Final Banner"
                 className="w-full h-auto object-contain"
               />
             </div>
-            
+
             {/* First row - Two images side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={airbag} 
+              <div className="rounded-lg overflow-hidden justify-self-start" style={{ height: '330px', aspectRatio: '500 / 330' }}>
+                <img
+                  src={airbag}
                   alt="Riddara Feature 1"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={cameraTech} 
+              <div className="rounded-lg overflow-hidden justify-self-end" style={{ height: '330px', aspectRatio: '760 / 330' }}>
+                <img
+                  src={cameraTech}
                   alt="Riddara Feature 2"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
             {/* Second row - Two more images side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={ModernTrunk} 
+              <div className="rounded-lg overflow-hidden justify-self-start" style={{ height: '330px', aspectRatio: '760 / 330' }}>
+                <img
+                  src={ModernTrunk}
                   alt="Riddara Feature 3"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={DriveAssist} 
+              <div className="rounded-lg overflow-hidden justify-self-end" style={{ height: '330px', aspectRatio: '500 / 330' }}>
+                <img
+                  src={DriveAssist}
                   alt="Riddara Feature 4"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
