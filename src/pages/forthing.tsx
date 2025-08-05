@@ -9,10 +9,10 @@ import slided from '../assets/Forthing/ADD/Exterior-D.png';
 import slidee from '../assets/Forthing/ADD/Exterior-E.jpg';
 //slider2 images
 import slideA from '../assets/Forthing/InteriorFeatures/Interior-A.png';
-import slideB from '../assets/Forthing/InteriorFeatures/Interior-A.png';
-import slideC from '../assets/Forthing/InteriorFeatures/Interior-A.png';
-import slideD from '../assets/Forthing/InteriorFeatures/Interior-A.png';
-import slideE from '../assets/Forthing/InteriorFeatures/Interior-A.png';
+import slideB from '../assets/Forthing/InteriorFeatures/Interior-B.png';
+import slideC from '../assets/Forthing/InteriorFeatures/Interior-C.png';
+import slideD from '../assets/Forthing/InteriorFeatures/Interior-D.png';
+import slideE from '../assets/Forthing/InteriorFeatures/Interior-E.png';
 //banner and additional images
 import ForthingSpec from '../assets/Forthing/ForthingSpecs.png';
 import ForthingBig from '../assets/Forthing/Grid/ForthingBig.png';
@@ -22,8 +22,9 @@ import ForthingRight from '../assets/Forthing/Grid/ForthingRight.png';
 export const Forthing = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
+  const [currentSlideIndex3, setCurrentSlideIndex3] = useState(0);
 
-  // First Advanced Driving Dynamics slides data
+  // First Advanced Driving Dynamics slides data (5 slides)
   const slides = [
     {
       image: slidea,
@@ -52,17 +53,17 @@ export const Forthing = () => {
     }
   ];
 
-  // Interior Features slides data
+  // Interior Features slides data (5 slides) - Using exact text from image
   const slides2 = [
     {
       image: slideA,
       title: "SMART HOME SPACE",
-      description: "Stay Into A Roomy, Two-Spece Cabin Where Comfort And Intelligent Come Together. Thoughtfully Designed For You, The Next-Human Offers Maximum Space And Even Smart Features Throughout Made From Ultra-Premium, Eco-Friendly Materials."
+      description: "Step Into A Roomy, Two-Space Cabin Where Comfort And Innovation Come Together. Thoughtfully Designed For You, The Driver-Interior Offers Maximum Space And Even Smart Features Throughout Made From Ultra-Premium, Eco-Friendly Materials."
     },
     {
       image: slideB,
       title: "ERGONOMIC SEATS WITH LEATHER & VENTILATION OPTION", 
-      description: "Designed For Optimal Comfort And Support, The Sport Feature High-End Finishes And Optional Adjustments To Enhance The Driving Experience In Modern Luxury."
+      description: "Designed For Optimal Comfort And Support, The Seats Feature High-End Finishes And Optional Ventilation To Enhance The Driving Experience In Modern Luxury."
     },
     {
       image: slideC,
@@ -81,7 +82,7 @@ export const Forthing = () => {
     }
   ];
 
-  // Security Features slides data
+  // Security Features slides data - using your imports
   const securitySlides = [
     {
       image: slidea,
@@ -92,19 +93,31 @@ export const Forthing = () => {
       image: slideb,
       title: "AEB Autonomous Emergency Braking", 
       description: "A Autonomous Emergency Braking And Automatic Pre-The The Brakes If It Helps Find A Potential Collision, Significantly Reducing The Impact Of Automatic The Risk Of Accidents For Your Safety."
+    },
+    {
+      image: slidec,
+      title: "Lane Departure Warning System",
+      description: "Advanced lane monitoring technology that alerts drivers when unintentional lane departures are detected, ensuring safer highway driving."
+    },
+    {
+      image: slided,
+      title: "Collision Avoidance Technology",
+      description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
     }
   ];
 
   const nextSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const maxIndex = Math.max(0, slides.length - 3);
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, slides.length - (isDesktop ? 2 : 1));
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const maxIndex = Math.max(0, slides.length - 3);
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, slides.length - (isDesktop ? 2 : 1));
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -112,14 +125,33 @@ export const Forthing = () => {
   // Functions for second slider
   const nextSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const maxIndex = Math.max(0, slides2.length - 3);
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, slides2.length - (isDesktop ? 2 : 1));
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const maxIndex = Math.max(0, slides2.length - 3);
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, slides2.length - (isDesktop ? 2 : 1));
+      return prev <= 0 ? maxIndex : prev - 1;
+    });
+  };
+
+  // Functions for security slider
+  const nextSlide3 = () => {
+    setCurrentSlideIndex3((prev) => {
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, securitySlides.length - (isDesktop ? 2 : 1));
+      return prev >= maxIndex ? 0 : prev + 1;
+    });
+  };
+
+  const prevSlide3 = () => {
+    setCurrentSlideIndex3((prev) => {
+      const isDesktop = window.innerWidth >= 768;
+      const maxIndex = Math.max(0, securitySlides.length - (isDesktop ? 2 : 1));
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -139,18 +171,9 @@ export const Forthing = () => {
           <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
             BOOK NOW
           </button>
-          <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
+          <button className="px-8 py-4 border-2 border-black text-white bg-black hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
             BROCHURE
           </button>
-        </div>
-      </div>
-
-      {/* Hero Text Section */}
-      <div className="bg-white py-6 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            DRIVE LIKE AN SUV, FEEL LIKE A CEO
-          </h1>
         </div>
       </div>
 
@@ -182,8 +205,8 @@ export const Forthing = () => {
       {/* Exterior Features Title */}
       <div className="bg-white py-4 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl font-semibold text-gray-800 text-left mb-4">
-            Exterior Features
+          <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
+            Advanced Driving Dynamics
           </h2>
         </div>
       </div>
@@ -193,14 +216,14 @@ export const Forthing = () => {
         <div className="max-w-7xl mx-auto">
           {/* Slider Container */}
           <div className="relative">
-            {/* Main Slide Display - Show 2 at a time */}
+            {/* Main Slide Display - Show 2 at a time on desktop, 1 on mobile */}
             <div className="relative overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex * 50}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex * (window.innerWidth < 768 ? 100 : 50)}%)` }}
               >
                 {slides.map((slide, index) => (
-                  <div key={index} className="w-1/2 flex-shrink-0 px-2">
+                  <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">
                     <div className="bg-white rounded-lg overflow-hidden group cursor-pointer">
                       {/* Image with hover zoom effect */}
                       <div className="relative overflow-hidden">
@@ -211,12 +234,12 @@ export const Forthing = () => {
                         />
                       </div>
                       
-                      {/* Text Content Below Image - Left Aligned */}
-                      <div className="p-6 text-left">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      {/* Text Content Below Image - Left Aligned with Gray Background */}
+                      <div className="p-4 md:p-6 text-left bg-gray-100">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3">
                           {slide.title}
                         </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
@@ -290,14 +313,14 @@ export const Forthing = () => {
 
           {/* Slider Container */}
           <div className="relative">
-            {/* Main Slide Display - Show 2 at a time */}
+            {/* Main Slide Display - Show 2 at a time on desktop, 1 on mobile */}
             <div className="relative overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex2 * 50}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex2 * (window.innerWidth < 768 ? 100 : 50)}%)` }}
               >
                 {slides2.map((slide, index) => (
-                  <div key={index} className="w-1/2 flex-shrink-0 px-2">
+                  <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">
                     <div className="bg-white rounded-lg overflow-hidden group cursor-pointer">
                       {/* Image with hover zoom effect */}
                       <div className="relative overflow-hidden">
@@ -308,12 +331,12 @@ export const Forthing = () => {
                         />
                       </div>
                       
-                      {/* Text Content Below Image - Left Aligned */}
-                      <div className="p-6 text-left">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                      {/* Text Content Below Image - Left Aligned with Gray Background */}
+                      <div className="p-4 md:p-6 text-left bg-gray-100">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3">
                           {slide.title}
                         </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
@@ -340,7 +363,7 @@ export const Forthing = () => {
           </div>
 
           {/* Brochure Button - Bottom Right */}
-          <div className="flex justify-end mt-8">
+          <div className="flex justify-end mt-4">
             <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '4px'}}>
               BROCHURE
             </button>
@@ -351,37 +374,66 @@ export const Forthing = () => {
       {/* Security Features Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title - Left Aligned */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 text-left">
-              Security Features
-            </h2>
+          {/* Section Title - Centered with lines on both sides */}
+          <div className="mb-8">
+            <div className="flex items-center justify-center">
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <h2 className="text-2xl font-semibold text-gray-800 px-8">
+                Security Features
+              </h2>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
           </div>
 
-          {/* Security Features Display - Show 2 at a time */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {securitySlides.map((slide, index) => (
-              <div key={index} className="bg-white rounded-lg overflow-hidden group cursor-pointer">
-                {/* Image with hover zoom effect */}
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={slide.image} 
-                    alt={slide.title}
-                    className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                
-                {/* Text Content Below Image - Left Aligned */}
-                <div className="p-6 text-left">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                    {slide.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {slide.description}
-                  </p>
-                </div>
+          {/* Slider Container */}
+          <div className="relative">
+            {/* Main Slide Display - Show 2 at a time on desktop, 1 on mobile */}
+            <div className="relative overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out gap-6"
+                style={{ transform: `translateX(-${currentSlideIndex3 * (window.innerWidth < 768 ? 100 : 50)}%)` }}
+              >
+                {securitySlides.map((slide, index) => (
+                  <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">
+                    <div className="bg-white rounded-lg overflow-hidden group cursor-pointer">
+                      {/* Image with hover zoom effect */}
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.title}
+                          className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      
+                      {/* Text Content Below Image - Left Aligned with Gray Background */}
+                      <div className="p-4 md:p-6 text-left bg-gray-100">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3">
+                          {slide.title}
+                        </h3>
+                        <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                          {slide.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={prevSlide3}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button 
+              onClick={nextSlide3}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
