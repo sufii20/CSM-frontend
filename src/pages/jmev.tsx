@@ -101,28 +101,28 @@ export const JMEV = () => {
   const slides = [
     {
       image: slidea,
-      title: "Big Panoramic Sunroof",
-      description: "Experience the Open Sky With The Largest Panoramic Sunroof - Perfect for a More Open Feel And Cabin Experience."
+      title: "Nearly 2m² large panoramic nano skylight",
+      description: "Double-layer laminated silver-coated glass is used to filter up to 98% of ultraviolet rays, so you don't have to worry about being bothered by sunlight  in the car."
     },
     {
       image: slideb,
-      title: "Modern Grille and Headlights", 
-      description: "Stand Out With a Bold Interior Smile And Sleek LED Headlights, Combined With Advanced Read Light Clusters."
+      title: "70% High strength steel skeleton", 
+      description: "The only one in its class that uses 44 hot-formed steel plates with a strength of up to 1500MPa, with a high-strength steel ratio of over 71%, to build a high-strength cage."
     },
     {
       image: slidec,
-      title: "Intelligent Color Switch",
-      description: "Advanced color-changing technology adapts to different environments and driving conditions."
+      title: "Galaxy platform pure electric base modular design",
+      description: "the new pure electric A-class vehicle platform is modularly designed, and the underlying logic is designed for comfortable living."
     },
     {
       image: slided,
-      title: "Smart Drive Assistance",
-      description: "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain."
+      title: "3 Driving Modes",
+      description: "Three driving modes deal with the challenges of all road conditions in real time Economic mode: Better economic electric energy,Motion mode: More positive power response,Standard mode: Both economic power and electric energy."
     },
     {
       image: slidee,
-      title: "Extreme Performance",
-      description: "Built for the most challenging conditions with superior engineering and robust design."
+      title: "Exterior Features: McPherson rear multi-link independent suspension",
+      description: "The design of the front McPherson rear multi-link independent suspension provides a comfortable driving experience. Drive forward in comfort with driving control at ease."
     }
   ];
 
@@ -131,27 +131,27 @@ export const JMEV = () => {
     {
       image: InteriorA,
       title: "SMART HOME SPACE",
-      description: "Step Into A Roomy, Two-Space Cabin Where Comfort And Innovation Come Together. Thoughtfully Designed For You, The Driver-Interior Offers Maximum Space And Even Smart Features Throughout Made From Ultra-Premium, Eco-Friendly Materials."
+      description: "Experience a spacious, intelligent cockpit where comfort meets innovation.Designed around you, the expansive cabin maximizes space and comfort.With intelligent innovation at its core, every journey feels effortlessly refined"
     },
     {
       image: InteriorB,
-      title: "ERGONOMIC SEATS WITH LEATHER & VENTILATION OPTION", 
-      description: "Designed For Optimal Comfort And Support, The Seats Feature High-End Finishes And Optional Ventilation To Enhance The Driving Experience In Modern Luxury."
+      title: "6-way Power Seat", 
+      description: "The driver’s seat is electrically adjustable in 6 directions and the driver can switch the comfortable driving and riding spaces at will to meet the space needs of the driver and passengers for free and pleasant travel."
     },
     {
       image: InteriorC,
-      title: "Premium Interior Design",
-      description: "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort."
+      title: "14.6-inch multimedia touch screen ",
+      description: "The central console features a 14.6-inch multimedia touchscreen that makes driving an easier and more pleasant experience."
     },
     {
       image: InteriorD,
-      title: "Smart Connectivity",
-      description: "Seamless integration with your digital life through advanced connectivity features."
+      title: "Intelligent Thermal Management System",
+      description: "Use the first waste heat A/C system for EV in China to effectively improve the energy consumption index and increase the endurance mileage by 30% compared with of ordinary RTC heating A/C (heat pump A/C optional)."
     },
     {
       image: InteriorE,
-      title: "Ambient Lighting",
-      description: "Customizable ambient lighting creates the perfect atmosphere for every journey."
+      title: "360 AVM visual system",
+      description: "Accurate identification of the surrounding environment and support of 100+ parking scenarios, including incomplete parking lines and parking spaces on curves, with an all-around view enable the blind spot disappear and the field of vision return."
     }
   ];
 
@@ -159,28 +159,28 @@ export const JMEV = () => {
   const securitySlides = [
     {
       image: slideA,
-      title: "ADAS Advanced Driver Assistance System",
-      description: "ADAS Advanced Driver Assistance System Enhances Driver Safety With Intelligent Features Like Lane Departure Warning, Automatic Emergency Braking, And Smart Collision For A Smarter, More Secure Drive."
+      title: "SUPREME PROTECTION",
+      description: "Superior durability and proven reliability are validated across multiple dimensions of testing."
     },
     {
       image: slideB,
-      title: "AEB Autonomous Emergency Braking", 
-      description: "Autonomous Emergency Braking Automatically Pre-Applies The Brakes If It Detects A Potential Collision, Significantly Reducing The Impact And The Risk Of Accidents For Your Safety."
+      title: "Comprehensive Airbag Protection", 
+      description: "JMEV ElIgh offers full-range airbag coverage for driver and passengers.Enhanced safety from all angles ensures peace of mind on every journey."
     },
     {
       image: slideC,
-      title: "Lane Departure Warning System",
-      description: "Advanced lane monitoring technology that alerts drivers when unintentional lane departures are detected, ensuring safer highway driving."
+      title: "Overcoming All-Scenario Challenges",
+      description: "JMEV ElIgh adapts to all road conditions with smart drive modes and efficient performance. Its advanced tech and lightweight body ensure confident, smooth driving anytime, anywhere."
     },
     {
       image: slideD,
-      title: "Collision Avoidance Technology",
-      description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
+      title: "Level 2.5 Intelligent Driving Assistance",
+      description: "JMEV ELIgh features Level 2.5 intelligent driving for smarter, safer journeys.It supports lane keeping, adaptive cruise, and real-time road monitoring"
     },
      {
       image: slideE,
-      title: "Collision Avoidance Technology",
-      description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
+      title: "Michelin tyre*",
+      description: "Aluminum alloy wheels paired with Michelin high-performance tires deliver a perfect blend of grip, comfort, and a sleek, sporty look."
     }
   ];
 
@@ -290,18 +290,18 @@ export const JMEV = () => {
             <div className="flex items-center bg-transparent rounded-lg p-4 shadow-sm">
               <div className="flex flex-col items-center px-6">
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
-                <h3 className="text-xl font-light text-gray-700 mb-1">1100 Km*</h3>
+                <h3 className="text-xl font-light text-gray-700 mb-1">500 Km*</h3>
                 <p className="text-gray-500 text-xs">Driving Range</p>
               </div>
               <div className="flex flex-col items-center px-6 border-l border-r border-gray-300 mx-4">
-                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">AS FAST AS</p>
-                <h3 className="text-xl font-light text-gray-700 mb-1">10.9 Sec*</h3>
-                <p className="text-gray-500 text-xs">To Reach 100</p>
+                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">Ultra Low</p>
+                <h3 className="text-xl font-light text-gray-700 mb-1">0.26</h3>
+                <p className="text-gray-500 text-xs">Wind Resistance</p>
               </div>
               <div className="flex flex-col items-center px-6">
-                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
-                <h3 className="text-xl font-light text-gray-700 mb-1">31.94 KWh*</h3>
-                <p className="text-gray-500 text-xs">Capacity</p>
+                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">Intelligent</p>
+                <h3 className="text-xl font-light text-gray-700 mb-1">L 2.5</h3>
+                <p className="text-gray-500 text-xs">Driving Assistant</p>
               </div>
             </div>
           </div>
