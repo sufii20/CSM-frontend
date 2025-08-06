@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import JMEVBanner from '../assets/HeroBanner/JMEVBanner.png'; 
+import JMEVBanner from '../assets/HeroBanner/JMEVBanner.png';
+// Car color variants
+import blackCar from '../assets/JMEV_page/ColorSelector/black.png';
+import blueCar from '../assets/JMEV_page/ColorSelector/blue.png';
+import whiteCar from '../assets/JMEV_page/ColorSelector/white.png';
+import greenCar from '../assets/JMEV_page/ColorSelector/green.png';
+import purpleCar from '../assets/JMEV_page/ColorSelector/Purple.png';
 //slider 1
 import slidea from '../assets/JMEV_page/ADAS/ADAS-A.png';
 import slideb from '../assets/JMEV_page/ADAS/ADAS-B.png';
@@ -20,6 +26,7 @@ import FeatureLeft from '../assets/JMEV_page/Grid/FeatureLeft.png';
 import FeatureRight from '../assets/JMEV_page/Grid/FeatureRight.png';
 
 export const JMEV = () => {
+  const [currentCarIndex, setCurrentCarIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
   const [currentSlideIndex3, setCurrentSlideIndex3] = useState(0);
@@ -36,6 +43,52 @@ export const JMEV = () => {
     
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Car color variants for JMEV
+  const cars = [
+    {
+      image: greenCar,
+      color: 'Green with black top',
+      bgColor: 'bg-gradient-to-b from-black to-green-700',
+      colorCode: '#65775D'
+    },
+    {
+      image: blueCar,
+      color: 'Blue',
+      bgColor: 'bg-blue-900',
+      colorCode: '#033146'
+    },
+    {
+      image: purpleCar,
+      color: 'Purple',
+      bgColor: 'bg-gray-400',
+      colorCode: '#ACB3C0'
+    },
+    {
+      image: whiteCar,
+      color: 'White with black top',
+      bgColor: 'bg-gradient-to-b from-black to-white',
+      colorCode: '#FFFFFF'
+    },
+    {
+      image: whiteCar,
+      color: 'White',
+      bgColor: 'bg-white',
+      colorCode: '#FFFFFF'
+    },
+    {
+      image: blackCar, // Using white car as placeholder for black
+      color: 'Black',
+      bgColor: 'bg-black',
+      colorCode: '#000000'
+    },
+    {
+      image: greenCar,
+      color: 'Green',
+      bgColor: 'bg-green-700',
+      colorCode: '#65775D'
+    }
+  ];
 
   // First Advanced Driving Dynamics slides data (5 slides)
   const slides = [
@@ -122,6 +175,37 @@ export const JMEV = () => {
   // Slider navigation functions
   const getMaxIndex = (slidesLength) => {
     return Math.max(0, slidesLength - (isDesktop ? 2 : 1));
+  };
+
+  // Car navigation functions
+  const nextCar = () => {
+    setCurrentCarIndex((prev) => (prev + 1) % cars.length);
+  };
+
+  const prevCar = () => {
+    setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
+  };
+
+  const selectCar = (index) => {
+    setCurrentCarIndex(index);
+  };
+
+  // Helper function to create gradient style for two-tone colors
+  const getColorStyle = (index) => {
+    const car = cars[index];
+    if (car.color === 'Green with black top') {
+      return {
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+      };
+    } else if (car.color === 'White with black top') {
+      return {
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+      };
+    } else {
+      return {
+        backgroundColor: car.colorCode
+      };
+    }
   };
 
   const nextSlide = () => {
@@ -212,18 +296,65 @@ export const JMEV = () => {
         </div>
       </div>
 
-      {/* Advanced Driving Dynamics Title */}
-      <div className="bg-white py-4 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-            Advanced Driving Dynamics
-          </h2>
+      {/* Car Gallery Section */}
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
+        <div className="max-w-7xl mx-auto relative">
+          {/* Color selector dots - positioned top right */}
+          <div className="absolute top-4 right-4 z-20 flex space-x-2">
+            {cars.map((car, index) => (
+              <button
+                key={index}
+                onClick={() => selectCar(index)}
+                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+                  }`}
+                style={getColorStyle(index)}
+                title={car.color}
+              />
+            ))}
+          </div>
+
+          {/* Navigation arrows on sides */}
+          <button
+            onClick={prevCar}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          <button
+            onClick={nextCar}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Car image centered */}
+          <div className="flex justify-center items-center h-full py-12">
+            <div className="w-full max-w-4xl">
+              <img
+                src={cars[currentCarIndex].image}
+                alt={`JMEV ${cars[currentCarIndex].color} car`}
+                className="w-full h-auto object-contain transition-all duration-500"
+              />
+            </div>
+          </div>
+
+          {/* Gallery Bottom Line - Small decorative line */}
+          <div className="flex items-center justify-center mt-4 mb-8">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
+          </div>
         </div>
       </div>
 
-      {/* Advanced Driving Dynamics Slider Section */}
-      <div className="bg-white py-4 px-4">
+      {/* Advanced Driving Dynamics Section */}
+      <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
+          {/* Section Title - Centered */}
+          <div className="mb-12">
+            <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
+              Advanced Driving Dynamics
+            </h2>
+          </div>
           <div className="relative">
             <div className="relative overflow-hidden">
               <div 
