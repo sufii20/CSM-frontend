@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ForthingBanner from '../assets/Forthing/HeroBanner/ForthingBanner.png'; 
 //slider 1
@@ -20,9 +20,64 @@ import ForthingLeft from '../assets/Forthing/Grid/ForthingLeft.png';
 import ForthingRight from '../assets/Forthing/Grid/ForthingRight.png';
 
 export const Forthing = () => {
+  const [currentCarIndex, setCurrentCarIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
   const [currentSlideIndex3, setCurrentSlideIndex3] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Handle responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Car color variants for Forthing - using your existing images as base
+  // Note: You'll need to add actual color variant images to your assets
+  const cars = [
+    {
+      image: ForthingBig, // Using your existing image as main
+      color: 'Silver Metallic',
+      bgColor: 'bg-gray-400',
+      colorCode: '#C0C0C0'
+    },
+    {
+      image: ForthingBig, // Replace with actual blue variant when available
+      color: 'Deep Blue',
+      bgColor: 'bg-blue-900',
+      colorCode: '#1e3a8a'
+    },
+    {
+      image: ForthingBig, // Replace with actual white variant when available
+      color: 'Pearl White',
+      bgColor: 'bg-white',
+      colorCode: '#FFFFFF'
+    },
+    {
+      image: ForthingBig, // Replace with actual black variant when available
+      color: 'Midnight Black',
+      bgColor: 'bg-black',
+      colorCode: '#000000'
+    },
+    {
+      image: ForthingBig, // Replace with actual red variant when available
+      color: 'Crimson Red',
+      bgColor: 'bg-red-600',
+      colorCode: '#dc2626'
+    },
+    {
+      image: ForthingBig, // Replace with actual green variant when available
+      color: 'Forest Green',
+      bgColor: 'bg-green-700',
+      colorCode: '#15803d'
+    }
+  ];
 
   // First Advanced Driving Dynamics slides data (5 slides)
   const slides = [
@@ -106,18 +161,42 @@ export const Forthing = () => {
     }
   ];
 
+  // Helper function to get max slide index
+  const getMaxIndex = (slidesLength) => {
+    return Math.max(0, slidesLength - (isDesktop ? 2 : 1));
+  };
+
+  // Car navigation functions
+  const nextCar = () => {
+    setCurrentCarIndex((prev) => (prev + 1) % cars.length);
+  };
+
+  const prevCar = () => {
+    setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
+  };
+
+  const selectCar = (index) => {
+    setCurrentCarIndex(index);
+  };
+
+  // Helper function to create gradient style for two-tone colors
+  const getColorStyle = (index) => {
+    const car = cars[index];
+    return {
+      backgroundColor: car.colorCode
+    };
+  };
+
   const nextSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, slides.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(slides.length);
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, slides.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(slides.length);
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -125,16 +204,14 @@ export const Forthing = () => {
   // Functions for second slider
   const nextSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, slides2.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(slides2.length);
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, slides2.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(slides2.length);
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -142,16 +219,14 @@ export const Forthing = () => {
   // Functions for security slider
   const nextSlide3 = () => {
     setCurrentSlideIndex3((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, securitySlides.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(securitySlides.length);
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide3 = () => {
     setCurrentSlideIndex3((prev) => {
-      const isDesktop = window.innerWidth >= 768;
-      const maxIndex = Math.max(0, securitySlides.length - (isDesktop ? 2 : 1));
+      const maxIndex = getMaxIndex(securitySlides.length);
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -168,10 +243,10 @@ export const Forthing = () => {
         
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
-          <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
+          <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
             BOOK NOW
           </button>
-          <button className="px-8 py-4 border-2 border-black text-white bg-black hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '8px'}}>
+          <button className="px-8 py-4 border-2 border-black text-white bg-black hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
             BROCHURE
           </button>
         </div>
@@ -202,6 +277,56 @@ export const Forthing = () => {
         </div>
       </div>
 
+      {/* Car Gallery Section with Color Selector */}
+      <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
+        <div className="max-w-7xl mx-auto relative">
+          {/* Color selector dots - positioned top right */}
+          <div className="absolute top-4 right-4 z-20 flex space-x-2">
+            {cars.map((car, index) => (
+              <button
+                key={index}
+                onClick={() => selectCar(index)}
+                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
+                  }`}
+                style={getColorStyle(index)}
+                title={car.color}
+              />
+            ))}
+          </div>
+
+          {/* Navigation arrows on sides */}
+          <button
+            onClick={prevCar}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          <button
+            onClick={nextCar}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Car image centered */}
+          <div className="flex justify-center items-center h-full py-12">
+            <div className="w-full max-w-4xl">
+              <img
+                src={cars[currentCarIndex].image}
+                alt={`Forthing ${cars[currentCarIndex].color} car`}
+                className="w-full h-auto object-contain transition-all duration-500"
+              />
+            </div>
+          </div>
+
+          {/* Gallery Bottom Line - Small decorative line */}
+          <div className="flex items-center justify-center mt-4 mb-8">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
+          </div>
+        </div>
+      </div>
+
       {/* Exterior Features Title */}
       <div className="bg-white py-4 px-4">
         <div className="max-w-7xl mx-auto">
@@ -220,7 +345,7 @@ export const Forthing = () => {
             <div className="relative overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex * (window.innerWidth < 768 ? 100 : 50)}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex * (isDesktop ? 50 : 100)}%)` }}
               >
                 {slides.map((slide, index) => (
                   <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">
@@ -317,7 +442,7 @@ export const Forthing = () => {
             <div className="relative overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex2 * (window.innerWidth < 768 ? 100 : 50)}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex2 * (isDesktop ? 50 : 100)}%)` }}
               >
                 {slides2.map((slide, index) => (
                   <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">
@@ -364,7 +489,7 @@ export const Forthing = () => {
 
           {/* Brochure Button - Bottom Right */}
           <div className="flex justify-end mt-4">
-            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{borderRadius: '4px'}}>
+            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded">
               BROCHURE
             </button>
           </div>
@@ -391,7 +516,7 @@ export const Forthing = () => {
             <div className="relative overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex3 * (window.innerWidth < 768 ? 100 : 50)}%)` }}
+                style={{ transform: `translateX(-${currentSlideIndex3 * (isDesktop ? 50 : 100)}%)` }}
               >
                 {securitySlides.map((slide, index) => (
                   <div key={index} className="w-full md:w-1/2 flex-shrink-0 px-2">

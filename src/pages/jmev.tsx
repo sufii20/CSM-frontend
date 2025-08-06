@@ -56,7 +56,7 @@ export const JMEV = () => {
       image: blueCar,
       color: 'Blue',
       bgColor: 'bg-blue-900',
-      colorCode: '#033146'
+      colorCode: '#227ba4ff'
     },
     {
       image: purpleCar,
@@ -262,10 +262,10 @@ export const JMEV = () => {
         
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
-          <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
+          <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
             BOOK NOW
           </button>
-          <button className="px-8 py-4 border-2 border-black text-white bg-black hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
+          <button className="px-8 py-4 border-2 border-black text-white bg-black   transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
             BROCHURE
           </button>
         </div>
