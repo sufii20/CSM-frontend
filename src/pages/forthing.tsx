@@ -113,7 +113,7 @@ export const Forthing = () => {
     {
       image: slideA,
       title: "SMART HOME SPACE",
-      description: "Step into a roomy, tech-savvy cabin where comfort and innovation come together.Thoughtfully designed for you, the open interior offers maximum space and ease.Smart features throughout make every drive smooth, connected, and refined.
+      description: "Step into a roomy, tech-savvy cabin where comfort and innovation come together.Thoughtfully designed for you, the open interior offers maximum space and ease.Smart features throughout make every drive smooth, connected, and refined."
     },
     {
       image: slideB,
