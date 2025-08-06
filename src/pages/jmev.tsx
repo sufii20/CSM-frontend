@@ -8,22 +8,29 @@ import blueCar from '../assets/JMEV_page/ColorSelector/blue.png';
 import whiteCar from '../assets/JMEV_page/ColorSelector/white.png';
 import greenCar from '../assets/JMEV_page/ColorSelector/green.png';
 import purpleCar from '../assets/JMEV_page/ColorSelector/Purple.png';
-//slider 1
-import slidea from '../assets/JMEV_page/ADAS/ADAS-A.png';
-import slideb from '../assets/JMEV_page/ADAS/ADAS-B.png';
-import slidec from '../assets/JMEV_page/ADAS/ADAS-C.png';
-import slided from '../assets/JMEV_page/ADAS/ADAS-D.png';
-import slidee from '../assets/JMEV_page/ADAS/ADAS-E.png';
-//slider2 images
-import slideA from '../assets/JMEV_page/ADD/Exterior-A.png';
-import slideB from '../assets/JMEV_page/ADD/Exterior-B.png';
-import slideC from '../assets/JMEV_page/ADD/Exterior-C.png';
-import slideD from '../assets/JMEV_page/ADD/Exterior-D.png';
-import slideE from '../assets/JMEV_page/ADD/Exterior-E.png';
+//slider 2
+import slideA from '../assets/JMEV_page/ADAS/ADAS-A.png';
+import slideB from '../assets/JMEV_page/ADAS/ADAS-B.png';
+import slideC from '../assets/JMEV_page/ADAS/ADAS-C.png';
+import slideD from '../assets/JMEV_page/ADAS/ADAS-D.png';
+import slideE from '../assets/JMEV_page/ADAS/ADAS-E.png';
+//slider1 images
+import slidea from '../assets/JMEV_page/ADD/Exterior-A.png';
+import slideb from '../assets/JMEV_page/ADD/Exterior-B.png';
+import slidec from '../assets/JMEV_page/ADD/Exterior-C.png';
+import slided from '../assets/JMEV_page/ADD/Exterior-D.png';
+import slidee from '../assets/JMEV_page/ADD/Exterior-E.png';
+//slider3 images
+import InteriorA from '../assets/JMEV_page/InteriorFeatures/Interior-A.png';
+import InteriorB from '../assets/JMEV_page/InteriorFeatures/Interior-B.png';
+import InteriorC from '../assets/JMEV_page/InteriorFeatures/Interior-C.png';
+import InteriorD from '../assets/JMEV_page/InteriorFeatures/Interior-D.png';
+import InteriorE from '../assets/JMEV_page/InteriorFeatures/Interior-E.png';
 //banner and additional images
 import FeatureBig from '../assets/JMEV_page/Grid/FeatureBig.png';
 import FeatureLeft from '../assets/JMEV_page/Grid/FeatureLeft.png';
 import FeatureRight from '../assets/JMEV_page/Grid/FeatureRight.png';
+import JmevSpecs from '../assets/JMEV_page/JmevSpecs.png';
 
 export const JMEV = () => {
   const [currentCarIndex, setCurrentCarIndex] = useState(0);
@@ -122,27 +129,27 @@ export const JMEV = () => {
   // Interior Features slides data (5 slides)
   const slides2 = [
     {
-      image: slideA,
+      image: InteriorA,
       title: "SMART HOME SPACE",
       description: "Step Into A Roomy, Two-Space Cabin Where Comfort And Innovation Come Together. Thoughtfully Designed For You, The Driver-Interior Offers Maximum Space And Even Smart Features Throughout Made From Ultra-Premium, Eco-Friendly Materials."
     },
     {
-      image: slideB,
+      image: InteriorB,
       title: "ERGONOMIC SEATS WITH LEATHER & VENTILATION OPTION", 
       description: "Designed For Optimal Comfort And Support, The Seats Feature High-End Finishes And Optional Ventilation To Enhance The Driving Experience In Modern Luxury."
     },
     {
-      image: slideC,
+      image: InteriorC,
       title: "Premium Interior Design",
       description: "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort."
     },
     {
-      image: slideD,
+      image: InteriorD,
       title: "Smart Connectivity",
       description: "Seamless integration with your digital life through advanced connectivity features."
     },
     {
-      image: slideE,
+      image: InteriorE,
       title: "Ambient Lighting",
       description: "Customizable ambient lighting creates the perfect atmosphere for every journey."
     }
@@ -151,22 +158,27 @@ export const JMEV = () => {
   // Security Features slides data
   const securitySlides = [
     {
-      image: slidea,
+      image: slideA,
       title: "ADAS Advanced Driver Assistance System",
       description: "ADAS Advanced Driver Assistance System Enhances Driver Safety With Intelligent Features Like Lane Departure Warning, Automatic Emergency Braking, And Smart Collision For A Smarter, More Secure Drive."
     },
     {
-      image: slideb,
+      image: slideB,
       title: "AEB Autonomous Emergency Braking", 
       description: "Autonomous Emergency Braking Automatically Pre-Applies The Brakes If It Detects A Potential Collision, Significantly Reducing The Impact And The Risk Of Accidents For Your Safety."
     },
     {
-      image: slidec,
+      image: slideC,
       title: "Lane Departure Warning System",
       description: "Advanced lane monitoring technology that alerts drivers when unintentional lane departures are detected, ensuring safer highway driving."
     },
     {
-      image: slided,
+      image: slideD,
+      title: "Collision Avoidance Technology",
+      description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
+    },
+     {
+      image: slideE,
       title: "Collision Avoidance Technology",
       description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
     }
@@ -445,12 +457,12 @@ export const JMEV = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Title with Lines on Both Sides */}
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+            <div className="flex items-center justify-left mb-8">
+              {/* <div className="flex-1 h-px bg-gray-400 max-w-24"></div> */}
               <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
                 INTERIOR FEATURES
               </h2>
-              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              {/* <div className="flex-1 h-px bg-gray-400 max-w-24"></div> */}
             </div>
           </div>
 
@@ -569,6 +581,7 @@ export const JMEV = () => {
           </div>
         </div>
       </div>
+
 
       {/* Final Section - Decorative End */}
       <div className="bg-white py-8 px-4">
