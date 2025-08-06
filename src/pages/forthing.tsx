@@ -327,18 +327,20 @@ export const Forthing = () => {
         </div>
       </div>
 
-      {/* Exterior Features Title */}
-      <div className="bg-white py-4 px-4">
+      {/* Advanced Driving Dynamics Section */}
+      <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-            Advanced Driving Dynamics
-          </h2>
-        </div>
-      </div>
+          {/* Section Title with Lines on Both Sides */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
+                ADVANCED DRIVING DYNAMICS
+              </h2>
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+            </div>
+          </div>
 
-      {/* Exterior Features Slider Section */}
-      <div className="bg-white py-4 px-4">
-        <div className="max-w-7xl mx-auto">
           {/* Slider Container */}
           <div className="relative">
             {/* Main Slide Display - Show 2 at a time on desktop, 1 on mobile */}
@@ -429,11 +431,15 @@ export const Forthing = () => {
       {/* Interior Features Section */}
       <div className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title - Left Aligned */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 text-left">
-              Interior Features
-            </h2>
+          {/* Section Title with Lines on Both Sides */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
+                INTERIOR FEATURES
+              </h2>
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+            </div>
           </div>
 
           {/* Slider Container */}
@@ -499,14 +505,14 @@ export const Forthing = () => {
       {/* Security Features Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title - Centered with lines on both sides */}
-          <div className="mb-8">
-            <div className="flex items-center justify-center">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <h2 className="text-2xl font-semibold text-gray-800 px-8">
-                Security Features
+          {/* Section Title with Lines on Both Sides */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
+                SECURITY FEATURES
               </h2>
-              <div className="flex-1 h-px bg-gray-300"></div>
+              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
             </div>
           </div>
 
