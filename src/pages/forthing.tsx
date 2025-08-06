@@ -83,28 +83,28 @@ export const Forthing = () => {
   const slides = [
     {
       image: slidea,
-      title: "Big Panoramic Sunroof",
-      description: "Experience the Open Sky With The Largest Panoramic Sunroof - Perfect for a More Open Feel And Cabin Experience."
+      title: "⦁	Big Panoramic Sunroof ",
+      description: "Enjoy expansive sky views and natural light with the larger, panoramic sunroof—perfect for a more open and airy cabin experience."
     },
     {
       image: slideb,
-      title: "Modern Grille and Headlights", 
-      description: "Stand Out With a Bold Interior Smile And Sleek LED Headlights, Combined With Advanced Read Light Clusters."
+      title: "⦁	Modern Grille and Headlights", 
+      description: "Stand out with a bold modern grille and sleek LED headlights, combining striking style with enhanced road visibility."
     },
     {
       image: slidec,
-      title: "Intelligent Color Switch",
-      description: "Advanced color-changing technology adapts to different environments and driving conditions."
+      title: "⦁	Aerodynamic Side Profile",
+      description: "Showcasing a sleek and sculpted design, the aerodynamic side profile enhances both beauty and performance for a smooth, efficient drive."
     },
     {
       image: slided,
-      title: "Smart Drive Assistance",
-      description: "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain."
+      title: "⦁	Sport-Tuned Alloy Wheels",
+      description: "Sport-tuned alloy wheels enhance both style and performance. Designed for stability and sharp handling, they add a bold, athletic edge to every drive"
     },
     {
       image: slidee,
-      title: "Extreme Performance",
-      description: "Built for the most challenging conditions with superior engineering and robust design."
+      title: "⦁	LED Matrix Headlights & Tail Lamps",
+      description: "LED matrix headlights and tail lamps offer superior visibility and a modern look. They adapt intelligently to driving conditions, improving safety, enhancing the vehicle's futuristic style."
     }
   ];
 
@@ -113,27 +113,27 @@ export const Forthing = () => {
     {
       image: slideA,
       title: "SMART HOME SPACE",
-      description: "Step Into A Roomy, Two-Space Cabin Where Comfort And Innovation Come Together. Thoughtfully Designed For You, The Driver-Interior Offers Maximum Space And Even Smart Features Throughout Made From Ultra-Premium, Eco-Friendly Materials."
+      description: "Step into a roomy, tech-savvy cabin where comfort and innovation come together.Thoughtfully designed for you, the open interior offers maximum space and ease.Smart features throughout make every drive smooth, connected, and refined.
     },
     {
       image: slideB,
-      title: "ERGONOMIC SEATS WITH LEATHER & VENTILATION OPTION", 
-      description: "Designed For Optimal Comfort And Support, The Seats Feature High-End Finishes And Optional Ventilation To Enhance The Driving Experience In Modern Luxury."
+      title: "⦁	ERGONOMIC SEATS WITH LEATHER & VENTILATION OPTIONS", 
+      description: "Designed for optimal comfort and support, the seats feature high-quality leather finishes and optional ventilation to enhance the driving experience in all conditions."
     },
     {
       image: slideC,
-      title: "Premium Interior Design",
-      description: "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort."
+      title: "Dual HD screens: infotainment + digital cluster",
+      description: "Features a high-resolution infotainment touchscreen paired with a fully digital instrument cluster, delivering clear visuals, intuitive control, and a connected driving experience."
     },
     {
       image: slideD,
-      title: "Smart Connectivity",
-      description: "Seamless integration with your digital life through advanced connectivity features."
+      title: "Shift Electronic Gear Shifting Technology",
+      description: "Experience seamless control with advanced electronic gear shifting for a sleek, modern drive."
     },
     {
       image: slideE,
-      title: "Ambient Lighting",
-      description: "Customizable ambient lighting creates the perfect atmosphere for every journey."
+      title: "Spacious trunk with split-folding rear seats",
+      description: "Spacious trunk with split-folding rear seats offers flexible storage for all your adventures."
     }
   ];
 
@@ -142,22 +142,22 @@ export const Forthing = () => {
     {
       image: slidea,
       title: "ADAS Advanced Driver Assistance System",
-      description: "ADAS Advanced Driver Assistance System Enhances Driver Safety With Intelligent Features Like Lane Departure Warning, Automatic Emergency Braking, And Smart Collision For A Smarter, More Secure Drive."
+      description: "ADAS (Advanced Driver Assistance System) enhances safety with intelligent features like lane keeping, collision warning, and adaptive cruise control for a smarter, more secure drive"
     },
     {
       image: slideb,
       title: "AEB Autonomous Emergency Braking", 
-      description: "A Autonomous Emergency Braking And Automatic Pre-The The Brakes If It Helps Find A Potential Collision, Significantly Reducing The Impact Of Automatic The Risk Of Accidents For Your Safety."
+      description: "It automatically detects obstacles and applies the brakes to help prevent or reduce the severity of collisions, ensuring greater safety on the road."
     },
     {
       image: slidec,
-      title: "Lane Departure Warning System",
-      description: "Advanced lane monitoring technology that alerts drivers when unintentional lane departures are detected, ensuring safer highway driving."
+      title: "6-Airbag Protection System",
+      description: "Forthing Friday comes with comprehensive safety with front, side, and curtain airbags, shielding occupants from multiple angles in the event of a collision"
     },
     {
       image: slided,
-      title: "Collision Avoidance Technology",
-      description: "State-of-the-art sensors and AI technology work together to predict and prevent potential collisions before they occur."
+      title: "C360° Surround View Camera",
+      description: "360° Surround View Camera delivers a real-time bird’s-eye view of your surroundings, making parking and maneuvering in tight spaces safer and easier."
     }
   ];
 
