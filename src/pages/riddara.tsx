@@ -85,31 +85,31 @@ export const RiddaraShowcase = () => {
       image: slidea,
       title: "815mm Water-Wading Depth",
       description:
-        "Easily Navigates Rivers And Shallow Waters With A Class-Leading Wading Depth Of 815mm.",
+        "Easily navigates rivers and shallow waters with a class-leading wading depth of 815mm.",
     },
     {
       image: slideb,
       title: "45° Incline Capability",
       description:
-        "Effortlessly Tackles Steep Slopes And Rugged Terrain With A Powerful Climbing Ability For Supreme Off-Road Performance.",
+        "Effortlessly Tackles Steep Slopes and Rugged Terrain with A Powerful 45° Incline Climbing Ability for Supreme Off-Road Performance.",
     },
     {
       image: slidec,
-      title: "Intelligent Color Switch",
+      title: "RIDDARA 360° Smart Turn",
       description:
-        "Advanced color-changing technology adapts to different environments and driving conditions.",
+        "Master Tight Corners and Confined Trails with Precision. The RIDDARA 360° Smart Turn Delivers Seamless Maneuverability for Unrivaled Control in Every Direction.",
     },
     {
       image: slided,
-      title: "Smart Drive Assistance",
+      title: "RIDDARA 1030 kg Loading Capacity",
       description:
-        "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain.",
+        "Built to Haul More. With A Sturdy 1030 kg Payload Capacity, RIDDARA Handles Heavy Loads with Ease—Perfect for Work, Adventure, And Everything In Between.",
     },
     {
       image: slidee,
-      title: "Extreme Performance",
+      title: "RIDDARA SUV-Based Suspension",
       description:
-        "Built for the most challenging conditions with superior engineering and robust design.",
+        "Experience Smooth Rides on Any Terrain. The Advanced SUV-Based Suspension System Delivers Exceptional Comfort, Stability, And Off-Road Confidence Wherever You Go.",
     },
   ];
 
@@ -117,33 +117,33 @@ export const RiddaraShowcase = () => {
   const slides2 = [
     {
       image: slideA,
-      title: "Premium Interior Design",
+      title: "Spacious Seat Interior",
       description:
-        "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort.",
+        "Enjoy 5-seat comfort with pet-friendly, foldable rear seats for added versatility, exuding comfort and luxury.",
     },
     {
       image: slideB,
-      title: "Advanced Infotainment",
+      title: "NVH Silencet",
       description:
-        "State-of-the-art entertainment and navigation system with intuitive touch controls.",
+        "Noise Cancellation for serene drive at any speed",
     },
     {
       image: slideC,
-      title: "Ergonomic Seating",
+      title: "Entertainment Eco-system",
       description:
-        "Premium leather seats with multi-zone climate control and massage functionality.",
+        "Access endless audio and video features to elevate every journey with immersive entertainment. highly interactive 14.6-inch digital display with smartphone connectivity.",
     },
     {
       image: slideD,
-      title: "Smart Connectivity",
+      title: "SYNTHETIC LEATHER SEAT",
       description:
-        "Seamless integration with your digital life through advanced connectivity features.",
+        "The front seat features an electric adjustment, and both front and rear feature built-in ventilation system.",
     },
     {
       image: slideE,
-      title: "Ambient Lighting",
+      title: "Wireless Charging Pad",
       description:
-        "Customizable ambient lighting creates the perfect atmosphere for every journey.",
+        "Stay powered effortlessly with an advanced wireless charging pad.",
     },
   ];
 
@@ -248,7 +248,7 @@ export const RiddaraShowcase = () => {
                   UP TO
                 </p>
                 <h3 className="text-xl font-light text-gray-700 mb-1">
-                  1100 Km*
+                  632 Km*
                 </h3>
                 <p className="text-gray-500 text-xs">Driving Range</p>
               </div>
@@ -257,7 +257,7 @@ export const RiddaraShowcase = () => {
                   AS FAST AS
                 </p>
                 <h3 className="text-xl font-light text-gray-700 mb-1">
-                  10.9 Sec*
+                  4.5 Sec*
                 </h3>
                 <p className="text-gray-500 text-xs">To Reach 100</p>
               </div>
@@ -266,7 +266,7 @@ export const RiddaraShowcase = () => {
                   UP TO
                 </p>
                 <h3 className="text-xl font-light text-gray-700 mb-1">
-                  31.94 KWh*
+                  86.56 KWh*
                 </h3>
                 <p className="text-gray-500 text-xs">Capacity</p>
               </div>
