@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import RiddaraFullBanner from '../assets/RiddaraFullBanner.png';
-import whiteCar from '../assets/car_white_top.webp';
-import blueCar from '../assets/car_blue.webp';
-import greyCar from '../assets/car_gray.webp';
-import greenCar from '../assets/car_green_top.webp';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
+import whiteCar from "../assets/car_white_top.webp";
+import blueCar from "../assets/car_blue.webp";
+import greyCar from "../assets/car_gray.webp";
+import greenCar from "../assets/car_green_top.webp";
 //slider 1
-import slidea from '../assets/ExtSlideA.png';
-import slideb from '../assets/ExSlideB.png';
-import slidec from '../assets/ExSlideC.png';
-import slided from '../assets/ExSlideD.png';
-import slidee from '../assets/ExSlideE.png';
+import slidea from "../assets/ExtSlideA.png";
+import slideb from "../assets/ExSlideB.png";
+import slidec from "../assets/ExSlideC.png";
+import slided from "../assets/ExSlideD.png";
+import slidee from "../assets/ExSlideE.png";
 //slider2 images
-import slideA from '../assets/IntSlideA.png';
-import slideB from '../assets/IntSlideB.png';
-import slideC from '../assets/IntSlideC.png';
-import slideD from '../assets/IntSlideD.png';
-import slideE from '../assets/IntSlideE.png';
+import slideA from "../assets/IntSlideA.png";
+import slideB from "../assets/IntSlideB.png";
+import slideC from "../assets/IntSlideC.png";
+import slideD from "../assets/IntSlideD.png";
+import slideE from "../assets/IntSlideE.png";
 //banner and additional images
-import FrontGrid from '../assets/FrontGrillWide.png';
-import FrameRD from '../assets/FrameRD.png';
-import GrillWhite from '../assets/GrillCard.png';
-import Backlight from '../assets/BacklightCard.png';
-import RiddaraSpec from '../assets/RiddaraSpecs.png';
+import FrontGrid from "../assets/FrontGrillWide.png";
+import FrameRD from "../assets/FrameRD.png";
+import GrillWhite from "../assets/GrillCard.png";
+import Backlight from "../assets/BacklightCard.png";
+import RiddaraSpec from "../assets/RiddaraSpecs.png";
 //last banner and four images
-import airbag from '../assets/AirBags.png';
-import cameraTech from '../assets/CameraTech.png';
-import DriveAssist from '../assets/DriveAssist.png';
-import ModernTrunk from '../assets/ModernTrunk.png';
+import airbag from "../assets/AirBags.png";
+import cameraTech from "../assets/CameraTech.png";
+import DriveAssist from "../assets/DriveAssist.png";
+import ModernTrunk from "../assets/ModernTrunk.png";
 
 export const RiddaraShowcase = () => {
   const [currentCarIndex, setCurrentCarIndex] = useState(0); // Start with green with black top
@@ -37,46 +37,46 @@ export const RiddaraShowcase = () => {
   const cars = [
     {
       image: greenCar,
-      color: 'Green with black top',
-      bgColor: 'bg-gradient-to-b from-black to-green-700',
-      colorCode: '#65775D'
+      color: "Green with black top",
+      bgColor: "bg-gradient-to-b from-black to-green-700",
+      colorCode: "#65775D",
     },
     {
       image: blueCar,
-      color: 'Blue',
-      bgColor: 'bg-blue-900',
-      colorCode: '#033146'
+      color: "Blue",
+      bgColor: "bg-blue-900",
+      colorCode: "#033146",
     },
     {
       image: greyCar,
-      color: 'Grey',
-      bgColor: 'bg-gray-400',
-      colorCode: '#ACB3C0'
+      color: "Grey",
+      bgColor: "bg-gray-400",
+      colorCode: "#ACB3C0",
     },
     {
       image: whiteCar,
-      color: 'White with black top',
-      bgColor: 'bg-gradient-to-b from-black to-white',
-      colorCode: '#FFFFFF'
+      color: "White with black top",
+      bgColor: "bg-gradient-to-b from-black to-white",
+      colorCode: "#FFFFFF",
     },
     {
       image: whiteCar,
-      color: 'White',
-      bgColor: 'bg-white',
-      colorCode: '#FFFFFF'
+      color: "White",
+      bgColor: "bg-white",
+      colorCode: "#FFFFFF",
     },
     {
       image: whiteCar, // Using white car as placeholder for black
-      color: 'Black',
-      bgColor: 'bg-black',
-      colorCode: '#000000'
+      color: "Black",
+      bgColor: "bg-black",
+      colorCode: "#000000",
     },
     {
       image: greenCar,
-      color: 'Green',
-      bgColor: 'bg-green-700',
-      colorCode: '#65775D'
-    }
+      color: "Green",
+      bgColor: "bg-green-700",
+      colorCode: "#65775D",
+    },
   ];
 
   // First Advanced Driving Dynamics slides data
@@ -84,28 +84,33 @@ export const RiddaraShowcase = () => {
     {
       image: slidea,
       title: "815mm Water-Wading Depth",
-      description: "Easily Navigates Rivers And Shallow Waters With A Class-Leading Wading Depth Of 815mm."
+      description:
+        "Easily Navigates Rivers And Shallow Waters With A Class-Leading Wading Depth Of 815mm.",
     },
     {
       image: slideb,
       title: "45° Incline Capability",
-      description: "Effortlessly Tackles Steep Slopes And Rugged Terrain With A Powerful Climbing Ability For Supreme Off-Road Performance."
+      description:
+        "Effortlessly Tackles Steep Slopes And Rugged Terrain With A Powerful Climbing Ability For Supreme Off-Road Performance.",
     },
     {
       image: slidec,
       title: "Intelligent Color Switch",
-      description: "Advanced color-changing technology adapts to different environments and driving conditions."
+      description:
+        "Advanced color-changing technology adapts to different environments and driving conditions.",
     },
     {
       image: slided,
       title: "Smart Drive Assistance",
-      description: "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain."
+      description:
+        "Cutting-edge AI-powered driving assistance for enhanced safety and performance on any terrain.",
     },
     {
       image: slidee,
       title: "Extreme Performance",
-      description: "Built for the most challenging conditions with superior engineering and robust design."
-    }
+      description:
+        "Built for the most challenging conditions with superior engineering and robust design.",
+    },
   ];
 
   // Second Advanced Driving Dynamics slides data (using interior slider images)
@@ -113,28 +118,33 @@ export const RiddaraShowcase = () => {
     {
       image: slideA,
       title: "Premium Interior Design",
-      description: "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort."
+      description:
+        "Luxurious cabin with cutting-edge materials and sophisticated styling for ultimate comfort.",
     },
     {
       image: slideB,
       title: "Advanced Infotainment",
-      description: "State-of-the-art entertainment and navigation system with intuitive touch controls."
+      description:
+        "State-of-the-art entertainment and navigation system with intuitive touch controls.",
     },
     {
       image: slideC,
       title: "Ergonomic Seating",
-      description: "Premium leather seats with multi-zone climate control and massage functionality."
+      description:
+        "Premium leather seats with multi-zone climate control and massage functionality.",
     },
     {
       image: slideD,
       title: "Smart Connectivity",
-      description: "Seamless integration with your digital life through advanced connectivity features."
+      description:
+        "Seamless integration with your digital life through advanced connectivity features.",
     },
     {
       image: slideE,
       title: "Ambient Lighting",
-      description: "Customizable ambient lighting creates the perfect atmosphere for every journey."
-    }
+      description:
+        "Customizable ambient lighting creates the perfect atmosphere for every journey.",
+    },
   ];
 
   const nextSlide = () => {
@@ -177,17 +187,17 @@ export const RiddaraShowcase = () => {
   // Helper function to create gradient style for two-tone colors
   const getColorStyle = (index) => {
     const car = cars[index];
-    if (car.color === 'Green with black top') {
+    if (car.color === "Green with black top") {
       return {
-        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`,
       };
-    } else if (car.color === 'White with black top') {
+    } else if (car.color === "White with black top") {
       return {
-        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`
+        background: `linear-gradient(to bottom, #000000, ${car.colorCode})`,
       };
     } else {
       return {
-        backgroundColor: car.colorCode
+        backgroundColor: car.colorCode,
       };
     }
   };
@@ -199,22 +209,29 @@ export const RiddaraShowcase = () => {
   return (
     <div className="w-full">
       {/* Hero Banner Section */}
-      <div className="relative h-screen bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${FrameRD})` }}>
+      <div
+        className="relative h-screen bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${FrameRD})` }}
+      >
         <div className="absolute inset-0"></div>
         <div className="relative z-10 h-full flex flex-col">
           {/* Text positioned on left side */}
           <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-            <div className="text-white max-w-lg">
-
-            </div>
+            <div className="text-white max-w-lg"></div>
           </div>
 
           {/* Buttons positioned at bottom right with 5% rounded corners */}
           <div className="absolute bottom-8 right-8 flex space-x-4">
-            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '8px' }}>
+            <button
+              className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              style={{ borderRadius: "8px" }}
+            >
               BOOK NOW
             </button>
-            <button className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '8px' }}>
+            <button
+              className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              style={{ borderRadius: "8px" }}
+            >
               BROCHURE
             </button>
           </div>
@@ -222,23 +239,37 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Specifications Section */}
-      <div className="bg-white py-12 px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 text-center">
-            <div className="flex flex-col items-center px-6">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
-              <h3 className="text-2xl font-light text-gray-700 mb-1">632 Km*</h3>
-              <p className="text-gray-500 text-xs">Driving Range</p>
-            </div>
-            <div className="flex flex-col items-center px-6 border-l border-r border-gray-200">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">AS FAST AS</p>
-              <h3 className="text-2xl font-light text-gray-700 mb-1">4.5 Sec*</h3>
-              <p className="text-gray-500 text-xs">To Reach 100</p>
-            </div>
-            <div className="flex flex-col items-center px-6">
-              <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">UP TO</p>
-              <h3 className="text-2xl font-light text-gray-700 mb-1">86.56 KWh*</h3>
-              <p className="text-gray-500 text-xs">Capacity</p>
+      <div className="bg-white py-4 px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center items-center">
+            <div className="flex items-center bg-transparent rounded-lg p-4 shadow-sm">
+              <div className="flex flex-col items-center px-6">
+                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
+                  UP TO
+                </p>
+                <h3 className="text-xl font-light text-gray-700 mb-1">
+                  1100 Km*
+                </h3>
+                <p className="text-gray-500 text-xs">Driving Range</p>
+              </div>
+              <div className="flex flex-col items-center px-6 border-l border-r border-gray-300 mx-4">
+                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
+                  AS FAST AS
+                </p>
+                <h3 className="text-xl font-light text-gray-700 mb-1">
+                  10.9 Sec*
+                </h3>
+                <p className="text-gray-500 text-xs">To Reach 100</p>
+              </div>
+              <div className="flex flex-col items-center px-6">
+                <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
+                  UP TO
+                </p>
+                <h3 className="text-xl font-light text-gray-700 mb-1">
+                  31.94 KWh*
+                </h3>
+                <p className="text-gray-500 text-xs">Capacity</p>
+              </div>
             </div>
           </div>
         </div>
@@ -247,15 +278,17 @@ export const RiddaraShowcase = () => {
       {/* Car Gallery Section */}
       <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
         <div className="max-w-7xl mx-auto relative">
-
           {/* Color selector dots - positioned top right */}
           <div className="absolute top-4 right-4 z-20 flex space-x-2">
             {cars.map((car, index) => (
               <button
                 key={index}
                 onClick={() => selectCar(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${currentCarIndex === index ? 'ring-2 ring-gray-600 ring-offset-2' : ''
-                  }`}
+                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${
+                  currentCarIndex === index
+                    ? "ring-2 ring-gray-600 ring-offset-2"
+                    : ""
+                }`}
                 style={getColorStyle(index)}
                 title={car.color}
               />
@@ -292,7 +325,6 @@ export const RiddaraShowcase = () => {
           <div className="flex items-center justify-center mt-4 mb-8">
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
           </div>
-
         </div>
       </div>
 
@@ -316,7 +348,9 @@ export const RiddaraShowcase = () => {
             <div className="relative overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex * (100 / 3)}%)` }}
+                style={{
+                  transform: `translateX(-${currentSlideIndex * (100 / 3)}%)`,
+                }}
               >
                 {slides.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
@@ -366,16 +400,20 @@ export const RiddaraShowcase = () => {
 
             {/* Slide Indicators */}
             <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: Math.max(1, slides.length - 2) }, (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlideIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlideIndex === index
-                      ? 'bg-gray-800 w-8'
-                      : 'bg-gray-300 hover:bg-gray-400'
+              {Array.from(
+                { length: Math.max(1, slides.length - 2) },
+                (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlideIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentSlideIndex === index
+                        ? "bg-gray-800 w-8"
+                        : "bg-gray-300 hover:bg-gray-400"
                     }`}
-                />
-              ))}
+                  />
+                )
+              )}
             </div>
           </div>
         </div>
@@ -431,7 +469,9 @@ export const RiddaraShowcase = () => {
             <div className="relative overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-in-out gap-6"
-                style={{ transform: `translateX(-${currentSlideIndex2 * (100 / 3)}%)` }}
+                style={{
+                  transform: `translateX(-${currentSlideIndex2 * (100 / 3)}%)`,
+                }}
               >
                 {slides2.map((slide, index) => (
                   <div key={index} className="w-1/3 flex-shrink-0 px-2">
@@ -481,22 +521,29 @@ export const RiddaraShowcase = () => {
 
             {/* Slide Indicators */}
             <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: Math.max(1, slides2.length - 2) }, (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlideIndex2(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlideIndex2 === index
-                      ? 'bg-gray-800 w-8'
-                      : 'bg-gray-300 hover:bg-gray-400'
+              {Array.from(
+                { length: Math.max(1, slides2.length - 2) },
+                (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlideIndex2(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      currentSlideIndex2 === index
+                        ? "bg-gray-800 w-8"
+                        : "bg-gray-300 hover:bg-gray-400"
                     }`}
-                />
-              ))}
+                  />
+                )
+              )}
             </div>
           </div>
 
           {/* Brochure Button - Bottom Right */}
           <div className="flex justify-end mt-8">
-            <button className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105" style={{ borderRadius: '4px' }}>
+            <button
+              className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              style={{ borderRadius: "4px" }}
+            >
               BROCHURE
             </button>
           </div>
@@ -518,14 +565,20 @@ export const RiddaraShowcase = () => {
 
             {/* First row - Two images side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden justify-self-start" style={{ height: '330px', aspectRatio: '500 / 330' }}>
+              <div
+                className="rounded-lg overflow-hidden justify-self-start"
+                style={{ height: "330px", aspectRatio: "500 / 330" }}
+              >
                 <img
                   src={airbag}
                   alt="Riddara Feature 1"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden justify-self-end" style={{ height: '330px', aspectRatio: '760 / 330' }}>
+              <div
+                className="rounded-lg overflow-hidden justify-self-end"
+                style={{ height: "330px", aspectRatio: "760 / 330" }}
+              >
                 <img
                   src={cameraTech}
                   alt="Riddara Feature 2"
@@ -536,14 +589,20 @@ export const RiddaraShowcase = () => {
 
             {/* Second row - Two more images side by side */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden justify-self-start" style={{ height: '330px', aspectRatio: '760 / 330' }}>
+              <div
+                className="rounded-lg overflow-hidden justify-self-start"
+                style={{ height: "330px", aspectRatio: "760 / 330" }}
+              >
                 <img
                   src={ModernTrunk}
                   alt="Riddara Feature 3"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="rounded-lg overflow-hidden justify-self-end" style={{ height: '330px', aspectRatio: '500 / 330' }}>
+              <div
+                className="rounded-lg overflow-hidden justify-self-end"
+                style={{ height: "330px", aspectRatio: "500 / 330" }}
+              >
                 <img
                   src={DriveAssist}
                   alt="Riddara Feature 4"
