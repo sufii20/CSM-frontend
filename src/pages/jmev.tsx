@@ -583,9 +583,18 @@ export const JMEV = () => {
       </div>
 
 
-      {/* Final Section - Decorative End */}
+      {/* Final Specifications Section */}
       <div className="bg-white py-8 px-4">
         <div className="max-w-7xl mx-auto">
+          <div className="w-full">
+            <img 
+              src={JmevSpecs} 
+              alt="Forthing Specifications"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+          
+          {/* Final decorative line at the bottom */}
           <div className="flex items-center justify-center pt-8">
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
           </div>
