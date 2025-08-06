@@ -1,6 +1,7 @@
 // App.js or your main component
 import React, { useState } from 'react';
-import Navbar from './pages/navbar'; // Adjust the import path as necessary
+import Navbar from './pages/navBar';
+import Footer from './pages/footer'; // Adjust the import path as necessary
 
 // Import page components
 import HomePage from './pages/homePage'; // You'll need to create this
@@ -45,11 +46,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navbar onPageChange={handlePageChange} currentPage={currentPage} />
-      <main>
+      <main className="flex-grow">
         {renderCurrentPage()}
       </main>
+      <Footer />
     </div>
   );
 }
