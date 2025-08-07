@@ -42,7 +42,7 @@ function App() {
         return <div className="p-8"><h1 className="text-2xl font-bold">Contact Us Page</h1></div>;
       case 'home':
       default:
-        return <EVTestDrive />;
+        return <HomePage />;
     }
   };
 

@@ -276,8 +276,8 @@ const EVTestDrive: React.FC = () => {
             {/* Step 3 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-300/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
-                <span className="text-gray-300/40 text-8xl font-bold">3</span>
+                <span className="text-gray-400/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-400/40 text-5xl font-bold">3</span>
               </div>
             </div>
             <div className="ml-28">
