@@ -58,19 +58,19 @@ const Homepage = () => {
     },
     {
       id: 2,
-      image: image2,
+      image: image4,
       brand: "RIDDARA",
       logo: "R",
     },
     {
       id: 3,
-      image: image3,
+      image: image2,
       brand: "FORTHING",
       logo: "F",
     },
     {
       id: 4,
-      image: image4,
+      image: image3,
       brand: "JMEV",
       logo: "J",
     },
