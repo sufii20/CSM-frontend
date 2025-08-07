@@ -135,7 +135,7 @@ const Homepage = () => {
       rating: 5,
       text: "The Listing Was Hot (More Than 170 Bids). Everything Worked Well. We Appreciated A Simple Process.Listing Page, Chat With A Seller, The Auction, Escrow Service – Everything Was Great And We Didn't Need Anything On Top.",
       image:
-        "https://images.unsplash.com/photo-1494790108755-2616c0f5cd36?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
   ];
 
