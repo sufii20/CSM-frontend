@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
+// Import page components
+import ZeekrPage from "./zeekr";
+import RiddaraPage from "./riddara";
+import ForthingPage from "./forthing";
+import JmevPage from "./jmev";
+
 // Hero banners
 import ZeekrBanner from "../assets/HeroBanner/ZeekrBanner.png";
 import ForthingBanner from "../assets/HeroBanner/ForthingBanner.png";
@@ -31,8 +37,8 @@ import zeekrInterior from "../assets/interiorView/ZeekrInterior.png";
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
-
   const [currentInteriorBanner, setCurrentInteriorBanner] = useState(0);
+  const [currentPage, setCurrentPage] = useState('home');
 
   const heroBanners = [
     { id: 1, image: ZeekrBan },
@@ -53,26 +59,30 @@ const Homepage = () => {
     {
       id: 1,
       image: image1,  
-      brand: "ZEEKR",
+      // brand: "ZEEKR",
       logo: "Z",
+      page: "zeekr"
     },
     {
       id: 2,
       image: image4,
-      brand: "RIDDARA",
+      // brand: "RIDDARA",
       logo: "R",
+      page: "riddara"
     },
     {
       id: 3,
       image: image2,
-      brand: "FORTHING",
+      // brand: "FORTHING",
       logo: "F",
+      page: "forthing"
     },
     {
       id: 4,
       image: image3,
-      brand: "JMEV",
+      // brand: "JMEV",
       logo: "J",
+      page: "jmev"
     },
   ];
 
@@ -139,6 +149,16 @@ const Homepage = () => {
     },
   ];
 
+  // Handle car image click navigation
+  const handleCarClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Handle back to home
+  const handleBackToHome = () => {
+    setCurrentPage('home');
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHeroBanner((prev) => (prev + 1) % heroBanners.length);
@@ -164,8 +184,24 @@ const Homepage = () => {
     );
   };
 
+  // Render different pages based on current page state
+  if (currentPage === 'zeekr') {
+    return <ZeekrPage onBack={handleBackToHome} />;
+  }
+  
+  if (currentPage === 'riddara') {
+    return <RiddaraPage onBack={handleBackToHome} />;
+  }
+  
+  if (currentPage === 'forthing') {
+    return <ForthingPage onBack={handleBackToHome} />;
+  }
+  
+  if (currentPage === 'jmev') {
+    return <JmevPage onBack={handleBackToHome} />;
+  }
 
-
+  // Default homepage render
   return (
     <div className="bg-white">
       {/* Hero Banner Section - Optimized for 1440x450 aspect ratio with extra text space */}
@@ -220,20 +256,29 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Car Grid - Static layout showing all 4 brands */}
+      {/* Car Grid - Static layout showing all 4 brands with navigation */}
       <section className="relative py-20 bg-gray-50">
         {/* Grid Container */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {cars.map((car) => (
               <div key={car.id} className="w-full">
-                {/* Car Image */}
-                <div className="relative h-[200px] md:h-[280px] overflow-hidden group rounded-lg">
+                {/* Car Image - Now clickable */}
+                <div 
+                  className="relative h-[200px] md:h-[280px] overflow-hidden group rounded-lg cursor-pointer"
+                  onClick={() => handleCarClick(car.page)}
+                >
                   <img
                     src={car.image}
                     alt={car.brand}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   />
+                  {/* Optional: Add overlay with brand name on hover */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {car.brand}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
