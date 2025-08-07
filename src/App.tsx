@@ -1,5 +1,5 @@
 // App.js or your main component
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import Navbar from './pages/navBar';
 import Footer from './pages/footer'; // Adjust the import path as necessary
 
@@ -9,14 +9,14 @@ import ZeekrPage from './pages/zeekr';
 import RiddaraPage from './pages/riddara';
 import ForthingPage from './pages/forthing';
 import JmevPage from './pages/jmev';
-import EVTestDrive from './pages/testDrive';
+// import EVTestDrive from './pages/testDrive';
 
 function App() {
   // State to track current page
   const [currentPage, setCurrentPage] = useState('home');
 
   // Function to handle page changes
-  const handlePageChange = (pageName) => {
+  const handlePageChange = (pageName:any) => {
     setCurrentPage(pageName);
     console.log('Navigating to:', pageName); // Debug log
   };
