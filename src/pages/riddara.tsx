@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
 import whiteCar from "../assets/car_white_top.webp";
@@ -30,9 +30,20 @@ import DriveAssist from "../assets/DriveAssist.png";
 import ModernTrunk from "../assets/ModernTrunk.png";
 
 export const RiddaraShowcase = () => {
-  const [currentCarIndex, setCurrentCarIndex] = useState(0); // Start with green with black top
+  const [currentCarIndex, setCurrentCarIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const cars = [
     {
@@ -66,7 +77,7 @@ export const RiddaraShowcase = () => {
       colorCode: "#FFFFFF",
     },
     {
-      image: whiteCar, // Using white car as placeholder for black
+      image: whiteCar,
       color: "Black",
       bgColor: "bg-black",
       colorCode: "#000000",
@@ -79,7 +90,6 @@ export const RiddaraShowcase = () => {
     },
   ];
 
-  // First Advanced Driving Dynamics slides data
   const slides = [
     {
       image: slidea,
@@ -113,7 +123,6 @@ export const RiddaraShowcase = () => {
     },
   ];
 
-  // Second Advanced Driving Dynamics slides data (using interior slider images)
   const slides2 = [
     {
       image: slideA,
@@ -149,29 +158,28 @@ export const RiddaraShowcase = () => {
 
   const nextSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const maxIndex = Math.max(0, slides.length - 3);
+      const maxIndex = Math.max(0, slides.length - (isMobile ? 1 : 3));
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide = () => {
     setCurrentSlideIndex((prev) => {
-      const maxIndex = Math.max(0, slides.length - 3);
+      const maxIndex = Math.max(0, slides.length - (isMobile ? 1 : 3));
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
 
-  // Functions for second slider
   const nextSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const maxIndex = Math.max(0, slides2.length - 3);
+      const maxIndex = Math.max(0, slides2.length - (isMobile ? 1 : 3));
       return prev >= maxIndex ? 0 : prev + 1;
     });
   };
 
   const prevSlide2 = () => {
     setCurrentSlideIndex2((prev) => {
-      const maxIndex = Math.max(0, slides2.length - 3);
+      const maxIndex = Math.max(0, slides2.length - (isMobile ? 1 : 3));
       return prev <= 0 ? maxIndex : prev - 1;
     });
   };
@@ -184,7 +192,6 @@ export const RiddaraShowcase = () => {
     setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
   };
 
-  // Helper function to create gradient style for two-tone colors
   const getColorStyle = (index) => {
     const car = cars[index];
     if (car.color === "Green with black top") {
@@ -215,21 +222,20 @@ export const RiddaraShowcase = () => {
       >
         <div className="absolute inset-0"></div>
         <div className="relative z-10 h-full flex flex-col">
-          {/* Text positioned on left side */}
-          <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
+          <div className="flex-1 flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24">
             <div className="text-white max-w-lg"></div>
           </div>
 
-          {/* Buttons positioned at bottom right with 5% rounded corners */}
-          <div className="absolute bottom-8 right-8 flex space-x-4">
+          {/* Buttons positioned at bottom right with narrower design */}
+          <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
             <button
-              className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
               style={{ borderRadius: "8px" }}
             >
               BOOK NOW
             </button>
             <button
-              className="px-8 py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
               style={{ borderRadius: "8px" }}
             >
               BROCHURE
@@ -239,11 +245,11 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Specifications Section */}
-      <div className="bg-white py-4 px-8">
+      <div className="bg-white py-4 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-center items-center">
-            <div className="flex items-center bg-transparent rounded-lg p-4 shadow-sm">
-              <div className="flex flex-col items-center px-6">
+            <div className="flex flex-col sm:flex-row items-center bg-transparent rounded-lg p-4 shadow-sm space-y-4 sm:space-y-0">
+              <div className="flex flex-col items-center px-3 sm:px-6">
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
                   UP TO
                 </p>
@@ -252,7 +258,7 @@ export const RiddaraShowcase = () => {
                 </h3>
                 <p className="text-gray-500 text-xs">Driving Range</p>
               </div>
-              <div className="flex flex-col items-center px-6 border-l border-r border-gray-300 mx-4">
+              <div className="flex flex-col items-center px-3 sm:px-6 sm:border-l sm:border-r border-gray-300 sm:mx-4">
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
                   AS FAST AS
                 </p>
@@ -261,7 +267,7 @@ export const RiddaraShowcase = () => {
                 </h3>
                 <p className="text-gray-500 text-xs">To Reach 100</p>
               </div>
-              <div className="flex flex-col items-center px-6">
+              <div className="flex flex-col items-center px-3 sm:px-6">
                 <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">
                   UP TO
                 </p>
@@ -276,17 +282,17 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Car Gallery Section */}
-      <div className="bg-gradient-to-b from-gray-50 to-white py-8 px-4 relative min-h-[600px]">
+      <div className="bg-gradient-to-b from-gray-50 to-white py-6 sm:py-8 px-4 relative min-h-[400px] sm:min-h-[600px]">
         <div className="max-w-7xl mx-auto relative">
-          {/* Color selector dots - positioned top right */}
-          <div className="absolute top-4 right-4 z-20 flex space-x-2">
+          {/* Color selector dots */}
+          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20 flex flex-wrap gap-1 sm:gap-2 max-w-20 sm:max-w-none">
             {cars.map((car, index) => (
               <button
                 key={index}
                 onClick={() => selectCar(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 border border-gray-300 ${
+                className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 border border-gray-300 ${
                   currentCarIndex === index
-                    ? "ring-2 ring-gray-600 ring-offset-2"
+                    ? "ring-1 sm:ring-2 ring-gray-600 ring-offset-1 sm:ring-offset-2"
                     : ""
                 }`}
                 style={getColorStyle(index)}
@@ -295,24 +301,24 @@ export const RiddaraShowcase = () => {
             ))}
           </div>
 
-          {/* Navigation arrows on sides */}
+          {/* Navigation arrows */}
           <button
             onClick={prevCar}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 p-1.5 sm:p-2 text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={nextCar}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 p-1.5 sm:p-2 text-gray-400 hover:text-gray-600 transition-colors"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           {/* Car image centered */}
-          <div className="flex justify-center items-center h-full py-12">
-            <div className="w-full max-w-4xl">
+          <div className="flex justify-center items-center h-full py-6 sm:py-12">
+            <div className="w-full max-w-xs sm:max-w-4xl">
               <img
                 src={cars[currentCarIndex].image}
                 alt={`Riddara ${cars[currentCarIndex].color} car`}
@@ -321,42 +327,40 @@ export const RiddaraShowcase = () => {
             </div>
           </div>
 
-          {/* Gallery Bottom Line - Small decorative line */}
-          <div className="flex items-center justify-center mt-4 mb-8">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
+          {/* Gallery Bottom Line */}
+          <div className="flex items-center justify-center mt-2 sm:mt-4 mb-4 sm:mb-8">
+            <div className="w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
           </div>
         </div>
       </div>
 
       {/* Advanced Driving Dynamics Section */}
-      <div className="bg-white py-16 px-4">
+      <div className="bg-white py-8 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Title with Lines on Both Sides */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
-              <h2 className="px-6 text-lg font-medium text-gray-800 tracking-wider">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="flex items-center justify-center mb-6 sm:mb-8">
+              <div className="flex-1 h-px bg-gray-400 max-w-8 sm:max-w-24"></div>
+              <h2 className="px-3 sm:px-6 text-sm sm:text-lg font-medium text-gray-800 tracking-wider">
                 ADVANCED DRIVING DYNAMICS
               </h2>
-              <div className="flex-1 h-px bg-gray-400 max-w-24"></div>
+              <div className="flex-1 h-px bg-gray-400 max-w-8 sm:max-w-24"></div>
             </div>
           </div>
 
           {/* Slider Container */}
           <div className="relative">
-            {/* Main Slide Display - Show 3 at a time */}
             <div className="relative overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out gap-6"
+                className="flex transition-transform duration-500 ease-in-out gap-3 sm:gap-6"
                 style={{
-                  transform: `translateX(-${currentSlideIndex * (100 / 3)}%)`,
+                  transform: `translateX(-${currentSlideIndex * (isMobile ? 100 : 100 / 3)}%)`,
                 }}
               >
                 {slides.map((slide, index) => (
-                  <div key={index} className="w-1/3 flex-shrink-0 px-2">
+                  <div key={index} className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
-                      {/* Image with hover zoom effect */}
-                      <div className="relative overflow-hidden h-96">
+                      <div className="relative overflow-hidden h-48 sm:h-96">
                         <img
                           src={slide.image}
                           alt={slide.title}
@@ -364,16 +368,14 @@ export const RiddaraShowcase = () => {
                         />
                       </div>
 
-                      {/* Text Content Below Image - Left Aligned */}
-                      <div className="p-6 bg-gray-100 text-left">
-                        {/* Title with small line above */}
-                        <div className="mb-3">
-                          <div className="w-8 h-px bg-gray-400 mb-3"></div>
-                          <h3 className="text-lg font-semibold text-gray-800">
+                      <div className="p-3 sm:p-6 bg-gray-100 text-left">
+                        <div className="mb-2 sm:mb-3">
+                          <div className="w-6 sm:w-8 h-px bg-gray-400 mb-2 sm:mb-3"></div>
+                          <h3 className="text-sm sm:text-lg font-semibold text-gray-800">
                             {slide.title}
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
@@ -386,29 +388,29 @@ export const RiddaraShowcase = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+              className="absolute left-1 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 sm:p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+              className="absolute right-1 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 sm:p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
 
             {/* Slide Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center mt-4 sm:mt-8 space-x-2">
               {Array.from(
-                { length: Math.max(1, slides.length - 2) },
+                { length: Math.max(1, slides.length - (isMobile ? 0 : 2)) },
                 (_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlideIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                       currentSlideIndex === index
-                        ? "bg-gray-800 w-8"
+                        ? "bg-gray-800 w-4 sm:w-8"
                         : "bg-gray-300 hover:bg-gray-400"
                     }`}
                   />
@@ -419,11 +421,10 @@ export const RiddaraShowcase = () => {
         </div>
       </div>
 
-      {/* New Banner and Images Section */}
-      <div className="bg-white py-8 px-4">
+      {/* Banner and Images Section */}
+      <div className="bg-white py-4 sm:py-8 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="space-y-4">
-            {/* Top - Large banner image spanning full width */}
+          <div className="space-y-3 sm:space-y-4">
             <div className="rounded-lg overflow-hidden">
               <img
                 src={FrontGrid}
@@ -432,8 +433,7 @@ export const RiddaraShowcase = () => {
               />
             </div>
 
-            {/* Bottom - Two smaller images side by side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
               <div className="rounded-lg overflow-hidden">
                 <img
                   src={GrillWhite}
@@ -454,30 +454,26 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Interior Features Section */}
-      <div className="bg-gray-50 py-16 px-4">
+      <div className="bg-gray-50 py-8 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Title - Left Aligned */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 text-left">
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 text-left">
               Interior Features
             </h2>
           </div>
 
-          {/* Slider Container */}
           <div className="relative">
-            {/* Main Slide Display - Show 3 at a time */}
             <div className="relative overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out gap-6"
+                className="flex transition-transform duration-500 ease-in-out gap-3 sm:gap-6"
                 style={{
-                  transform: `translateX(-${currentSlideIndex2 * (100 / 3)}%)`,
+                  transform: `translateX(-${currentSlideIndex2 * (isMobile ? 100 : 100 / 3)}%)`,
                 }}
               >
                 {slides2.map((slide, index) => (
-                  <div key={index} className="w-1/3 flex-shrink-0 px-2">
+                  <div key={index} className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
-                      {/* Image with hover zoom effect */}
-                      <div className="relative overflow-hidden h-96">
+                      <div className="relative overflow-hidden h-48 sm:h-96">
                         <img
                           src={slide.image}
                           alt={slide.title}
@@ -485,16 +481,14 @@ export const RiddaraShowcase = () => {
                         />
                       </div>
 
-                      {/* Text Content Below Image - Left Aligned */}
-                      <div className="p-6 bg-gray-100 text-left">
-                        {/* Title with small line above */}
-                        <div className="mb-3">
-                          <div className="w-8 h-px bg-gray-400 mb-3"></div>
-                          <h3 className="text-lg font-semibold text-gray-800">
+                      <div className="p-3 sm:p-6 bg-gray-100 text-left">
+                        <div className="mb-2 sm:mb-3">
+                          <div className="w-6 sm:w-8 h-px bg-gray-400 mb-2 sm:mb-3"></div>
+                          <h3 className="text-sm sm:text-lg font-semibold text-gray-800">
                             {slide.title}
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                           {slide.description}
                         </p>
                       </div>
@@ -507,29 +501,29 @@ export const RiddaraShowcase = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide2}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+              className="absolute left-1 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 sm:p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
 
             <button
               onClick={nextSlide2}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
+              className="absolute right-1 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 sm:p-3 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-800 hover:shadow-xl transition-all duration-300"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
 
             {/* Slide Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center mt-4 sm:mt-8 space-x-2">
               {Array.from(
-                { length: Math.max(1, slides2.length - 2) },
+                { length: Math.max(1, slides2.length - (isMobile ? 0 : 2)) },
                 (_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlideIndex2(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                       currentSlideIndex2 === index
-                        ? "bg-gray-800 w-8"
+                        ? "bg-gray-800 w-4 sm:w-8"
                         : "bg-gray-300 hover:bg-gray-400"
                     }`}
                   />
@@ -539,9 +533,9 @@ export const RiddaraShowcase = () => {
           </div>
 
           {/* Brochure Button - Bottom Right */}
-          <div className="flex justify-end mt-8">
+          <div className="flex justify-center sm:justify-end mt-6 sm:mt-8">
             <button
-              className="px-8 py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-6 sm:px-8 py-2.5 sm:py-3 bg-black text-white hover:bg-gray-800 transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
               style={{ borderRadius: "4px" }}
             >
               BROCHURE
@@ -551,10 +545,9 @@ export const RiddaraShowcase = () => {
       </div>
 
       {/* Final Image Gallery Section */}
-      <div className="bg-white py-8 px-4">
+      <div className="bg-white py-4 sm:py-8 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="space-y-4">
-            {/* Top - Large banner image spanning full width */}
+          <div className="space-y-3 sm:space-y-4">
             <div className="rounded-lg overflow-hidden">
               <img
                 src={RiddaraSpec}
@@ -564,10 +557,10 @@ export const RiddaraShowcase = () => {
             </div>
 
             {/* First row - Two images side by side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
               <div
-                className="rounded-lg overflow-hidden justify-self-start"
-                style={{ height: "330px", aspectRatio: "500 / 330" }}
+                className="rounded-lg overflow-hidden justify-self-start h-48 sm:h-80 md:h-[330px]"
+                style={{ aspectRatio: "500 / 330" }}
               >
                 <img
                   src={airbag}
@@ -576,8 +569,8 @@ export const RiddaraShowcase = () => {
                 />
               </div>
               <div
-                className="rounded-lg overflow-hidden justify-self-end"
-                style={{ height: "330px", aspectRatio: "760 / 330" }}
+                className="rounded-lg overflow-hidden justify-self-end h-48 sm:h-80 md:h-[330px]"
+                style={{ aspectRatio: "760 / 330" }}
               >
                 <img
                   src={cameraTech}
@@ -588,10 +581,10 @@ export const RiddaraShowcase = () => {
             </div>
 
             {/* Second row - Two more images side by side */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
               <div
-                className="rounded-lg overflow-hidden justify-self-start"
-                style={{ height: "330px", aspectRatio: "760 / 330" }}
+                className="rounded-lg overflow-hidden justify-self-start h-48 sm:h-80 md:h-[330px]"
+                style={{ aspectRatio: "760 / 330" }}
               >
                 <img
                   src={ModernTrunk}
@@ -600,8 +593,8 @@ export const RiddaraShowcase = () => {
                 />
               </div>
               <div
-                className="rounded-lg overflow-hidden justify-self-end"
-                style={{ height: "330px", aspectRatio: "500 / 330" }}
+                className="rounded-lg overflow-hidden justify-self-end h-48 sm:h-80 md:h-[330px]"
+                style={{ aspectRatio: "500 / 330" }}
               >
                 <img
                   src={DriveAssist}
@@ -612,8 +605,8 @@ export const RiddaraShowcase = () => {
             </div>
 
             {/* Final decorative line at the bottom */}
-            <div className="flex items-center justify-center pt-8">
-              <div className="w-20 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
+            <div className="flex items-center justify-center pt-4 sm:pt-8">
+              <div className="w-16 sm:w-20 h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent rounded-full opacity-60"></div>
             </div>
           </div>
         </div>
