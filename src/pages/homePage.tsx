@@ -29,6 +29,7 @@ import sareena from "../assets/insights/SERENA-hotel-isb.png";
 import accessories from "../assets/services/accesories.png";
 import call from "../assets/services/callCenter.png";
 import merchandise from "../assets/services/MErchandise.png";
+import customer from "../assets/HeroBanner/whatsapp.jpg";
 //Interior images
 import fortingInterior from "../assets/interiorView/ForthingInterior.png";
 import jmeVInterior from "../assets/interiorView/JMeVInterior.png";
@@ -118,7 +119,7 @@ const Homepage = () => {
       rating: 5,
       text: "Geely continues to exceed expectations with its focus on advanced technology, safety, and stylish design. The value for money is unmatched in today’s market. I’m very satisfied with my Geely vehicle.",
       image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+       customer,
     },
     {
       id: 2,
@@ -127,7 +128,7 @@ const Homepage = () => {
       rating: 5,
       text: "The Zeekr X has completely changed my perception of compact electric vehicles. It’s stylish, smooth to drive, and packed with smart features that make daily commuting a pleasure. Zeekr has really nailed the balance between performance and practicality.",
       image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+       customer,
     },
     {
       id: 3,
@@ -136,7 +137,7 @@ const Homepage = () => {
       rating: 5,
       text: "I’ve been pleasantly surprised by the quality and comfort of my Forthing vehicle. It offers great value for money, with a spacious interior, modern design, and smooth driving experience. Forthing is definitely a brand to watch as it expands globall",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+        customer,
     },
     {
       id: 4,
@@ -145,7 +146,7 @@ const Homepage = () => {
       rating: 5,
       text: "The JMEV Elight EV has been a fantastic addition to my daily routine. It's sleek, energy-efficient, and surprisingly powerful for its size. I appreciate how Elight is making clean transportation more accessible and stylish at the same time.",
       image:
-       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+       customer
     },
   ];
 
