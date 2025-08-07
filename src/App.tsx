@@ -9,6 +9,7 @@ import ZeekrPage from './pages/zeekr';
 import RiddaraPage from './pages/riddara';
 import ForthingPage from './pages/forthing';
 import JmevPage from './pages/jmev';
+import EVTestDrive from './pages/testDrive';
 
 function App() {
   // State to track current page
@@ -41,7 +42,7 @@ function App() {
         return <div className="p-8"><h1 className="text-2xl font-bold">Contact Us Page</h1></div>;
       case 'home':
       default:
-        return <HomePage />;
+        return <EVTestDrive />;
     }
   };
 
