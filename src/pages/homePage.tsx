@@ -113,37 +113,37 @@ const Homepage = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Orlaith Parastu",
-      location: "Bought BYD Dolphin",
+      name: "Sarah Thompson",
+      location: " Customer from United Kingdom",
       rating: 5,
-      text: "The Listing Was Hot (More Than 170 Bids). Everything Worked Well. We Appreciated A Simple Process.Listing Page, Chat With A Seller, The Auction, Escrow Service – Everything Was Great And We Didn't Need Anything On Top.",
+      text: "Geely continues to exceed expectations with its focus on advanced technology, safety, and stylish design. The value for money is unmatched in today’s market. I’m very satisfied with my Geely vehicle.",
       image:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
     {
       id: 2,
-      name: "Melina Nesterenko",
-      location: "Bought Tesla Model 3",
+      name: "Emily Johansson",
+      location: " Customer from Sweden",
       rating: 5,
-      text: "The Listing Was Hot (More Than 170 Bids). Everything Worked Well. We Appreciated A Simple Process.Listing Page, Chat With A Seller, The Auction, Escrow Service – Everything Was Great And We Didn't Need Anything On Top.",
+      text: "The Zeekr X has completely changed my perception of compact electric vehicles. It’s stylish, smooth to drive, and packed with smart features that make daily commuting a pleasure. Zeekr has really nailed the balance between performance and practicality.",
       image:
         "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
     {
       id: 3,
-      name: "Eve Artie",
-      location: "Bought A Riddara",
+      name: "Carlos Medina",
+      location: " Customer from Spain",
       rating: 5,
-      text: "The Listing Was Hot (More Than 170 Bids). Everything Worked Well. We Appreciated A Simple Process.Listing Page, Chat With A Seller, The Auction, Escrow Service – Everything Was Great And We Didn't Need Anything On Top.",
+      text: "I’ve been pleasantly surprised by the quality and comfort of my Forthing vehicle. It offers great value for money, with a spacious interior, modern design, and smooth driving experience. Forthing is definitely a brand to watch as it expands globall",
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
     {
       id: 4,
-      name: "Sarah Thompson",
-      location: "Bought Zeekr 001",
+      name: "Amina Yusuf",
+      location: "Customer from UAE",
       rating: 5,
-      text: "The Listing Was Hot (More Than 170 Bids). Everything Worked Well. We Appreciated A Simple Process.Listing Page, Chat With A Seller, The Auction, Escrow Service – Everything Was Great And We Didn't Need Anything On Top.",
+      text: "The JMEV Elight EV has been a fantastic addition to my daily routine. It's sleek, energy-efficient, and surprisingly powerful for its size. I appreciate how Elight is making clean transportation more accessible and stylish at the same time.",
       image:
        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
     },
