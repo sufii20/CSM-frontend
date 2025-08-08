@@ -44,19 +44,9 @@ function App() {
       case "jmev":
         return <JmevPage onBack={handleBackToHome} />;
       case "about":
-        return (
-          <div className="p-8">
-            <h1 className="text-2xl font-bold">About Us Page</h1>
-            <p className="mt-4">Learn more about Capital Smart Motors and our commitment to electric vehicles.</p>
-          </div>
-        );
+        return <AboutPage />;
       case "news":
-        return (
-          <div className="p-8">
-            <h1 className="text-2xl font-bold">News & Insights Page</h1>
-            <p className="mt-4">Stay updated with the latest news and insights from the electric vehicle industry.</p>
-          </div>
-        );
+        return <News />;
       case "locations":
         return (
           <div className="p-8">
@@ -74,7 +64,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return < AboutPage />;
+        return <HomePage />;
     }
   };
 
