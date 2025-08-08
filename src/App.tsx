@@ -22,17 +22,23 @@ function App() {
     console.log("Navigating to:", pageName); // Debug log
   };
 
+  // Function to handle back navigation to homepage
+  const handleBackToHome = () => {
+    setCurrentPage("home");
+    console.log("Navigating back to home"); // Debug log
+  };
+
   // Function to render the current page
   const renderCurrentPage = () => {
     switch (currentPage) {
       case "zeekr":
         return <ZeekrPage />;
       case "riddara":
-        return <RiddaraPage />;
+        return <RiddaraPage onBack={handleBackToHome} />;
       case "forthing":
-        return <ForthingPage />;
+        return <ForthingPage onBack={handleBackToHome} />;
       case "jmev":
-        return <JmevPage />;
+        return <JmevPage onBack={handleBackToHome} />;
       case "about":
         return (
           <div className="p-8">
