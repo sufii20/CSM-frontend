@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { X, MessageSquare, Phone, Hash } from 'lucide-react';
-import bannerImage from '../assets/testDrive.png';
+import { X, MessageSquare, Phone, Hash, Upload } from 'lucide-react';
+import testDrive from '../assets/testDrive.png'; 
 import car1 from '../assets/SelectModel.png';
 import car2 from '../assets/SelectModel.png';
 import car3 from '../assets/SelectModel.png';
+//banner image
+const bannerImage = testDrive; 
 
 interface TopIconButtonProps {
   icon: React.ReactNode;
@@ -36,9 +38,9 @@ const EVTestDrive: React.FC = () => {
     city: '',
     addressCNIC: '',
     individualCorporate: '',
-    cng: '',
-    cngFrontImage: null,
-    cngBackImage: null,
+    cnic: '',
+    cnicFrontImage: null as File | null,
+    cnicBackImage: null as File | null,
     statusFilter: '',
     salesTaxRegistration: '',
     ntnNumber: '',
@@ -65,8 +67,13 @@ const EVTestDrive: React.FC = () => {
     { id: 'green', name: 'Green', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop' }
   ];
 
-  const handleInputChange = (field: string, value: string | boolean) => {
+  const handleInputChange = (field: string, value: string | boolean | File | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleFileUpload = (field: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    handleInputChange(field, file);
   };
   
   const handleSubmit = () => {
@@ -131,7 +138,7 @@ const EVTestDrive: React.FC = () => {
         {/* Model badge */}
         <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20">
           <div className="bg-white/10 border border-white/20 rounded-full px-6 py-2 backdrop-blur-sm">
-            <span className="text-white font-semibold text-lg tracking-widest">TX</span>
+            {/* <span className="text-white font-semibold text-lg tracking-widest">TX</span> */}
           </div>
         </div>
       </div>
@@ -189,7 +196,9 @@ const EVTestDrive: React.FC = () => {
 
             {/* Select Variant */}
             <div className="ml-28 mt-12">
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">SELECT VARIANT *</h3>
+              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                SELECT VARIANT <span className="text-red-500">*</span>
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {cars.map((car) => (
                   <div 
@@ -224,7 +233,9 @@ const EVTestDrive: React.FC = () => {
               </div>
             </div>
             <div className="ml-28">
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">EXTERIOR COLOR *</h3>
+              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                EXTERIOR COLOR <span className="text-red-500">*</span>
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {exteriorColors.map((color) => (
                   <div 
@@ -247,7 +258,9 @@ const EVTestDrive: React.FC = () => {
               </div>
 
               {/* Interior Color */}
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">INTERIOR COLOR *</h3>
+              <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
+                INTERIOR COLOR <span className="text-red-500">*</span>
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {interiorColors.map((color) => (
                   <div 
@@ -282,11 +295,11 @@ const EVTestDrive: React.FC = () => {
             </div>
             <div className="ml-28">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* First Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      First Name *
+                      First Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -300,7 +313,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Last Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Last Name *
+                      Last Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -314,7 +327,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Father/Husband Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Father/Husband Name *
+                      Father/Husband Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -328,14 +341,14 @@ const EVTestDrive: React.FC = () => {
                   {/* Gender */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Gender *
+                      Gender <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.gender}
                       onChange={(e) => handleInputChange('gender', e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
-                      <option value=""></option>
+                      <option value="">Select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                       <option value="Other">Other</option>
@@ -345,7 +358,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Date of Birth */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Date of Birth *
+                      Date of Birth <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="date"
@@ -358,7 +371,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Primary Phone */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Primary Phone *
+                      Primary Phone <span className="text-red-500">*</span>
                     </label>
                     <div className="flex">
                       <select className="w-20 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
@@ -377,7 +390,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Secondary Phone */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Secondary Phone *
+                      Secondary Phone <span className="text-red-500">*</span>
                     </label>
                     <div className="flex">
                       <select className="w-20 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
@@ -395,7 +408,7 @@ const EVTestDrive: React.FC = () => {
                   {/* State/Province */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      State/Province *
+                      State/Province <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -409,7 +422,7 @@ const EVTestDrive: React.FC = () => {
                   {/* City */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      City *
+                      City <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -423,7 +436,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Address as per CNIC *
+                      Address as per CNIC <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.addressCNIC}
@@ -439,7 +452,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Individual/Corporate */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Individual/Corporate *
+                      Individual/Corporate <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.individualCorporate}
@@ -452,40 +465,65 @@ const EVTestDrive: React.FC = () => {
                     </select>
                   </div>
 
-                  {/* CNG */}
+                  {/* CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      CNG *
+                      CNIC <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      value={formData.cng}
-                      onChange={(e) => handleInputChange('cng', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
-                    >
-                      <option value="">Select</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>
+                    <input
+                      type="text"
+                      value={formData.cnic}
+                      onChange={(e) => handleInputChange('cnic', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      placeholder="e.g. 12345-1234567-1"
+                      required
+                    />
                   </div>
 
-                  {/* CNG front Image */}
+                  {/* CNIC Front Image */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      CNG front Image *
+                      CNIC Front Image <span className="text-red-500">*</span>
                     </label>
-                    <button className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-left text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm hover:bg-gray-100">
-                      Upload/ Select
-                    </button>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload('cnicFrontImage', e)}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        id="cnicFrontImage"
+                      />
+                      <label
+                        htmlFor="cnicFrontImage"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus-within:ring-2 focus-within:ring-blue-500 text-sm hover:bg-gray-100 cursor-pointer flex items-center justify-between"
+                      >
+                        <span>{formData.cnicFrontImage ? formData.cnicFrontImage.name : 'Upload/ Select'}</span>
+                        <Upload className="w-4 h-4" />
+                      </label>
+                    </div>
                   </div>
 
-                  {/* CNG back Image */}
+                  {/* CNIC Back Image */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      CNG back Image *
+                      CNIC Back Image <span className="text-red-500">*</span>
                     </label>
-                    <button className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-left text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm hover:bg-gray-100">
-                      Upload/ Select
-                    </button>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload('cnicBackImage', e)}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        id="cnicBackImage"
+                      />
+                      <label
+                        htmlFor="cnicBackImage"
+                        className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus-within:ring-2 focus-within:ring-blue-500 text-sm hover:bg-gray-100 cursor-pointer flex items-center justify-between"
+                      >
+                        <span>{formData.cnicBackImage ? formData.cnicBackImage.name : 'Upload/ Select'}</span>
+                        <Upload className="w-4 h-4" />
+                      </label>
+                    </div>
                   </div>
 
                   {/* Status (filter non-filter) */}
@@ -504,28 +542,28 @@ const EVTestDrive: React.FC = () => {
                     </select>
                   </div>
 
-                  {/* Sales Tax Registration */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Sales Tax Registration *
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.salesTaxRegistration}
-                      onChange={(e) => handleInputChange('salesTaxRegistration', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    />
-                  </div>
-
                   {/* NTN Number */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      NTN Number *
+                      NTN Number <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       value={formData.ntnNumber}
                       onChange={(e) => handleInputChange('ntnNumber', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    />
+                  </div>
+
+                  {/* Sales Tax Registration */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Sales Tax Registration <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.salesTaxRegistration}
+                      onChange={(e) => handleInputChange('salesTaxRegistration', e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                   </div>
@@ -541,7 +579,7 @@ const EVTestDrive: React.FC = () => {
                     onChange={(e) => handleInputChange('comments', e.target.value)}
                     rows={4}
                     className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    placeholder=""
+                    placeholder="Enter your comments here..."
                   />
                 </div>
 
@@ -574,22 +612,8 @@ const EVTestDrive: React.FC = () => {
           </div>
 
         </div>
-        
-        {/* Footer */}
-        <div className="bg-gray-200 mt-16 py-8">
-          <div className="max-w-6xl mx-auto px-6 flex justify-between items-center text-sm text-gray-600">
-            <div>© 2024 Capital Smart Motors</div>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-800">Terms of Service</a>
-              <a href="#" className="hover:text-gray-800">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-800">Trust & Safety</a>
-              <a href="#" className="hover:text-gray-800">Law Enforcement</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
-};
-
-export default EVTestDrive;
+  }
+  export default EVTestDrive;

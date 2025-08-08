@@ -11,7 +11,7 @@ import RiddaraPage from "./pages/riddara";
 import ForthingPage from "./pages/forthing";
 import JmevPage from "./pages/jmev";
 import Newsletter from "./pages/newsLetter";
-// import EVTestDrive from './pages/testDrive';
+import EVTestDrive from './pages/testDrive';
 
 function App() {
   // State to track current page - properly typed
@@ -71,7 +71,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return <HomePage />;
+        return <EVTestDrive />;
     }
   };
 
