@@ -1,22 +1,9 @@
+// pages/navBar.tsx
 import React, { useState } from 'react';
 import { ChevronDown, X } from 'lucide-react';
+import type { NavbarProps, Brand, PageType } from '../pages/types'; // Import from shared types
 import logo from '../assets/Logo-main.svg';
 import starIcon from '../assets/icon.svg';
-
-// Define the page types
-type PageType = 'home' | 'homepage' | 'about' | 'zeekr' | 'riddara' | 'forthing' | 'jmev' | 'news' | 'locations' | 'contact';
-
-// Define the brand structure
-interface Brand {
-  name: string;
-  page: PageType;
-}
-
-// Define the component props
-interface NavbarProps {
-  onPageChange: (page: PageType) => void;
-  currentPage: PageType;
-}
 
 const Navbar: React.FC<NavbarProps> = ({ onPageChange, currentPage }) => {
   const [isBrandsOpen, setIsBrandsOpen] = useState<boolean>(false);
