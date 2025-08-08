@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 
 import JMEVBanner from '../assets/HeroBanner/JMEVBanner.png';
 // Car color variants
@@ -47,10 +47,10 @@ interface SlideData {
 }
 
 interface JMEVProps {
-  onPageChange?: (page: string) => void;
+  onBack: () => void;
 }
 
-const JMEV: React.FC<JMEVProps> = ({ onPageChange }) => {
+const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
   const [currentCarIndex, setCurrentCarIndex] = useState<number>(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState<number>(0);
@@ -238,12 +238,7 @@ const JMEV: React.FC<JMEVProps> = ({ onPageChange }) => {
     }
   };
 
-  // Navigation functions for homepage
-  const handleBackToHomepage = (): void => {
-    if (onPageChange) {
-      onPageChange('homepage');
-    }
-  };
+
 
   const nextSlide = (): void => {
     setCurrentSlideIndex((prev) => {
@@ -289,19 +284,14 @@ const JMEV: React.FC<JMEVProps> = ({ onPageChange }) => {
 
   return (
     <div className="w-full">
-      {/* Back to Homepage Button - Fixed position */}
-      {onPageChange && (
-        <div className="fixed top-4 left-4 z-50">
-          <button
-            onClick={handleBackToHomepage}
-            className="flex items-center px-4 py-2 bg-white text-gray-800 border border-gray-300 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all duration-300 text-sm font-medium"
-            type="button"
-          >
-            <Home className="w-4 h-4 mr-2" />
-            Back to Homepage
-          </button>
-        </div>
-      )}
+      {/* Back to Home Button - Fixed position at top left */}
+      <button
+        onClick={onBack}
+        className="fixed top-6 left-6 z-50 flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+      >
+        <ArrowLeft className="w-5 h-5 text-gray-700" />
+        <span className="text-sm font-medium text-gray-700">Back to Home</span>
+      </button>
 
       {/* Hero Banner Section */}
       <div className="relative w-full">

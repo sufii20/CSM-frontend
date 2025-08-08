@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
-import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
+// import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
 import whiteCar from "../assets/car_white_top.webp";
 import blueCar from "../assets/car_blue.webp";
 import greyCar from "../assets/car_gray.webp";
