@@ -83,7 +83,7 @@ export const AboutUs: React.FC = () => {
       {/* Overview Section */}
       <div className="max-w-6xl mx-auto py-16 px-4">
         <h2 className="text-3xl font-bold text-center mb-8">OVERVIEW</h2>
-        <p className="text-gray-700 text-lg leading-relaxed text-center max-w-4xl mx-auto">
+        <p className="text-gray-700 text-med leading-relaxed text-center max-w-4xl mx-auto">
           As A Venture Of Habib Rafiq Limited (HRL) Engineering, One Of Pakistan's Most Trusted Names In Infrastructure And 
           Industrial Development, CSM Is Committed To Sustainable Automotive Industry Trends In Local Roads. From 
           Premium EV And Plug-In Hybrid Electric Vehicles, Clean Energy Engineering Focus Solutions.
