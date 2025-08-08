@@ -1,38 +1,76 @@
 import React, { useState } from 'react';
 import { ChevronDown, X } from 'lucide-react';
-import logo from '../assets/Logo-main.svg'; // Ensure the path is correct
-import starIcon from '../assets/icon.svg'; // Import the star icon
+import logo from '../assets/Logo-main.svg';
+import starIcon from '../assets/icon.svg';
 
-const Navbar = ({ onPageChange, currentPage }) => {
-  const [isBrandsOpen, setIsBrandsOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+// Define the page types
+type PageType = 'home' | 'homepage' | 'about' | 'zeekr' | 'riddara' | 'forthing' | 'jmev' | 'news' | 'locations' | 'contact';
 
-  const brands = [
+// Define the brand structure
+interface Brand {
+  name: string;
+  page: PageType;
+}
+
+// Define the component props
+interface NavbarProps {
+  onPageChange: (page: PageType) => void;
+  currentPage: PageType;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onPageChange, currentPage }) => {
+  const [isBrandsOpen, setIsBrandsOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const brands: Brand[] = [
     { name: 'ZEEKR', page: 'zeekr' }, 
     { name: 'RIDDARA', page: 'riddara' },
     { name: 'FORTHING', page: 'forthing' },
     { name: 'JMEV', page: 'jmev' },
   ];
 
-  const handleNavigation = (page, event) => {
+  const handleNavigation = (page: PageType, event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onPageChange(page);
     setIsBrandsOpen(false); // Close dropdown when navigating
     setIsMobileMenuOpen(false); // Close mobile menu when navigating
   };
 
-  const handleBrandClick = (brandPage, event) => {
+  const handleBrandClick = (brandPage: PageType, event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onPageChange(brandPage);
     setIsBrandsOpen(false);
     setIsMobileMenuOpen(false);
   };
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (): void => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (isBrandsOpen) {
       setIsBrandsOpen(false);
     }
+  };
+
+  // Helper function to check if current page is home or homepage
+  const isHomePage = currentPage === 'home' || currentPage === 'homepage';
+
+  // Helper function to get the active class for navigation items
+  const getNavItemClass = (page: PageType): string => {
+    const isActive = page === 'home' ? isHomePage : currentPage === page;
+    return `text-sm font-medium uppercase tracking-wide transition-colors ${
+      isActive 
+        ? 'text-black border-b-2 border-black pb-1' 
+        : 'text-gray-600 hover:text-black'
+    }`;
+  };
+
+  // Helper function to get mobile nav item class
+  const getMobileNavItemClass = (page: PageType): string => {
+    const isActive = page === 'home' ? isHomePage : currentPage === page;
+    return `block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
+      isActive
+        ? 'bg-gray-100 text-black'
+        : 'text-gray-600 hover:bg-gray-50 hover:text-black'
+    }`;
   };
 
   return (
@@ -56,12 +94,8 @@ const Navbar = ({ onPageChange, currentPage }) => {
           <nav className="hidden lg:flex items-center space-x-8 xl:space-x-12">
             <a 
               href="#" 
-              onClick={(e) => handleNavigation('home', e)}
-              className={`text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'home' 
-                  ? 'text-black border-b-2 border-black pb-1' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+              onClick={(e) => handleNavigation('homepage', e)}
+              className={getNavItemClass('home')}
             >
               HOME
             </a>
@@ -69,11 +103,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a 
               href="#" 
               onClick={(e) => handleNavigation('about', e)}
-              className={`text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'about' 
-                  ? 'text-black border-b-2 border-black pb-1' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+              className={getNavItemClass('about')}
             >
               ABOUT US
             </a>
@@ -126,11 +156,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a 
               href="#" 
               onClick={(e) => handleNavigation('news', e)}
-              className={`text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'news' 
-                  ? 'text-black border-b-2 border-black pb-1' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+              className={getNavItemClass('news')}
             >
               NEWS & INSIGHTS
             </a>
@@ -138,11 +164,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a 
               href="#" 
               onClick={(e) => handleNavigation('locations', e)}
-              className={`text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'locations' 
-                  ? 'text-black border-b-2 border-black pb-1' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+              className={getNavItemClass('locations')}
             >
               LOCATIONS
             </a>
@@ -150,11 +172,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a 
               href="#" 
               onClick={(e) => handleNavigation('contact', e)}
-              className={`text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'contact' 
-                  ? 'text-black border-b-2 border-black pb-1' 
-                  : 'text-gray-600 hover:text-black'
-              }`}
+              className={getNavItemClass('contact')}
             >
               CONTACT US
             </a>
@@ -176,6 +194,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
               className="text-gray-600 hover:text-black p-1"
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile menu"
+              type="button"
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -213,6 +232,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 text-gray-600 hover:text-black transition-colors"
               aria-label="Close mobile menu"
+              type="button"
             >
               <X className="w-6 h-6" />
             </button>
@@ -222,12 +242,8 @@ const Navbar = ({ onPageChange, currentPage }) => {
           <nav className="flex-1 px-6 py-6 space-y-2">
             <a
               href="#"
-              onClick={(e) => handleNavigation('home', e)}
-              className={`block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'home'
-                  ? 'bg-gray-100 text-black'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-              }`}
+              onClick={(e) => handleNavigation('homepage', e)}
+              className={getMobileNavItemClass('home')}
             >
               HOME
             </a>
@@ -235,11 +251,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a
               href="#"
               onClick={(e) => handleNavigation('about', e)}
-              className={`block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'about'
-                  ? 'bg-gray-100 text-black'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-              }`}
+              className={getMobileNavItemClass('about')}
             >
               ABOUT US
             </a>
@@ -253,6 +265,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
                     ? 'bg-gray-100 text-black'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-black'
                 }`}
+                type="button"
               >
                 BRANDS
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${
@@ -283,11 +296,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a
               href="#"
               onClick={(e) => handleNavigation('news', e)}
-              className={`block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'news'
-                  ? 'bg-gray-100 text-black'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-              }`}
+              className={getMobileNavItemClass('news')}
             >
               NEWS & INSIGHTS
             </a>
@@ -295,11 +304,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a
               href="#"
               onClick={(e) => handleNavigation('locations', e)}
-              className={`block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'locations'
-                  ? 'bg-gray-100 text-black'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-              }`}
+              className={getMobileNavItemClass('locations')}
             >
               LOCATIONS
             </a>
@@ -307,11 +312,7 @@ const Navbar = ({ onPageChange, currentPage }) => {
             <a
               href="#"
               onClick={(e) => handleNavigation('contact', e)}
-              className={`block px-4 py-3 rounded-md text-sm font-medium uppercase tracking-wide transition-colors ${
-                currentPage === 'contact'
-                  ? 'bg-gray-100 text-black'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-black'
-              }`}
+              className={getMobileNavItemClass('contact')}
             >
               CONTACT US
             </a>
