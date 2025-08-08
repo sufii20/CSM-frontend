@@ -529,3 +529,19 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+
+
+import Leader1 from '../assets/AboutUs/Management/CEO.png';
+import Leader2 from '../assets/AboutUs/Management/CM.png';
+import Leader3 from '../assets/AboutUs/Management/COO.png';
+import Leader4 from '../assets/AboutUs/Management/VCM.png';
+import Review1 from '../assets/AboutUs/sustain/imageA.jpg';
+import Review2 from '../assets/AboutUs/sustain/imageB.png';
+import Review3 from '../assets/AboutUs/sustain/imageC.png';
+
+// Slider images
+import slide1 from '../assets/AboutUs/Values/valueA.png';
+import slide2 from '../assets/AboutUs/Values/valueB.png';
+import slide3 from '../assets/AboutUs/Values/valueC.png';
+import slide4 from '../assets/AboutUs/Values/valueD.png';

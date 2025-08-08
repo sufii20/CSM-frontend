@@ -34,90 +34,94 @@ const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
 
 export const AboutUs: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   const slides = [
-    { image: slide1, title: 'Innovation', text: 'We embrace creativity and innovation in all we do.' },
-    { image: slide2, title: 'Teamwork', text: 'Collaboration is at the heart of our culture.' },
-    { image: slide3, title: 'Customer First', text: 'Our clients are our top priority.' },
-    { image: slide4, title: 'Quality', text: 'We deliver with uncompromising quality.' },
+    { 
+      image: slide1, 
+      title: 'SUSTAINABILITY FIRST', 
+      text: 'Committed to environmentally friendly practices and sustainable development. Creating future business practices and positive environmental impact.' 
+    },
+    { 
+      image: slide2, 
+      title: 'CUSTOMER CENTERED THINKING', 
+      text: 'Customer satisfaction is our top priority. We believe in delivering exceptional service and maintaining long-term relationships.' 
+    },
+    { 
+      image: slide3, 
+      title: 'QUALITY YOU CAN TRUST', 
+      text: 'Delivering high-quality products and services with uncompromising standards and attention to detail in everything we do.' 
+    },
+    { 
+      image: slide4, 
+      title: 'PARTNERSHIP', 
+      text: 'Building strong partnerships with our clients, suppliers, and communities to create mutual success and shared growth.' 
+    },
   ];
 
-  // Handle screen size
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const getMaxIndex = (len: number) => Math.max(0, len - (isDesktop ? 2 : 1));
-
   const nextSlide = () => {
-    const maxIndex = getMaxIndex(slides.length);
-    setCurrentSlide(prev => (prev >= maxIndex ? 0 : prev + 1));
+    setCurrentSlide(prev => (prev >= slides.length - 3 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    const maxIndex = getMaxIndex(slides.length);
-    setCurrentSlide(prev => (prev <= 0 ? maxIndex : prev - 1));
+    setCurrentSlide(prev => (prev <= 0 ? slides.length - 3 : prev - 1));
   };
+
+  const leaders = [
+    { name: 'ZAHID RAFIQ', position: 'Chairman', img: Leader1 },
+    { name: 'JAHANZAIB ZAHID', position: 'Vice Chairman', img: Leader2 },
+    { name: 'IMRAN ZAHID', position: 'CHIEF EXECUTIVE OFFICER', img: Leader3 },
+    { name: 'ABID SAEED', position: 'CHIEF OPERATING OFFICER', img: Leader4 },
+  ];
 
   return (
     <div className="w-full">
-
       {/* Top Banner */}
       <div>
         <img src={AboutBanner1} alt="About Us Banner" className="w-full h-auto object-cover" />
       </div>
 
-      {/* Intro Text */}
-      <div className="max-w-5xl mx-auto py-12 px-4 text-center">
-        <SectionHeading title="About Our Company" />
-        <p className="text-gray-600 leading-relaxed">
-          We are a forward-thinking organization committed to delivering outstanding solutions and building long-lasting relationships with our clients. 
-          Our journey has been defined by innovation, dedication, and a passion for excellence.
+      {/* Overview Section */}
+      <div className="max-w-6xl mx-auto py-16 px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">OVERVIEW</h2>
+        <p className="text-gray-700 text-lg leading-relaxed text-center max-w-4xl mx-auto">
+          As A Venture Of Habib Rafiq Limited (HRL) Engineering, One Of Pakistan's Most Trusted Names In Infrastructure And 
+          Industrial Development, CSM Is Committed To Sustainable Automotive Industry Trends In Local Roads. From 
+          Premium EV And Plug-In Hybrid Electric Vehicles, Clean Energy Engineering Focus Solutions.
         </p>
       </div>
 
-      {/* Second Banner */}
-      <div className="mb-8">
+      {/* Vision Section */}
+      <div>
         <img src={AboutBanner2} alt="Our Vision" className="w-full h-auto object-cover" />
       </div>
 
-      {/* Third Banner */}
+      {/* Gap between banners */}
+      <div className="py-8"></div>
+
+      {/* Mission Section */}
       <div>
         <img src={AboutBanner3} alt="Our Mission" className="w-full h-auto object-cover" />
       </div>
 
-      {/* Mission / Vision Text */}
-      <div className="max-w-5xl mx-auto py-12 px-4 text-center">
-        <SectionHeading title="Our Mission & Vision" />
-        <p className="text-gray-600 leading-relaxed">
-          Our mission is to drive positive change through technology, creating meaningful impact for communities and industries. 
-          Our vision is to be a global leader in innovation and quality, shaping a better future together.
-        </p>
-      </div>
-
-      {/* Slider Section */}
+      {/* Our Values Section */}
       <div className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading title="Our Values" />
+          <h2 className="text-3xl font-bold text-center mb-4">OUR VALUES</h2>
+          <p className="text-gray-600 text-center mb-12">We Aim To Create A Harmonious Conscience Between Humans, Tech, And Nature.</p>
+          
           <div className="relative">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-500 gap-6"
-                style={{ transform: `translateX(-${currentSlide * (isDesktop ? 50 : 100)}%)` }}
+                style={{ transform: `translateX(-${currentSlide * (100/3)}%)` }}
               >
-                {slides.map((s, idx) => (
-                  <div key={idx} className="w-full md:w-1/2 flex-shrink-0 px-2">
-                    <div className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition">
-                      <img src={s.image} alt={s.title} className="w-full h-auto object-cover" />
-                      <div className="p-4 bg-gray-100 text-left">
-                        <h3 className="font-semibold text-lg mb-2">{s.title}</h3>
-                        <p className="text-sm text-gray-600">{s.text}</p>
+                {slides.map((slide, idx) => (
+                  <div key={idx} className="w-1/3 flex-shrink-0 px-2">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                      <img src={slide.image} alt={slide.title} className="w-full h-48 object-cover" />
+                      <div className="p-6">
+                        <h3 className="font-bold text-lg mb-3 text-gray-900">{slide.title}</h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">{slide.text}</p>
                       </div>
                     </div>
                   </div>
@@ -128,40 +132,43 @@ export const AboutUs: React.FC = () => {
             {/* Navigation */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow hover:shadow-lg"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"
             >
-              <ChevronLeft />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow hover:shadow-lg"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"
             >
-              <ChevronRight />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
         </div>
       </div>
 
       {/* Leadership Section */}
-      <div className="max-w-7xl mx-auto py-16 px-4">
+      <div className="max-w-8xl mx-auto py-16 px-4">
         <SectionHeading title="Leadership" />
-        <div className="space-y-8">
-          {[Leader1, Leader2, Leader3, Leader4].map((img, idx) => (
-            <div 
-              key={idx} 
-              className="flex flex-col md:flex-row items-center md:items-start bg-white p-4 rounded-lg shadow"
-            >
-              {/* Image on the left */}
-              <img 
-                src={img} 
-                alt={`Leader ${idx + 1}`} 
-                className="w-32 h-32 rounded-lg object-cover mb-4 md:mb-0 md:mr-6" 
-              />
-
-              {/* Text on the right */}
-              <div className="text-center md:text-left">
-                <h3 className="text-lg font-semibold">Leader Name {idx + 1}</h3>
-                <p className="text-sm text-gray-500">Position</p>
+        <div className="space-y-16">
+          {leaders.map((leader, idx) => (
+            <div key={idx} className="flex flex-col md:flex-row items-center md:items-start gap-96">
+              <div className="md:ml-16">
+                <img 
+                  src={leader.img} 
+                  alt={leader.name} 
+                  className="w-64 h-64 rounded-lg object-cover shadow-lg mx-auto md:mx-0" 
+                />
+              </div>
+              <div className="text-center md:text-left md:-ml-64">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2 underline underline-offset-4 decoration-2 decoration-gray-400">
+                  {leader.name}
+                </h3>
+                <p className="text-xl text-gray-600 mb-6">{leader.position}</p>
+                <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
+                  Experienced leader with extensive background in automotive industry and sustainable development. 
+                  Committed to driving innovation and excellence in clean energy solutions. Leading the organization 
+                  towards sustainable growth and technological advancement in the automotive sector.
+                </p>
               </div>
             </div>
           ))}
@@ -171,29 +178,43 @@ export const AboutUs: React.FC = () => {
       {/* Reviews Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="What People Say" />
+          <h2 className="text-3xl font-bold text-center mb-4">What People Say</h2>
+          <p className="text-gray-600 text-center mb-12">We Aim To Create A Harmonious Conscience Between Humans, Tech, And Nature.</p>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { img: Review1, text: 'Amazing experience working with this team. Highly recommended!' },
-              { img: Review2, text: 'Professional, efficient, and innovative solutions every time.' },
-              { img: Review3, text: 'They truly care about their clients and deliver beyond expectations.' }
-            ].map((r, idx) => (
-              <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              { 
+                img: Review1, 
+                title: 'GEELY TECHNOLOGY BUILDING',
+                text: 'State-of-the-art facilities for automotive innovation and sustainable transportation solutions in Pakistan Auto Industry.'
+              },
+              { 
+                img: Review2, 
+                title: 'BRINGING TECHNOLOGY TO LIVES',
+                text: 'Advanced automotive technology integration for sustainable mobility solutions and environmental consciousness.'
+              },
+              { 
+                img: Review3, 
+                title: 'SUSTAINABILITY',
+                text: 'Committed to environmental protection and sustainable development through clean energy transportation solutions.'
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <img
-                  src={r.img}
-                  alt={`Reviewer ${idx + 1}`}
+                  src={item.img}
+                  alt={item.title}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <p className="text-gray-600 text-center">{r.text}</p>
+                  <h3 className="font-bold text-lg mb-3 text-gray-900">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.text}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-    </div>
+      </div>
   );
 };
 

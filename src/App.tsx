@@ -74,7 +74,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return < HomePage />;
+        return < AboutPage />;
     }
   };
 
