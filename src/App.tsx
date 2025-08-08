@@ -14,6 +14,7 @@ import JmevPage from "./pages/jmev";
 import Newsletter from "./pages/newsLetter";
 import EVTestDrive from './pages/testDrive';
 import AboutPage from "./pages/aboutUs";
+import News from "./pages/newsAndInsights";
 
 function App() {
   // State to track current page - properly typed
@@ -73,7 +74,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return < AboutPage />;
+        return < HomePage />;
     }
   };
 
