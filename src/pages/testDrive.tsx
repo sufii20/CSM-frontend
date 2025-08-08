@@ -4,6 +4,15 @@ import testDrive from '../assets/testDrive.png';
 import car1 from '../assets/SelectModel.png';
 import car2 from '../assets/SelectModel.png';
 import car3 from '../assets/SelectModel.png';
+//Exterior
+import img1 from '../assets/Exterior/img1.png';
+import img2 from '../assets/Exterior/img2.png';
+import img3 from '../assets/Exterior/img3.png';
+import img4 from '../assets/Exterior/img4.png';
+//Interior
+import interiorblack from '../assets/interiorblack.png';
+import interiorbrown from '../assets/interiorbrown.png';
+import interiorgreen from '../assets/interiorgreen.png';
 //banner image
 const bannerImage = testDrive; 
 
@@ -49,22 +58,22 @@ const EVTestDrive: React.FC = () => {
   });
 
   const cars = [
-    { id: 'RQS-2WD-Air', name: 'RQS 2WD Air', subtitle: 'Body Type - Truck', image: car1 },
-    { id: 'RQS-AWD-Pro', name: 'RQS AWD Pro', subtitle: 'Body Type - Truck', image: car2 },
-    { id: 'RQS-AWD-Ultra', name: 'RQS AWD Ultra', subtitle: 'Body Type - Truck', image: car3 }
+    { id: 'RD6-2WD-Air', name: 'RD6 2WD Air', subtitle: 'Body Type : Truck', image: car1 },
+    { id: 'RD6-AWD-Pro', name: 'RD6 AWD Pro', subtitle: 'Body Type : Truck', image: car2 },
+    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type :Truck', image: car3 }
   ];
 
   const exteriorColors = [
-    { id: 'green', name: 'Green', image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=200&h=150&fit=crop' },
-    { id: 'blue', name: 'Blue', image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=200&h=150&fit=crop' },
-    { id: 'grey', name: 'Grey', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop' },
-    { id: 'white', name: 'White', image: 'https://images.unsplash.com/photo-1563720223185-11003d516935?w=200&h=150&fit=crop' }
+    { id: 'green', name: 'Green', image: img1 },
+    { id: 'blue', name: 'Blue', image: img2 },
+    { id: 'grey', name: 'Grey', image: img3 },
+    { id: 'white', name: 'White', image: img4 }
   ];
 
   const interiorColors = [
-    { id: 'black', name: 'Black', image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=200&h=150&fit=crop' },
-    { id: 'brown', name: 'Brown', image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=200&h=150&fit=crop' },
-    { id: 'green', name: 'Green', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop' }
+    { id: 'black', name: 'Black', image: interiorblack },
+    { id: 'brown', name: 'Brown', image: interiorbrown },
+    { id: 'green', name: 'Green', image: interiorgreen }
   ];
 
   const handleInputChange = (field: string, value: string | boolean | File | null) => {
@@ -152,8 +161,8 @@ const EVTestDrive: React.FC = () => {
             {/* Step 1 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-300/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
-                <span className="text-gray-300/40 text-8xl font-bold">1</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-8xl font-bold">1</span>
               </div>
             </div>
             <div className="ml-28 flex items-center justify-center mb-6">
@@ -228,8 +237,8 @@ const EVTestDrive: React.FC = () => {
             {/* Step 2 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-300/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
-                <span className="text-gray-300/40 text-8xl font-bold">2</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-8xl font-bold">2</span>
               </div>
             </div>
             <div className="ml-28">
@@ -289,8 +298,8 @@ const EVTestDrive: React.FC = () => {
             {/* Step 3 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-400/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
-                <span className="text-gray-400/40 text-5xl font-bold">3</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-5xl font-bold">3</span>
               </div>
             </div>
             <div className="ml-28">
