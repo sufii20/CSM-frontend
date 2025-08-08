@@ -34,7 +34,7 @@ const EVTestDrive: React.FC = () => {
   const [selectedCar, setSelectedCar] = useState<string>('');
   const [selectedExteriorColor, setSelectedExteriorColor] = useState<string>('');
   const [selectedInteriorColor, setSelectedInteriorColor] = useState<string>('');
-  const [selectedBrand, setSelectedBrand] = useState<string>('RIDQANA');
+  const [selectedBrand, setSelectedBrand] = useState<string>('RIDDARA');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -183,7 +183,7 @@ const EVTestDrive: React.FC = () => {
                   selectedBrand === 'RIDQANA' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                 }`}
               >
-                RIDQANA
+                RIDDARA
               </button>
               <button 
                 onClick={() => setSelectedBrand('FORTHING')}
@@ -199,7 +199,7 @@ const EVTestDrive: React.FC = () => {
                   selectedBrand === 'JAEV' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                 }`}
               >
-                JAEV
+                JMEV
               </button>
             </div>
 
