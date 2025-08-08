@@ -4,6 +4,7 @@ import Navbar from "./pages/navBar";
 import Footer from "./pages/footer";
 import type { PageType } from "./pages/types"; 
 import Review from "./pages/Review";
+import ContactForm from "./pages/contactUs";
 
 // Import page components
 import HomePage from "./pages/homePage";
@@ -15,6 +16,7 @@ import Newsletter from "./pages/newsLetter";
 import EVTestDrive from './pages/testDrive';
 import AboutPage from "./pages/aboutUs";
 import News from "./pages/newsAndInsights";
+import TestDrive from "./pages/test";
 
 function App() {
   // State to track current page - properly typed
@@ -64,7 +66,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return <HomePage />;
+        return <ContactForm />;
     }
   };
 
