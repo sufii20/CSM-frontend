@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Navbar from "./pages/navBar";
 import Footer from "./pages/footer";
-import type { PageType } from "./pages/types"; // Import from shared types
+import type { PageType } from "./pages/types"; 
+import Review from "./pages/Review";
 
 // Import page components
 import HomePage from "./pages/homePage";
@@ -71,7 +72,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return <EVTestDrive />;
+        return <Review />;
     }
   };
 
