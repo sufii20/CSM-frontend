@@ -19,7 +19,12 @@ import ForthingBig from '../assets/Forthing/Grid/ForthingBig.png';
 import ForthingLeft from '../assets/Forthing/Grid/ForthingLeft.png';
 import ForthingRight from '../assets/Forthing/Grid/ForthingRight.png';
 
-export const Forthing = ({ onBack }) => {
+// Define the props interface
+interface ForthingProps {
+  onBack: () => void;
+}
+
+export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
   const [currentCarIndex, setCurrentCarIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
@@ -162,7 +167,7 @@ export const Forthing = ({ onBack }) => {
   ];
 
   // Helper function to get max slide index
-  const getMaxIndex = (slidesLength:any) => {
+  const getMaxIndex = (slidesLength: number) => {
     return Math.max(0, slidesLength - (isDesktop ? 2 : 1));
   };
 
@@ -175,12 +180,12 @@ export const Forthing = ({ onBack }) => {
     setCurrentCarIndex((prev) => (prev - 1 + cars.length) % cars.length);
   };
 
-  const selectCar = (index:any) => {
+  const selectCar = (index: number) => {
     setCurrentCarIndex(index);
   };
 
   // Helper function to create gradient style for two-tone colors
-  const getColorStyle = (index:any) => {
+  const getColorStyle = (index: number) => {
     const car = cars[index];
     return {
       backgroundColor: car.colorCode
