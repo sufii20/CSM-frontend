@@ -40,6 +40,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
   const [currentSlideIndex3, setCurrentSlideIndex3] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
   const [showTestDrive, setShowTestDrive] = useState(false);
+  const [showTestDrivePage, setShowTestDrivePage] = useState(false);
 
   // Handle responsive design
   useEffect(() => {
@@ -54,30 +55,54 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
   }, []);
 
   // Navigation function for Book Now button
-  const handleBookNow = () => {
-    MainApp(true);
-  };
-
-  // Navigation function for Test Drive button
-  const handleTestDrive = () => {
+  const handleBookNow = (): void => {
     setShowTestDrive(true);
   };
 
+  // Navigation function for Test Drive button
+  const handleTestDrive = (): void => {
+    setShowTestDrivePage(true);
+  };
+
   // Function to go back from test drive to Forthing page
-  const handleBackFromTestDrive = () => {
+  const handleBackFromTestDrive = (): void => {
     setShowTestDrive(false);
   };
 
-  // If showing test drive component, render it with transparent back button overlay
+  // Function to go back from test drive page to Forthing page
+  const handleBackFromTestDrivePage = (): void => {
+    setShowTestDrivePage(false);
+  };
+
+  // If showing test drive component, render it with transparent back button overlay (same as JMEV)
   if (showTestDrive) {
     return (
       <div className="relative w-full h-screen">
-        {/* Render TestDrive without onBack prop */}
-        <TestDrive />
+        {/* Render MainApp without onBack prop */}
+        <MainApp />
         
         {/* Transparent back button overlay */}
         <button
           onClick={handleBackFromTestDrive}
+          className="fixed top-6 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+        >
+          <ArrowLeft className="w-5 h-5 text-gray-700" />
+          <span className="text-sm font-medium text-gray-700">Back to Forthing</span>
+        </button>
+      </div>
+    );
+  }
+
+  // If showing test drive page, render it with transparent back button overlay
+  if (showTestDrivePage) {
+    return (
+      <div className="relative w-full h-screen">
+        {/* Render TestDrive component */}
+        <TestDrive />
+        
+        {/* Transparent back button overlay */}
+        <button
+          onClick={handleBackFromTestDrivePage}
           className="fixed top-6 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
@@ -337,7 +362,6 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
           </button>
         </div>
       </div>
-
       {/* Specifications Section */}
       <div className="bg-white py-4 px-8">
         <div className="max-w-4xl mx-auto">
