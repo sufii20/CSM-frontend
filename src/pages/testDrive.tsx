@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { X, MessageSquare, Phone, Hash, Upload } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { X, MessageSquare, Phone, Hash, Upload, ChevronLeft, Download } from 'lucide-react';
+
+// Mock image URLs - replace with your actual images
 import testDrive from '../assets/testDrive.png'; 
 import car1 from '../assets/SelectModel.png';
 import car2 from '../assets/SelectModel.png';
@@ -13,8 +15,8 @@ import img4 from '../assets/Exterior/img4.png';
 import interiorblack from '../assets/interiorblack.png';
 import interiorbrown from '../assets/interiorbrown.png';
 import interiorgreen from '../assets/interiorgreen.png';
-//banner image
-const bannerImage = testDrive; 
+
+const bannerImage = testDrive;
 
 interface TopIconButtonProps {
   icon: React.ReactNode;
@@ -30,7 +32,35 @@ const TopIconButton: React.FC<TopIconButtonProps> = ({ icon, onClick }) => (
   </button>
 );
 
-const EVTestDrive: React.FC = () => {
+interface OrderData {
+  selectedCar: string;
+  selectedExteriorColor: string;
+  selectedInteriorColor: string;
+  selectedBrand: string;
+  formData: {
+    firstName: string;
+    lastName: string;
+    fatherHusbandName: string;
+    gender: string;
+    dateOfBirth: string;
+    primaryPhone: string;
+    secondaryPhone: string;
+    state: string;
+    city: string;
+    addressCNIC: string;
+    individualCorporate: string;
+    cnic: string;
+    cnicFrontImage: File | null;
+    cnicBackImage: File | null;
+    statusFilter: string;
+    salesTaxRegistration: string;
+    ntnNumber: string;
+    comments: string;
+    termsAccepted: boolean;
+  };
+}
+
+const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubmit }) => {
   const [selectedCar, setSelectedCar] = useState<string>('');
   const [selectedExteriorColor, setSelectedExteriorColor] = useState<string>('');
   const [selectedInteriorColor, setSelectedInteriorColor] = useState<string>('');
@@ -60,7 +90,7 @@ const EVTestDrive: React.FC = () => {
   const cars = [
     { id: 'RD6-2WD-Air', name: 'RD6 2WD Air', subtitle: 'Body Type : Truck', image: car1 },
     { id: 'RD6-AWD-Pro', name: 'RD6 AWD Pro', subtitle: 'Body Type : Truck', image: car2 },
-    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type :Truck', image: car3 }
+    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type : Truck', image: car3 }
   ];
 
   const exteriorColors = [
@@ -86,10 +116,32 @@ const EVTestDrive: React.FC = () => {
   };
   
   const handleSubmit = () => {
-    console.log('Form submitted', {
+    console.log('Submit button clicked');
+    
+    // Basic validation
+    if (!selectedCar || !selectedExteriorColor || !selectedInteriorColor) {
+      alert('Please select a car, exterior color, and interior color.');
+      return;
+    }
+    
+    if (!formData.firstName || !formData.lastName || !formData.primaryPhone) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    
+    if (!formData.termsAccepted) {
+      alert('Please accept the terms and conditions.');
+      return;
+    }
+
+    console.log('Validation passed, calling onSubmit');
+    
+    // Navigate to review page with all selected data
+    onSubmit({
       selectedCar,
       selectedExteriorColor,
       selectedInteriorColor,
+      selectedBrand,
       formData
     });
   };
@@ -178,9 +230,9 @@ const EVTestDrive: React.FC = () => {
                 ZEEKR
               </button>
               <button 
-                onClick={() => setSelectedBrand('RIDQANA')}
+                onClick={() => setSelectedBrand('RIDDARA')}
                 className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === 'RIDQANA' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === 'RIDDARA' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                 }`}
               >
                 RIDDARA
@@ -194,9 +246,9 @@ const EVTestDrive: React.FC = () => {
                 FORTHING
               </button>
               <button 
-                onClick={() => setSelectedBrand('JAEV')}
+                onClick={() => setSelectedBrand('JMEV')}
                 className={`px-8 py-3 text-sm font-semibold rounded-r-md ${
-                  selectedBrand === 'JAEV' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === 'JMEV' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
                 }`}
               >
                 JMEV
@@ -293,7 +345,7 @@ const EVTestDrive: React.FC = () => {
             </div>
           </div>
 
-          {/* Step 3: Form */}
+          {/* Step 3: Complete Form */}
           <div className="bg-gray-200/50 p-8 rounded-lg relative">
             {/* Step 3 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
@@ -305,6 +357,7 @@ const EVTestDrive: React.FC = () => {
             <div className="ml-28">
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
                   {/* First Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -399,7 +452,7 @@ const EVTestDrive: React.FC = () => {
                   {/* Secondary Phone */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Secondary Phone <span className="text-red-500">*</span>
+                      Secondary Phone
                     </label>
                     <div className="flex">
                       <select className="w-20 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white">
@@ -551,28 +604,28 @@ const EVTestDrive: React.FC = () => {
                     </select>
                   </div>
 
-                  {/* NTN Number */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      NTN Number <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.ntnNumber}
-                      onChange={(e) => handleInputChange('ntnNumber', e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    />
-                  </div>
-
                   {/* Sales Tax Registration */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Sales Tax Registration <span className="text-red-500">*</span>
+                      Sales Tax Registration
                     </label>
                     <input
                       type="text"
                       value={formData.salesTaxRegistration}
                       onChange={(e) => handleInputChange('salesTaxRegistration', e.target.value)}
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    />
+                  </div>
+
+                  {/* NTN Number */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      NTN Number
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.ntnNumber}
+                      onChange={(e) => handleInputChange('ntnNumber', e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                   </div>
@@ -624,5 +677,344 @@ const EVTestDrive: React.FC = () => {
       </div>
     </div>
   );
-  }
-  export default EVTestDrive;
+};
+
+const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void }> = ({ orderData, onBackToVehicle }) => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setUploadedFile(event.target.files[0]);
+    }
+  };
+
+  // Get selected car details
+  const cars = [
+    { id: 'RD6-2WD-Air', name: 'RD6 2WD Air', subtitle: 'Body Type : Truck', image: car1, price: '7,500,000' },
+    { id: 'RD6-AWD-Pro', name: 'RD6 AWD Pro', subtitle: 'Body Type : Truck', image: car2, price: '8,250,000' },
+    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type : Truck', image: car3, price: '8,990,000' }
+  ];
+
+  const exteriorColors = [
+    { id: 'green', name: 'Green', image: img1 },
+    { id: 'blue', name: 'Blue', image: img2 },
+    { id: 'grey', name: 'Grey', image: img3 },
+    { id: 'white', name: 'White', image: img4 }
+  ];
+
+  const interiorColors = [
+    { id: 'black', name: 'Black', image: interiorblack },
+    { id: 'brown', name: 'Brown', image: interiorbrown },
+    { id: 'green', name: 'Green', image: interiorgreen }
+  ];
+
+  const selectedCarDetails = cars.find(car => car.id === orderData.selectedCar);
+  const selectedExteriorColorDetails = exteriorColors.find(color => color.id === orderData.selectedExteriorColor);
+  const selectedInteriorColorDetails = interiorColors.find(color => color.id === orderData.selectedInteriorColor);
+
+  const basePrice = selectedCarDetails?.price ? parseInt(selectedCarDetails.price.replace(/,/g, '')) : 8990000;
+  const advancePayment = Math.floor(basePrice * 0.2); // 20% advance payment
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        {/* Back to Vehicle */}
+        <button 
+          onClick={onBackToVehicle}
+          className="flex items-center text-gray-600 hover:text-gray-800 mb-8 transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4 mr-2" />
+          Back to Vehicle
+        </button>
+
+        {/* Main Content */}
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          {/* Header Section */}
+          <div className="p-8">
+            <h1 className="text-3xl font-light text-gray-800 mb-8">Review Your Order</h1>
+            
+            {/* Vehicle Info and Image */}
+            <div className="flex flex-col lg:flex-row items-center justify-between mb-8">
+              <div className="lg:w-1/2 mb-6 lg:mb-0">
+                <h2 className="text-xl text-gray-700 mb-6">
+                  {orderData.selectedBrand} {selectedCarDetails?.name || 'Selected Vehicle'}
+                </h2>
+                
+                {/* Specs */}
+                <div className="grid grid-cols-3 gap-8 text-sm">
+                  <div>
+                    <div className="text-gray-500 mb-1">UP TO</div>
+                    <div className="text-xl font-semibold text-gray-800">410 km*</div>
+                    <div className="text-gray-500">Driving Range</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-500 mb-1">AS FAST AS</div>
+                    <div className="text-xl font-semibold text-gray-800">7.9 sec*</div>
+                    <div className="text-gray-500">0-100 km/hr</div>
+                  </div>
+                  <div>
+                    <div className="text-gray-500 mb-1">UP TO</div>
+                    <div className="text-xl font-semibold text-gray-800">49.92 kWh*</div>
+                    <div className="text-gray-500">Battery Capacity</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Car Image */}
+              <div className="lg:w-1/2 flex justify-center">
+                <img 
+                  src={selectedCarDetails?.image || car1}
+                  alt={selectedCarDetails?.name || 'Selected Vehicle'}
+                  className="w-full max-w-md h-auto object-contain"
+                />
+              </div>
+            </div>
+
+            {/* Download Specs Button */}
+            <button className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+              <Download className="w-4 h-4 mr-2" />
+              Download Specs
+            </button>
+          </div>
+
+          {/* Order Details */}
+          <div className="border-t border-gray-200 p-8">
+            <h3 className="text-xl text-gray-700 mb-6">Order Details</h3>
+            
+            <div className="space-y-6">
+              {/* Variant */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Variant</span>
+                <div className="flex items-center">
+                  <span className="text-gray-800 mr-4">{selectedCarDetails?.name || 'Selected Variant'}</span>
+                  <span className="text-gray-800 font-semibold">{selectedCarDetails?.price || '8,990,000'} PKR</span>
+                </div>
+              </div>
+
+              {/* Exterior Color */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Exterior color</span>
+                <div className="flex items-center">
+                  <span className="text-gray-800 mr-4 capitalize">{selectedExteriorColorDetails?.name || 'Selected Color'}</span>
+                  <div className="w-12 h-8 rounded">
+                    <img 
+                      src={selectedExteriorColorDetails?.image || img1}
+                      alt={selectedExteriorColorDetails?.name || 'Selected exterior color'}
+                      className="w-full h-full object-cover rounded"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Interior Color */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Interior color</span>
+                <div className="flex items-center">
+                  <span className="text-gray-800 mr-4 capitalize">{selectedInteriorColorDetails?.name || 'Selected Color'}</span>
+                  <div className="w-12 h-8 rounded">
+                    <img 
+                      src={selectedInteriorColorDetails?.image || interiorblack}
+                      alt={selectedInteriorColorDetails?.name || 'Selected interior color'}
+                      className="w-full h-full object-cover rounded"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Customer Information */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Customer Name</span>
+                <span className="text-gray-800">{orderData.formData.firstName} {orderData.formData.lastName}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Father/Husband Name</span>
+                <span className="text-gray-800">{orderData.formData.fatherHusbandName || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Gender</span>
+                <span className="text-gray-800">{orderData.formData.gender || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Date of Birth</span>
+                <span className="text-gray-800">{orderData.formData.dateOfBirth || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Primary Phone</span>
+                <span className="text-gray-800">+92 {orderData.formData.primaryPhone}</span>
+              </div>
+
+              {orderData.formData.secondaryPhone && (
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <span className="text-gray-600">Secondary Phone</span>
+                  <span className="text-gray-800">+92 {orderData.formData.secondaryPhone}</span>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Location</span>
+                <span className="text-gray-800">{orderData.formData.city}, {orderData.formData.state}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Address as per CNIC</span>
+                <span className="text-gray-800">{orderData.formData.addressCNIC || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Individual/Corporate</span>
+                <span className="text-gray-800">{orderData.formData.individualCorporate || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">CNIC</span>
+                <span className="text-gray-800">{orderData.formData.cnic || 'Not provided'}</span>
+              </div>
+
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">CNIC Images</span>
+                <span className="text-gray-800">
+                  {orderData.formData.cnicFrontImage ? 'Front: ✓' : 'Front: ✗'} 
+                  {' | '}
+                  {orderData.formData.cnicBackImage ? 'Back: ✓' : 'Back: ✗'}
+                </span>
+              </div>
+
+              {orderData.formData.statusFilter && (
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <span className="text-gray-600">Status Filter</span>
+                  <span className="text-gray-800">{orderData.formData.statusFilter}</span>
+                </div>
+              )}
+
+              {orderData.formData.salesTaxRegistration && (
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <span className="text-gray-600">Sales Tax Registration</span>
+                  <span className="text-gray-800">{orderData.formData.salesTaxRegistration}</span>
+                </div>
+              )}
+
+              {orderData.formData.ntnNumber && (
+                <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                  <span className="text-gray-600">NTN Number</span>
+                  <span className="text-gray-800">{orderData.formData.ntnNumber}</span>
+                </div>
+              )}
+
+              {orderData.formData.comments && (
+                <div className="flex flex-col py-4 border-b border-gray-100">
+                  <span className="text-gray-600 mb-2">Comments</span>
+                  <span className="text-gray-800 text-sm bg-gray-50 p-3 rounded">{orderData.formData.comments}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Pricing */}
+            <div className="mt-8 space-y-4">
+              <div className="flex justify-between py-2">
+                <span className="text-gray-600">Company Price</span>
+                <span className="text-gray-800">{basePrice.toLocaleString()} PKR</span>
+              </div>
+              
+              <div className="flex justify-between py-2">
+                <span className="text-gray-600">Freight / Insurance Charges</span>
+                <span className="text-gray-800">0 PKR</span>
+              </div>
+              
+              <div className="flex justify-between py-2 border-t border-gray-200 pt-4">
+                <span className="text-gray-700 font-medium">Gross Price</span>
+                <span className="text-gray-800 font-semibold">{basePrice.toLocaleString()} PKR</span>
+              </div>
+              
+              <div className="flex justify-between py-2 border-b border-gray-200 pb-4">
+                <span className="text-gray-700 font-medium">Advance Payment (20%)</span>
+                <span className="text-gray-800 font-semibold">{advancePayment.toLocaleString()} PKR</span>
+              </div>
+            </div>
+
+            {/* Footer Notes */}
+            <div className="mt-6 text-xs text-gray-500 space-y-2">
+              <p>*Performance related metrics are based on controlled conditions. Actual performance will vary depending on driving behaviour, environment and other influencing factors.</p>
+              <p><strong>Note:</strong> Bank charges may apply.</p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-8 border-t border-gray-200 pt-6 gap-4">
+              
+              {/* Upload Button */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleUploadClick}
+                  className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+                >
+                  <Upload className="w-4 h-4 mr-2" />
+                  Upload Additional Documents
+                </button>
+                {uploadedFile && (
+                  <span className="text-sm text-gray-600">{uploadedFile.name}</span>
+                )}
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                  onChange={handleFileChange}
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                />
+              </div>
+
+              {/* Save & Submit */}
+              <div className="flex gap-4">
+                <button className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
+                  Save Draft
+                </button>
+                <button 
+                  onClick={() => alert('Order submitted successfully! You will receive a confirmation email shortly.')}
+                  className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
+                >
+                  Submit Order
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MainApp: React.FC = () => {
+  const [currentView, setCurrentView] = useState<'testdrive' | 'review'>('testdrive');
+  const [orderData, setOrderData] = useState<OrderData | null>(null);
+
+  const handleTestDriveSubmit = (data: OrderData) => {
+    console.log('Received order data:', data);
+    setOrderData(data);
+    setCurrentView('review');
+  };
+
+  const handleBackToVehicle = () => {
+    setCurrentView('testdrive');
+  };
+
+  return (
+    <div>
+      {currentView === 'testdrive' && (
+        <EVTestDrive onSubmit={handleTestDriveSubmit} />
+      )}
+      {currentView === 'review' && orderData && (
+        <OrderReview orderData={orderData} onBackToVehicle={handleBackToVehicle} />
+      )}
+    </div>
+  );
+};
+
+export default MainApp;
