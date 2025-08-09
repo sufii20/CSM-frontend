@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 // import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
-import whiteCar from "../assets/car_white_top.webp";
+import whiteCar from "../assets/car_white.webp";
 import blueCar from "../assets/car_blue.webp";
 import greyCar from "../assets/car_gray.webp";
-import greenCar from "../assets/car_green_top.webp";
+import greenCar from "../assets/car_green.webp";
+import blackCar from "../assets/car_black.webp";
+import greenBCar from "../assets/car_green_top.webp";
+import whiteBCar from "../assets/car_white_top.webp";
 //slider 1
 import slidea from "../assets/ExtSlideA.png";
 import slideb from "../assets/ExSlideB.png";
@@ -44,15 +47,15 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
   const cars = [
     {
-      image: greenCar,
+      image: greenBCar,
       color: "Green with black top",
       bgColor: "bg-gradient-to-b from-black to-green-700",
       colorCode: "#65775D",
@@ -70,7 +73,7 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
       colorCode: "#ACB3C0",
     },
     {
-      image: whiteCar,
+      image: whiteBCar,
       color: "White with black top",
       bgColor: "bg-gradient-to-b from-black to-white",
       colorCode: "#FFFFFF",
@@ -82,7 +85,7 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
       colorCode: "#FFFFFF",
     },
     {
-      image: whiteCar,
+      image: blackCar,
       color: "Black",
       bgColor: "bg-black",
       colorCode: "#000000",
@@ -138,8 +141,7 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
     {
       image: slideB,
       title: "NVH Silencet",
-      description:
-        "Noise Cancellation for serene drive at any speed",
+      description: "Noise Cancellation for serene drive at any speed",
     },
     {
       image: slideC,
@@ -368,11 +370,16 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
               <div
                 className="flex transition-transform duration-500 ease-in-out gap-3 sm:gap-6"
                 style={{
-                  transform: `translateX(-${currentSlideIndex * (isMobile ? 100 : 100 / 3)}%)`,
+                  transform: `translateX(-${
+                    currentSlideIndex * (isMobile ? 100 : 100 / 3)
+                  }%)`,
                 }}
               >
                 {slides.map((slide, index) => (
-                  <div key={index} className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+                  <div
+                    key={index}
+                    className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2"
+                  >
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
                       <div className="relative overflow-hidden h-48 sm:h-96">
                         <img
@@ -485,11 +492,16 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
               <div
                 className="flex transition-transform duration-500 ease-in-out gap-3 sm:gap-6"
                 style={{
-                  transform: `translateX(-${currentSlideIndex2 * (isMobile ? 100 : 100 / 3)}%)`,
+                  transform: `translateX(-${
+                    currentSlideIndex2 * (isMobile ? 100 : 100 / 3)
+                  }%)`,
                 }}
               >
                 {slides2.map((slide, index) => (
-                  <div key={index} className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2">
+                  <div
+                    key={index}
+                    className="w-full md:w-1/3 flex-shrink-0 px-1 sm:px-2"
+                  >
                     <div className="bg-white rounded-lg overflow-hidden shadow-lg group cursor-pointer">
                       <div className="relative overflow-hidden h-48 sm:h-96">
                         <img
