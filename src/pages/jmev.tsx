@@ -31,8 +31,8 @@ import FeatureBig from '../assets/JMEV_page/Grid/FeatureBig.png';
 import FeatureLeft from '../assets/JMEV_page/Grid/FeatureLeft.png';
 import FeatureRight from '../assets/JMEV_page/Grid/FeatureRight.png';
 import JmevSpecs from '../assets/JMEV_page/JmevSpecs.png';
-// Import MainApp for test drive navigation
-import MainApp from '../pages/testDrive';
+// Import TestDrive for test drive navigation
+import TestDrive from '../pages/test';
 
 // Define interfaces for type safety
 interface CarVariant {
@@ -77,6 +77,11 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
     setShowTestDrive(true);
   };
 
+  // Navigation function for Test Drive button
+  const handleTestDrive = (): void => {
+    setShowTestDrive(true);
+  };
+
   // Function to go back from test drive to JMEV page
   const handleBackFromTestDrive = (): void => {
     setShowTestDrive(false);
@@ -86,13 +91,13 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
   if (showTestDrive) {
     return (
       <div className="relative w-full h-screen">
-        {/* Render MainApp without onBack prop */}
-        <MainApp />
+        {/* Render TestDrive without onBack prop */}
+        <TestDrive />
         
         {/* Transparent back button overlay */}
         <button
           onClick={handleBackFromTestDrive}
-          className="fixed top-6 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+          className="fixed top-6 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-transparent backdrop-blur-sm  shadow-lg  rounded-lg transition-all duration-300 border border-gray-200"
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">Back to JMEV</span>
@@ -330,6 +335,18 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
           alt="JMEV Hero Banner"
           className="w-full h-auto object-cover"
         />
+        
+        {/* Test Drive Button positioned at bottom left */}
+        <div className="absolute bottom-8 left-8">
+          <button
+            onClick={handleTestDrive}
+            className="px-3 sm:px-5 py-2 sm:py-3 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-xs sm:text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+            style={{ borderRadius: "8px" }}
+            type="button"
+          >
+            TEST DRIVE
+          </button>
+        </div>
         
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
