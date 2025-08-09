@@ -31,6 +31,8 @@ import FeatureBig from '../assets/JMEV_page/Grid/FeatureBig.png';
 import FeatureLeft from '../assets/JMEV_page/Grid/FeatureLeft.png';
 import FeatureRight from '../assets/JMEV_page/Grid/FeatureRight.png';
 import JmevSpecs from '../assets/JMEV_page/JmevSpecs.png';
+// Import MainApp for test drive navigation
+import MainApp from '../pages/testDrive';
 
 // Define interfaces for type safety
 interface CarVariant {
@@ -56,6 +58,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState<number>(0);
   const [currentSlideIndex3, setCurrentSlideIndex3] = useState<number>(0);
   const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const [showTestDrive, setShowTestDrive] = useState<boolean>(false);
 
   // Handle responsive design
   useEffect(() => {
@@ -68,6 +71,21 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
     
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Navigation function for Book Now button
+  const handleBookNow = (): void => {
+    setShowTestDrive(true);
+  };
+
+  // Function to go back from test drive to JMEV page
+  const handleBackFromTestDrive = (): void => {
+    setShowTestDrive(false);
+  };
+
+  // If showing test drive component, render it instead
+  if (showTestDrive) {
+    return <MainApp onBack={handleBackFromTestDrive} />;
+  }
 
   // Car color variants for JMEV
   const cars: CarVariant[] = [
@@ -238,8 +256,6 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
     }
   };
 
-
-
   const nextSlide = (): void => {
     setCurrentSlideIndex((prev) => {
       const maxIndex = getMaxIndex(slides.length);
@@ -304,6 +320,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
           <button
+            onClick={handleBookNow}
             className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
             style={{ borderRadius: "8px" }}
             type="button"

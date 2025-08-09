@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
-// import RiddaraFullBanner from "../assets/RiddaraFullBanner.png";
 import whiteCar from "../assets/car_white.webp";
 import blueCar from "../assets/car_blue.webp";
 import greyCar from "../assets/car_gray.webp";
@@ -31,8 +30,9 @@ import airbag from "../assets/AirBags.png";
 import cameraTech from "../assets/CameraTech.png";
 import DriveAssist from "../assets/DriveAssist.png";
 import ModernTrunk from "../assets/ModernTrunk.png";
+// Import MainApp for test drive navigation
+import MainApp from '../pages/testDrive';
 
-// Define the props interface
 interface RiddaraProps {
   onBack: () => void;
 }
@@ -42,6 +42,7 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showTestDrive, setShowTestDrive] = useState(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -52,6 +53,21 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
     window.addEventListener("resize", checkIsMobile);
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
+
+  // Navigation function for Book Now button
+  const handleBookNow = (): void => {
+    setShowTestDrive(true);
+  };
+
+  // Function to go back from test drive to Riddara page
+  const handleBackFromTestDrive = (): void => {
+    setShowTestDrive(false);
+  };
+
+  // If showing test drive component, render it instead
+  if (showTestDrive) {
+    return <MainApp onBack={handleBackFromTestDrive} />;
+  }
 
   const cars = [
     {
@@ -245,13 +261,14 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
           {/* Buttons positioned at bottom right with narrower design */}
           <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
             <button
-              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent  hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              onClick={handleBookNow}
+              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
               style={{ borderRadius: "8px" }}
             >
               BOOK NOW
             </button>
             <button
-              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-black   transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
               style={{ borderRadius: "8px" }}
             >
               BROCHURE
