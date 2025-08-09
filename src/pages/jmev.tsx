@@ -82,9 +82,23 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
     setShowTestDrive(false);
   };
 
-  // If showing test drive component, render it instead
+  // If showing test drive component, render it with transparent back button overlay
   if (showTestDrive) {
-    return <MainApp onBack={handleBackFromTestDrive} />;
+    return (
+      <div className="relative w-full h-screen">
+        {/* Render MainApp without onBack prop */}
+        <MainApp />
+        
+        {/* Transparent back button overlay */}
+        <button
+          onClick={handleBackFromTestDrive}
+          className="fixed top-6 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+        >
+          <ArrowLeft className="w-5 h-5 text-gray-700" />
+          <span className="text-sm font-medium text-gray-700">Back to JMEV</span>
+        </button>
+      </div>
+    );
   }
 
   // Car color variants for JMEV
