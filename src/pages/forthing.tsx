@@ -57,6 +57,11 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
     setShowTestDrive(true);
   };
 
+  // Navigation function for Test Drive button
+  const handleTestDrive = () => {
+    setShowTestDrive(true);
+  };
+
   // Function to go back from test drive to Forthing page
   const handleBackFromTestDrive = () => {
     setShowTestDrive(false);
@@ -301,6 +306,18 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
           alt="Forthing Hero Banner"
           className="w-full h-auto object-cover"
         />
+
+        {/* Test Drive Button positioned at bottom left */}
+        <div className="absolute bottom-8 left-8">
+          <button
+            onClick={handleTestDrive}
+            className="px-3 sm:px-5 py-2 sm:py-3 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-xs sm:text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+            style={{ borderRadius: "8px" }}
+            type="button"
+          >
+            TEST DRIVE
+          </button>
+        </div>
 
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
