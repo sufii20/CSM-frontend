@@ -24,6 +24,8 @@ import ForthingSpec from "../assets/Forthing/ForthingSpecs.png";
 import ForthingBig from "../assets/Forthing/Grid/ForthingBig.png";
 import ForthingLeft from "../assets/Forthing/Grid/ForthingLeft.png";
 import ForthingRight from "../assets/Forthing/Grid/ForthingRight.png";
+// Import MainApp for test drive navigation
+import MainApp from '../pages/testDrive';
 
 // Define the props interface
 interface ForthingProps {
@@ -36,6 +38,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
   const [currentSlideIndex3, setCurrentSlideIndex3] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [showTestDrive, setShowTestDrive] = useState(false);
 
   // Handle responsive design
   useEffect(() => {
@@ -48,6 +51,21 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Navigation function for Book Now button
+  const handleBookNow = () => {
+    setShowTestDrive(true);
+  };
+
+  // Function to go back from test drive to Forthing page
+  const handleBackFromTestDrive = () => {
+    setShowTestDrive(false);
+  };
+
+  // If showing test drive component, render it instead
+  if (showTestDrive) {
+    return <MainApp onBack={handleBackFromTestDrive} />;
+  }
 
   // Car color variants for Forthing - using your existing images as base
   // Note: You'll need to add actual color variant images to your assets
@@ -273,7 +291,8 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
         {/* Buttons positioned at bottom right */}
         <div className="absolute bottom-8 right-8 flex space-x-4">
           <button
-            className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent  hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
+            onClick={handleBookNow}
+            className="px-4 sm:px-8 py-3 sm:py-4 border-2 border-white text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transform hover:scale-105"
             style={{ borderRadius: "8px" }}
           >
             BOOK NOW
