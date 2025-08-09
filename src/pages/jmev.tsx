@@ -33,6 +33,7 @@ import FeatureRight from '../assets/JMEV_page/Grid/FeatureRight.png';
 import JmevSpecs from '../assets/JMEV_page/JmevSpecs.png';
 // Import TestDrive for test drive navigation
 import TestDrive from '../pages/test';
+import MainApp from '../pages/testDrive'; // Import MainApp for test drive navigation
 
 // Define interfaces for type safety
 interface CarVariant {
@@ -74,7 +75,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
 
   // Navigation function for Book Now button
   const handleBookNow = (): void => {
-    setShowTestDrive(true);
+    MainApp(true);
   };
 
   // Navigation function for Test Drive button
