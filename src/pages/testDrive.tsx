@@ -24,6 +24,7 @@ import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
 
+
 const bannerImage = testDrive;
 
 interface TopIconButtonProps {
@@ -63,6 +64,7 @@ interface OrderData {
     statusFilter: string;
     salesTaxRegistration: string;
     ntnNumber: string;
+    advancePayment: string; // Fixed: Added proper advance payment field
     comments: string;
     termsAccepted: boolean;
   };
@@ -95,6 +97,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     statusFilter: "",
     salesTaxRegistration: "",
     ntnNumber: "",
+    advancePayment: "", // Fixed: Added proper advance payment field
     comments: "",
     termsAccepted: false,
   });
@@ -105,18 +108,21 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: car1,
+      price: "7500000", // Remove commas for calculation
     },
     {
       id: "RD6-AWD-Pro",
       name: "RD6 AWD Pro",
       subtitle: "Body Type : Truck",
       image: car2,
+      price: "8250000",
     },
     {
       id: "RD6-AWD-Ultra",
       name: "RD6 AWD Ultra",
       subtitle: "Body Type : Truck",
       image: car3,
+      price: "8990000",
     },
   ];
 
@@ -159,6 +165,11 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
 
     if (!formData.firstName || !formData.lastName || !formData.primaryPhone) {
       alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (!formData.advancePayment) {
+      alert("Please select an advance payment percentage.");
       return;
     }
 
@@ -735,25 +746,26 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                   </div>
+
+                  {/* Advance Payment - Fixed */}
                   <div>
-                    {/* Advance payment */}
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Advance Payment{" "}
                       <span className="text-red-500">*</span>
                     </label>
                     <select
-                      value={formData.individualCorporate}
+                      value={formData.advancePayment}
                       onChange={(e) =>
-                        handleInputChange("individualCorporate", e.target.value)
+                        handleInputChange("advancePayment", e.target.value)
                       }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select</option>
-                      <option value="20%">20%</option>
-                      <option value="30%">30%</option>
-                      <option value="40%">40%</option>
-                      <option value="50%">50%</option>
-                      <option value="60%">60%</option>
+                      <option value="20">20%</option>
+                      <option value="30">30%</option>
+                      <option value="40">40%</option>
+                      <option value="50">50%</option>
+                      <option value="60">60%</option>
                     </select>
                   </div>
                 </div>
@@ -836,21 +848,21 @@ const OrderReview: React.FC<{
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: car1,
-      price: "7,500,000",
+      price: "7500000", // Remove commas for calculation
     },
     {
       id: "RD6-AWD-Pro",
       name: "RD6 AWD Pro",
       subtitle: "Body Type : Truck",
       image: car2,
-      price: "8,250,000",
+      price: "8250000",
     },
     {
       id: "RD6-AWD-Ultra",
       name: "RD6 AWD Ultra",
       subtitle: "Body Type : Truck",
       image: car3,
-      price: "8,990,000",
+      price: "8990000",
     },
   ];
 
@@ -877,10 +889,17 @@ const OrderReview: React.FC<{
     (color) => color.id === orderData.selectedInteriorColor
   );
 
+  // Calculate prices based on selected car and advance payment percentage
   const basePrice = selectedCarDetails?.price
-    ? parseInt(selectedCarDetails.price.replace(/,/g, ""))
+    ? parseInt(selectedCarDetails.price)
     : 8990000;
-  const advancePayment = Math.floor(basePrice * 0.2); // 20% advance payment
+  
+  const advancePaymentPercentage = orderData.formData.advancePayment 
+    ? parseInt(orderData.formData.advancePayment) 
+    : 20; // Default to 20%
+  
+  const advancePayment = Math.floor(basePrice * (advancePaymentPercentage / 100));
+  const remainingAmount = basePrice - advancePayment;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -966,7 +985,7 @@ const OrderReview: React.FC<{
                     {selectedCarDetails?.name || "Selected Variant"}
                   </span>
                   <span className="text-gray-800 font-semibold">
-                    {selectedCarDetails?.price || "8,990,000"} PKR
+                    {basePrice.toLocaleString()} PKR
                   </span>
                 </div>
               </div>
@@ -1120,6 +1139,14 @@ const OrderReview: React.FC<{
                 </div>
               )}
 
+              {/* Advance Payment Percentage */}
+              <div className="flex items-center justify-between py-4 border-b border-gray-100">
+                <span className="text-gray-600">Selected Advance Payment</span>
+                <span className="text-gray-800 font-semibold">
+                  {advancePaymentPercentage}%
+                </span>
+              </div>
+
               {orderData.formData.comments && (
                 <div className="flex flex-col py-4 border-b border-gray-100">
                   <span className="text-gray-600 mb-2">Comments</span>
@@ -1153,12 +1180,21 @@ const OrderReview: React.FC<{
                 </span>
               </div>
 
+              <div className="flex justify-between py-2 bg-blue-50 px-4 rounded">
+                <span className="text-gray-700 font-medium">
+                  Advance Payment ({advancePaymentPercentage}%)
+                </span>
+                <span className="text-blue-600 font-semibold text-lg">
+                  {advancePayment.toLocaleString()} PKR
+                </span>
+              </div>
+
               <div className="flex justify-between py-2 border-b border-gray-200 pb-4">
                 <span className="text-gray-700 font-medium">
-                  Advance Payment (20%)
+                  Remaining Amount
                 </span>
                 <span className="text-gray-800 font-semibold">
-                  {advancePayment.toLocaleString()} PKR
+                  {remainingAmount.toLocaleString()} PKR
                 </span>
               </div>
             </div>
@@ -1171,7 +1207,7 @@ const OrderReview: React.FC<{
                 environment and other influencing factors.
               </p>
               <p>
-                <strong>Note:</strong> Bank charges may apply.
+                <strong>Note:</strong> Bank charges may apply. The remaining amount of {remainingAmount.toLocaleString()} PKR will be due upon delivery.
               </p>
             </div>
 
@@ -1184,7 +1220,7 @@ const OrderReview: React.FC<{
                   className="flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
                 >
                   <Upload className="w-4 h-4 mr-2" />
-                  Upload Additional Documents
+                  Upload Payment Slip
                 </button>
                 {uploadedFile && (
                   <span className="text-sm text-gray-600">
@@ -1202,18 +1238,15 @@ const OrderReview: React.FC<{
 
               {/* Save & Submit */}
               <div className="flex gap-4">
-                <button className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
-                  Save Draft
-                </button>
                 <button
                   onClick={() =>
                     alert(
-                      "Order submitted successfully! You will receive a confirmation email shortly."
+                      `Order submitted successfully!\n\nOrder Summary:\n- Vehicle: ${orderData.selectedBrand} ${selectedCarDetails?.name}\n- Total Price: ${basePrice.toLocaleString()} PKR\n- Advance Payment (${advancePaymentPercentage}%): ${advancePayment.toLocaleString()} PKR\n- Remaining: ${remainingAmount.toLocaleString()} PKR\n\nYou will receive a confirmation email shortly.`
                     )
                   }
                   className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
                 >
-                  Submit Order
+                  Save & Submit
                 </button>
               </div>
             </div>
