@@ -50,24 +50,14 @@ function App() {
         return <AboutPage />;
       case "news":
         return <News />;
-      case "locations":
-        return (
-          <div className="p-8">
-            <h1 className="text-2xl font-bold">Our Locations</h1>
-            <p className="mt-4">Find our showrooms and service centers near you.</p>
-          </div>
-        );
-      case "contact":
-        return (
-          <div className="p-8">
-            <h1 className="text-2xl font-bold">Contact Us</h1>
-            <p className="mt-4">Get in touch with our team for any inquiries or support.</p>
-          </div>
-        );
+        case "contact":
+        return <ContactForm />;
+        case "locations":
+        return <StoreLocation />;
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return <StoreLocation />;
+        return <HomePage />;
     }
   };
 
