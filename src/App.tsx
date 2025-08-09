@@ -17,6 +17,7 @@ import EVTestDrive from './pages/testDrive';
 import AboutPage from "./pages/aboutUs";
 import News from "./pages/newsAndInsights";
 import TestDrive from "./pages/test";
+import StoreLocation from "./pages/location";
 
 function App() {
   // State to track current page - properly typed
@@ -66,7 +67,7 @@ function App() {
       case "home":
       case "homepage": // Handle both 'home' and 'homepage' to show the same component
       default:
-        return <ContactForm />;
+        return <StoreLocation />;
     }
   };
 
