@@ -1,20 +1,28 @@
-import React, { useState, useRef } from 'react';
-import { X, MessageSquare, Phone, Hash, Upload, ChevronLeft, Download } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import {
+  X,
+  MessageSquare,
+  Phone,
+  Hash,
+  Upload,
+  ChevronLeft,
+  Download,
+} from "lucide-react";
 
 // Mock image URLs - replace with your actual images
-import testDrive from '../assets/testDrive.png'; 
-import car1 from '../assets/SelectModel.png';
-import car2 from '../assets/SelectModel.png';
-import car3 from '../assets/SelectModel.png';
+import testDrive from "../assets/testDrive.png";
+import car1 from "../assets/SelectModel.png";
+import car2 from "../assets/SelectModel.png";
+import car3 from "../assets/SelectModel.png";
 //Exterior
-import img1 from '../assets/Exterior/img1.png';
-import img2 from '../assets/Exterior/img2.png';
-import img3 from '../assets/Exterior/img3.png';
-import img4 from '../assets/Exterior/img4.png';
+import img1 from "../assets/Exterior/img1.png";
+import img2 from "../assets/Exterior/img2.png";
+import img3 from "../assets/Exterior/img3.png";
+import img4 from "../assets/Exterior/img4.png";
 //Interior
-import interiorblack from '../assets/interiorblack.png';
-import interiorbrown from '../assets/interiorbrown.png';
-import interiorgreen from '../assets/interiorgreen.png';
+import interiorblack from "../assets/interiorblack.png";
+import interiorbrown from "../assets/interiorbrown.png";
+import interiorgreen from "../assets/interiorgreen.png";
 
 const bannerImage = testDrive;
 
@@ -60,89 +68,114 @@ interface OrderData {
   };
 }
 
-const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubmit }) => {
-  const [selectedCar, setSelectedCar] = useState<string>('');
-  const [selectedExteriorColor, setSelectedExteriorColor] = useState<string>('');
-  const [selectedInteriorColor, setSelectedInteriorColor] = useState<string>('');
-  const [selectedBrand, setSelectedBrand] = useState<string>('RIDDARA');
+const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
+  onSubmit,
+}) => {
+  const [selectedCar, setSelectedCar] = useState<string>("");
+  const [selectedExteriorColor, setSelectedExteriorColor] =
+    useState<string>("");
+  const [selectedInteriorColor, setSelectedInteriorColor] =
+    useState<string>("");
+  const [selectedBrand, setSelectedBrand] = useState<string>("RIDDARA");
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    fatherHusbandName: '',
-    gender: '',
-    dateOfBirth: '',
-    primaryPhone: '',
-    secondaryPhone: '',
-    state: '',
-    city: '',
-    addressCNIC: '',
-    individualCorporate: '',
-    cnic: '',
+    firstName: "",
+    lastName: "",
+    fatherHusbandName: "",
+    gender: "",
+    dateOfBirth: "",
+    primaryPhone: "",
+    secondaryPhone: "",
+    state: "",
+    city: "",
+    addressCNIC: "",
+    individualCorporate: "",
+    cnic: "",
     cnicFrontImage: null as File | null,
     cnicBackImage: null as File | null,
-    statusFilter: '',
-    salesTaxRegistration: '',
-    ntnNumber: '',
-    comments: '',
-    termsAccepted: false
+    statusFilter: "",
+    salesTaxRegistration: "",
+    ntnNumber: "",
+    comments: "",
+    termsAccepted: false,
   });
 
   const cars = [
-    { id: 'RD6-2WD-Air', name: 'RD6 2WD Air', subtitle: 'Body Type : Truck', image: car1 },
-    { id: 'RD6-AWD-Pro', name: 'RD6 AWD Pro', subtitle: 'Body Type : Truck', image: car2 },
-    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type : Truck', image: car3 }
+    {
+      id: "RD6-2WD-Air",
+      name: "RD6 2WD Air",
+      subtitle: "Body Type : Truck",
+      image: car1,
+    },
+    {
+      id: "RD6-AWD-Pro",
+      name: "RD6 AWD Pro",
+      subtitle: "Body Type : Truck",
+      image: car2,
+    },
+    {
+      id: "RD6-AWD-Ultra",
+      name: "RD6 AWD Ultra",
+      subtitle: "Body Type : Truck",
+      image: car3,
+    },
   ];
 
   const exteriorColors = [
-    { id: 'green', name: 'Green', image: img1 },
-    { id: 'blue', name: 'Blue', image: img2 },
-    { id: 'grey', name: 'Grey', image: img3 },
-    { id: 'white', name: 'White', image: img4 }
+    { id: "green", name: "Green", image: img1 },
+    { id: "blue", name: "Blue", image: img2 },
+    { id: "grey", name: "Grey", image: img3 },
+    { id: "white", name: "White", image: img4 },
   ];
 
   const interiorColors = [
-    { id: 'black', name: 'Black', image: interiorblack },
-    { id: 'brown', name: 'Brown', image: interiorbrown },
-    { id: 'green', name: 'Green', image: interiorgreen }
+    { id: "black", name: "Black", image: interiorblack },
+    { id: "brown", name: "Brown", image: interiorbrown },
+    { id: "green", name: "Green", image: interiorgreen },
   ];
 
-  const handleInputChange = (field: string, value: string | boolean | File | null) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (
+    field: string,
+    value: string | boolean | File | null
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleFileUpload = (field: string, event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (
+    field: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0] || null;
     handleInputChange(field, file);
   };
-  
+
   const handleSubmit = () => {
-    console.log('Submit button clicked');
-    
+    console.log("Submit button clicked");
+
     // Basic validation
     if (!selectedCar || !selectedExteriorColor || !selectedInteriorColor) {
-      alert('Please select a car, exterior color, and interior color.');
-      return;
-    }
-    
-    if (!formData.firstName || !formData.lastName || !formData.primaryPhone) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-    
-    if (!formData.termsAccepted) {
-      alert('Please accept the terms and conditions.');
+      alert("Please select a car, exterior color, and interior color.");
       return;
     }
 
-    console.log('Validation passed, calling onSubmit');
-    
+    if (!formData.firstName || !formData.lastName || !formData.primaryPhone) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (!formData.termsAccepted) {
+      alert("Please accept the terms and conditions.");
+      return;
+    }
+
+    console.log("Validation passed, calling onSubmit");
+
     // Navigate to review page with all selected data
     onSubmit({
       selectedCar,
       selectedExteriorColor,
       selectedInteriorColor,
       selectedBrand,
-      formData
+      formData,
     });
   };
 
@@ -155,31 +188,31 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${bannerImage})` }}
         />
-        
+
         {/* Background overlay */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>
 
         {/* Top right icons */}
         <div className="absolute top-5 right-5 z-20 flex flex-col gap-4">
-          <TopIconButton 
-            icon={<X className="w-5 h-5 text-white" />} 
-            onClick={() => handleIconClick('close')}
+          <TopIconButton
+            icon={<X className="w-5 h-5 text-white" />}
+            onClick={() => handleIconClick("close")}
           />
-          <TopIconButton 
-            icon={<MessageSquare className="w-5 h-5 text-white" />} 
-            onClick={() => handleIconClick('message')}
+          <TopIconButton
+            icon={<MessageSquare className="w-5 h-5 text-white" />}
+            onClick={() => handleIconClick("message")}
           />
-          <TopIconButton 
-            icon={<Phone className="w-5 h-5 text-white" />} 
-            onClick={() => handleIconClick('phone')}
+          <TopIconButton
+            icon={<Phone className="w-5 h-5 text-white" />}
+            onClick={() => handleIconClick("phone")}
           />
-          <TopIconButton 
-            icon={<Hash className="w-5 h-5 text-white" />} 
-            onClick={() => handleIconClick('hash')}
+          <TopIconButton
+            icon={<Hash className="w-5 h-5 text-white" />}
+            onClick={() => handleIconClick("hash")}
           />
         </div>
 
@@ -189,9 +222,10 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
             <h1 className="text-4xl md:text-5xl font-bold tracking-wider mb-8 drop-shadow-lg">
               BOOK YOUR DREAM CAR
             </h1>
-            
+
             <p className="text-lg md:text-xl leading-relaxed mb-12 opacity-90 drop-shadow-md max-w-lg mx-auto">
-              Pick your favorite EV and make it yours with proper convenience and ease.
+              Pick your favorite EV and make it yours with proper convenience
+              and ease.
             </p>
           </div>
         </div>
@@ -207,48 +241,59 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
       {/* Form Section */}
       <div className="bg-gray-100 min-h-screen py-16">
         <div className="max-w-6xl mx-auto px-6">
-          
           {/* Step 1: Choose Your Car */}
           <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
             {/* Step 1 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                  STEP
+                </span>
                 <span className="text-gray-500/40 text-8xl font-bold">1</span>
               </div>
             </div>
             <div className="ml-28 flex items-center justify-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-800">CHOOSE YOUR CAR</h2>
+              <h2 className="text-2xl font-bold text-gray-800">
+                CHOOSE YOUR CAR
+              </h2>
             </div>
             <div className="ml-28 flex justify-center">
-              <button 
-                onClick={() => setSelectedBrand('ZEEKR')}
+              <button
+                onClick={() => setSelectedBrand("ZEEKR")}
                 className={`px-8 py-3 text-sm font-semibold rounded-l-md ${
-                  selectedBrand === 'ZEEKR' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === "ZEEKR"
+                    ? "bg-black text-white"
+                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
                 }`}
               >
                 ZEEKR
               </button>
-              <button 
-                onClick={() => setSelectedBrand('RIDDARA')}
+              <button
+                onClick={() => setSelectedBrand("RIDDARA")}
                 className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === 'RIDDARA' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === "RIDDARA"
+                    ? "bg-black text-white"
+                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
                 }`}
               >
                 RIDDARA
               </button>
-              <button 
-                onClick={() => setSelectedBrand('FORTHING')}
+              <button
+                onClick={() => setSelectedBrand("FORTHING")}
                 className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === 'FORTHING' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === "FORTHING"
+                    ? "bg-black text-white"
+                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
                 }`}
               >
                 FORTHING
               </button>
-              <button 
-                onClick={() => setSelectedBrand('JMEV')}
+              <button
+                onClick={() => setSelectedBrand("JMEV")}
                 className={`px-8 py-3 text-sm font-semibold rounded-r-md ${
-                  selectedBrand === 'JMEV' ? 'bg-black text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
+                  selectedBrand === "JMEV"
+                    ? "bg-black text-white"
+                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
                 }`}
               >
                 JMEV
@@ -262,22 +307,28 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {cars.map((car) => (
-                  <div 
+                  <div
                     key={car.id}
                     className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedCar === car.id ? 'ring-2 ring-blue-500 bg-blue-50' : 'hover:shadow-lg'
+                      selectedCar === car.id
+                        ? "ring-2 ring-blue-500 bg-blue-50"
+                        : "hover:shadow-lg"
                     }`}
                     onClick={() => setSelectedCar(car.id)}
                   >
                     <div className="mb-4">
-                      <img 
-                        src={car.image} 
+                      <img
+                        src={car.image}
                         alt={car.name}
                         className="w-full h-24 object-contain"
                       />
                     </div>
-                    <h4 className="font-bold text-gray-800 text-center text-lg mb-2">{car.name}</h4>
-                    <p className="text-gray-600 text-sm text-center">{car.subtitle}</p>
+                    <h4 className="font-bold text-gray-800 text-center text-lg mb-2">
+                      {car.name}
+                    </h4>
+                    <p className="text-gray-600 text-sm text-center">
+                      {car.subtitle}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -289,7 +340,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
             {/* Step 2 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                  STEP
+                </span>
                 <span className="text-gray-500/40 text-8xl font-bold">2</span>
               </div>
             </div>
@@ -299,21 +352,25 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {exteriorColors.map((color) => (
-                  <div 
+                  <div
                     key={color.id}
                     className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedExteriorColor === color.id ? 'ring-2 ring-blue-500 bg-blue-50' : 'hover:shadow-lg'
+                      selectedExteriorColor === color.id
+                        ? "ring-2 ring-blue-500 bg-blue-50"
+                        : "hover:shadow-lg"
                     }`}
                     onClick={() => setSelectedExteriorColor(color.id)}
                   >
                     <div className="mb-4">
-                      <img 
-                        src={color.image} 
+                      <img
+                        src={color.image}
                         alt={color.name}
                         className="w-full h-20 object-cover rounded"
                       />
                     </div>
-                    <p className="text-gray-800 text-center font-semibold">{color.name}</p>
+                    <p className="text-gray-800 text-center font-semibold">
+                      {color.name}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -324,21 +381,25 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {interiorColors.map((color) => (
-                  <div 
+                  <div
                     key={color.id}
                     className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedInteriorColor === color.id ? 'ring-2 ring-blue-500 bg-blue-50' : 'hover:shadow-lg'
+                      selectedInteriorColor === color.id
+                        ? "ring-2 ring-blue-500 bg-blue-50"
+                        : "hover:shadow-lg"
                     }`}
                     onClick={() => setSelectedInteriorColor(color.id)}
                   >
                     <div className="mb-4">
-                      <img 
-                        src={color.image} 
+                      <img
+                        src={color.image}
                         alt={color.name}
                         className="w-full h-20 object-cover rounded"
                       />
                     </div>
-                    <p className="text-gray-800 text-center font-semibold">{color.name}</p>
+                    <p className="text-gray-800 text-center font-semibold">
+                      {color.name}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -350,14 +411,15 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
             {/* Step 3 watermark */}
             <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
               <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">STEP</span>
+                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                  STEP
+                </span>
                 <span className="text-gray-500/40 text-5xl font-bold">3</span>
               </div>
             </div>
             <div className="ml-28">
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
                   {/* First Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -366,7 +428,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("firstName", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       required
                     />
@@ -380,7 +444,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("lastName", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       required
                     />
@@ -389,12 +455,15 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                   {/* Father/Husband Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Father/Husband Name <span className="text-red-500">*</span>
+                      Father/Husband Name{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       value={formData.fatherHusbandName}
-                      onChange={(e) => handleInputChange('fatherHusbandName', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("fatherHusbandName", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       required
                     />
@@ -407,7 +476,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     </label>
                     <select
                       value={formData.gender}
-                      onChange={(e) => handleInputChange('gender', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("gender", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select</option>
@@ -425,7 +496,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="date"
                       value={formData.dateOfBirth}
-                      onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("dateOfBirth", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                   </div>
@@ -442,7 +515,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                       <input
                         type="tel"
                         value={formData.primaryPhone}
-                        onChange={(e) => handleInputChange('primaryPhone', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("primaryPhone", e.target.value)
+                        }
                         className="flex-1 p-3 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         required
                       />
@@ -461,7 +536,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                       <input
                         type="tel"
                         value={formData.secondaryPhone}
-                        onChange={(e) => handleInputChange('secondaryPhone', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("secondaryPhone", e.target.value)
+                        }
                         className="flex-1 p-3 border border-l-0 border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
@@ -475,7 +552,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.state}
-                      onChange={(e) => handleInputChange('state', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("state", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       required
                     />
@@ -489,7 +568,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.city}
-                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("city", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       required
                     />
@@ -498,11 +579,14 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Address as per CNIC <span className="text-red-500">*</span>
+                      Address as per CNIC{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.addressCNIC}
-                      onChange={(e) => handleInputChange('addressCNIC', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("addressCNIC", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select Location</option>
@@ -514,11 +598,14 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                   {/* Individual/Corporate */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Individual/Corporate <span className="text-red-500">*</span>
+                      Individual/Corporate{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.individualCorporate}
-                      onChange={(e) => handleInputChange('individualCorporate', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("individualCorporate", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select</option>
@@ -535,7 +622,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.cnic}
-                      onChange={(e) => handleInputChange('cnic', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("cnic", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       placeholder="e.g. 12345-1234567-1"
                       required
@@ -551,7 +640,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={(e) => handleFileUpload('cnicFrontImage', e)}
+                        onChange={(e) => handleFileUpload("cnicFrontImage", e)}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         id="cnicFrontImage"
                       />
@@ -559,7 +648,11 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                         htmlFor="cnicFrontImage"
                         className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus-within:ring-2 focus-within:ring-blue-500 text-sm hover:bg-gray-100 cursor-pointer flex items-center justify-between"
                       >
-                        <span>{formData.cnicFrontImage ? formData.cnicFrontImage.name : 'Upload/ Select'}</span>
+                        <span>
+                          {formData.cnicFrontImage
+                            ? formData.cnicFrontImage.name
+                            : "Upload/ Select"}
+                        </span>
                         <Upload className="w-4 h-4" />
                       </label>
                     </div>
@@ -574,7 +667,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={(e) => handleFileUpload('cnicBackImage', e)}
+                        onChange={(e) => handleFileUpload("cnicBackImage", e)}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                         id="cnicBackImage"
                       />
@@ -582,7 +675,11 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                         htmlFor="cnicBackImage"
                         className="w-full p-3 border border-gray-300 rounded-md bg-gray-50 text-gray-500 focus-within:ring-2 focus-within:ring-blue-500 text-sm hover:bg-gray-100 cursor-pointer flex items-center justify-between"
                       >
-                        <span>{formData.cnicBackImage ? formData.cnicBackImage.name : 'Upload/ Select'}</span>
+                        <span>
+                          {formData.cnicBackImage
+                            ? formData.cnicBackImage.name
+                            : "Upload/ Select"}
+                        </span>
                         <Upload className="w-4 h-4" />
                       </label>
                     </div>
@@ -595,7 +692,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     </label>
                     <select
                       value={formData.statusFilter}
-                      onChange={(e) => handleInputChange('statusFilter', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("statusFilter", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Yes or No</option>
@@ -612,7 +711,12 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.salesTaxRegistration}
-                      onChange={(e) => handleInputChange('salesTaxRegistration', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange(
+                          "salesTaxRegistration",
+                          e.target.value
+                        )
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
                   </div>
@@ -625,9 +729,32 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="text"
                       value={formData.ntnNumber}
-                      onChange={(e) => handleInputChange('ntnNumber', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("ntnNumber", e.target.value)
+                      }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
+                  </div>
+                  <div>
+                    {/* Advance payment */}
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Advance Payment{" "}
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={formData.individualCorporate}
+                      onChange={(e) =>
+                        handleInputChange("individualCorporate", e.target.value)
+                      }
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                    >
+                      <option value="">Select</option>
+                      <option value="20%">20%</option>
+                      <option value="30%">30%</option>
+                      <option value="40%">40%</option>
+                      <option value="50%">50%</option>
+                      <option value="60%">60%</option>
+                    </select>
                   </div>
                 </div>
 
@@ -638,7 +765,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                   </label>
                   <textarea
                     value={formData.comments}
-                    onChange={(e) => handleInputChange('comments', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("comments", e.target.value)
+                    }
                     rows={4}
                     className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     placeholder="Enter your comments here..."
@@ -651,11 +780,16 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
                     <input
                       type="checkbox"
                       checked={formData.termsAccepted}
-                      onChange={(e) => handleInputChange('termsAccepted', e.target.checked)}
+                      onChange={(e) =>
+                        handleInputChange("termsAccepted", e.target.checked)
+                      }
                       className="mr-3 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mt-1"
                     />
                     <span className="text-sm text-gray-700">
-                      I have read and accept <a href="#" className="text-blue-500 underline">Terms & Conditions</a>
+                      I have read and accept{" "}
+                      <a href="#" className="text-blue-500 underline">
+                        Terms & Conditions
+                      </a>
                     </span>
                   </label>
                 </div>
@@ -672,14 +806,16 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({ onSubm
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   );
 };
 
-const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void }> = ({ orderData, onBackToVehicle }) => {
+const OrderReview: React.FC<{
+  orderData: OrderData;
+  onBackToVehicle: () => void;
+}> = ({ orderData, onBackToVehicle }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
@@ -695,36 +831,62 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
 
   // Get selected car details
   const cars = [
-    { id: 'RD6-2WD-Air', name: 'RD6 2WD Air', subtitle: 'Body Type : Truck', image: car1, price: '7,500,000' },
-    { id: 'RD6-AWD-Pro', name: 'RD6 AWD Pro', subtitle: 'Body Type : Truck', image: car2, price: '8,250,000' },
-    { id: 'RD6-AWD-Ultra', name: 'RD6 AWD Ultra', subtitle: 'Body Type : Truck', image: car3, price: '8,990,000' }
+    {
+      id: "RD6-2WD-Air",
+      name: "RD6 2WD Air",
+      subtitle: "Body Type : Truck",
+      image: car1,
+      price: "7,500,000",
+    },
+    {
+      id: "RD6-AWD-Pro",
+      name: "RD6 AWD Pro",
+      subtitle: "Body Type : Truck",
+      image: car2,
+      price: "8,250,000",
+    },
+    {
+      id: "RD6-AWD-Ultra",
+      name: "RD6 AWD Ultra",
+      subtitle: "Body Type : Truck",
+      image: car3,
+      price: "8,990,000",
+    },
   ];
 
   const exteriorColors = [
-    { id: 'green', name: 'Green', image: img1 },
-    { id: 'blue', name: 'Blue', image: img2 },
-    { id: 'grey', name: 'Grey', image: img3 },
-    { id: 'white', name: 'White', image: img4 }
+    { id: "green", name: "Green", image: img1 },
+    { id: "blue", name: "Blue", image: img2 },
+    { id: "grey", name: "Grey", image: img3 },
+    { id: "white", name: "White", image: img4 },
   ];
 
   const interiorColors = [
-    { id: 'black', name: 'Black', image: interiorblack },
-    { id: 'brown', name: 'Brown', image: interiorbrown },
-    { id: 'green', name: 'Green', image: interiorgreen }
+    { id: "black", name: "Black", image: interiorblack },
+    { id: "brown", name: "Brown", image: interiorbrown },
+    { id: "green", name: "Green", image: interiorgreen },
   ];
 
-  const selectedCarDetails = cars.find(car => car.id === orderData.selectedCar);
-  const selectedExteriorColorDetails = exteriorColors.find(color => color.id === orderData.selectedExteriorColor);
-  const selectedInteriorColorDetails = interiorColors.find(color => color.id === orderData.selectedInteriorColor);
+  const selectedCarDetails = cars.find(
+    (car) => car.id === orderData.selectedCar
+  );
+  const selectedExteriorColorDetails = exteriorColors.find(
+    (color) => color.id === orderData.selectedExteriorColor
+  );
+  const selectedInteriorColorDetails = interiorColors.find(
+    (color) => color.id === orderData.selectedInteriorColor
+  );
 
-  const basePrice = selectedCarDetails?.price ? parseInt(selectedCarDetails.price.replace(/,/g, '')) : 8990000;
+  const basePrice = selectedCarDetails?.price
+    ? parseInt(selectedCarDetails.price.replace(/,/g, ""))
+    : 8990000;
   const advancePayment = Math.floor(basePrice * 0.2); // 20% advance payment
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Back to Vehicle */}
-        <button 
+        <button
           onClick={onBackToVehicle}
           className="flex items-center text-gray-600 hover:text-gray-800 mb-8 transition-colors"
         >
@@ -736,40 +898,49 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
         <div className="bg-white rounded-lg shadow-sm overflow-hidden">
           {/* Header Section */}
           <div className="p-8">
-            <h1 className="text-3xl font-light text-gray-800 mb-8">Review Your Order</h1>
-            
+            <h1 className="text-3xl font-light text-gray-800 mb-8">
+              Review Your Order
+            </h1>
+
             {/* Vehicle Info and Image */}
             <div className="flex flex-col lg:flex-row items-center justify-between mb-8">
               <div className="lg:w-1/2 mb-6 lg:mb-0">
                 <h2 className="text-xl text-gray-700 mb-6">
-                  {orderData.selectedBrand} {selectedCarDetails?.name || 'Selected Vehicle'}
+                  {orderData.selectedBrand}{" "}
+                  {selectedCarDetails?.name || "Selected Vehicle"}
                 </h2>
-                
+
                 {/* Specs */}
                 <div className="grid grid-cols-3 gap-8 text-sm">
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
-                    <div className="text-xl font-semibold text-gray-800">410 km*</div>
+                    <div className="text-xl font-semibold text-gray-800">
+                      410 km*
+                    </div>
                     <div className="text-gray-500">Driving Range</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">AS FAST AS</div>
-                    <div className="text-xl font-semibold text-gray-800">7.9 sec*</div>
+                    <div className="text-xl font-semibold text-gray-800">
+                      7.9 sec*
+                    </div>
                     <div className="text-gray-500">0-100 km/hr</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
-                    <div className="text-xl font-semibold text-gray-800">49.92 kWh*</div>
+                    <div className="text-xl font-semibold text-gray-800">
+                      49.92 kWh*
+                    </div>
                     <div className="text-gray-500">Battery Capacity</div>
                   </div>
                 </div>
               </div>
-              
+
               {/* Car Image */}
               <div className="lg:w-1/2 flex justify-center">
-                <img 
+                <img
                   src={selectedCarDetails?.image || car1}
-                  alt={selectedCarDetails?.name || 'Selected Vehicle'}
+                  alt={selectedCarDetails?.name || "Selected Vehicle"}
                   className="w-full max-w-md h-auto object-contain"
                 />
               </div>
@@ -785,14 +956,18 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
           {/* Order Details */}
           <div className="border-t border-gray-200 p-8">
             <h3 className="text-xl text-gray-700 mb-6">Order Details</h3>
-            
+
             <div className="space-y-6">
               {/* Variant */}
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Variant</span>
                 <div className="flex items-center">
-                  <span className="text-gray-800 mr-4">{selectedCarDetails?.name || 'Selected Variant'}</span>
-                  <span className="text-gray-800 font-semibold">{selectedCarDetails?.price || '8,990,000'} PKR</span>
+                  <span className="text-gray-800 mr-4">
+                    {selectedCarDetails?.name || "Selected Variant"}
+                  </span>
+                  <span className="text-gray-800 font-semibold">
+                    {selectedCarDetails?.price || "8,990,000"} PKR
+                  </span>
                 </div>
               </div>
 
@@ -800,11 +975,16 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Exterior color</span>
                 <div className="flex items-center">
-                  <span className="text-gray-800 mr-4 capitalize">{selectedExteriorColorDetails?.name || 'Selected Color'}</span>
+                  <span className="text-gray-800 mr-4 capitalize">
+                    {selectedExteriorColorDetails?.name || "Selected Color"}
+                  </span>
                   <div className="w-12 h-8 rounded">
-                    <img 
+                    <img
                       src={selectedExteriorColorDetails?.image || img1}
-                      alt={selectedExteriorColorDetails?.name || 'Selected exterior color'}
+                      alt={
+                        selectedExteriorColorDetails?.name ||
+                        "Selected exterior color"
+                      }
                       className="w-full h-full object-cover rounded"
                     />
                   </div>
@@ -815,11 +995,16 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Interior color</span>
                 <div className="flex items-center">
-                  <span className="text-gray-800 mr-4 capitalize">{selectedInteriorColorDetails?.name || 'Selected Color'}</span>
+                  <span className="text-gray-800 mr-4 capitalize">
+                    {selectedInteriorColorDetails?.name || "Selected Color"}
+                  </span>
                   <div className="w-12 h-8 rounded">
-                    <img 
+                    <img
                       src={selectedInteriorColorDetails?.image || interiorblack}
-                      alt={selectedInteriorColorDetails?.name || 'Selected interior color'}
+                      alt={
+                        selectedInteriorColorDetails?.name ||
+                        "Selected interior color"
+                      }
                       className="w-full h-full object-cover rounded"
                     />
                   </div>
@@ -829,90 +1014,118 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
               {/* Customer Information */}
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Customer Name</span>
-                <span className="text-gray-800">{orderData.formData.firstName} {orderData.formData.lastName}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.firstName} {orderData.formData.lastName}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Father/Husband Name</span>
-                <span className="text-gray-800">{orderData.formData.fatherHusbandName || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.fatherHusbandName || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Gender</span>
-                <span className="text-gray-800">{orderData.formData.gender || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.gender || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Date of Birth</span>
-                <span className="text-gray-800">{orderData.formData.dateOfBirth || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.dateOfBirth || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Primary Phone</span>
-                <span className="text-gray-800">+92 {orderData.formData.primaryPhone}</span>
+                <span className="text-gray-800">
+                  +92 {orderData.formData.primaryPhone}
+                </span>
               </div>
 
               {orderData.formData.secondaryPhone && (
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <span className="text-gray-600">Secondary Phone</span>
-                  <span className="text-gray-800">+92 {orderData.formData.secondaryPhone}</span>
+                  <span className="text-gray-800">
+                    +92 {orderData.formData.secondaryPhone}
+                  </span>
                 </div>
               )}
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Location</span>
-                <span className="text-gray-800">{orderData.formData.city}, {orderData.formData.state}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.city}, {orderData.formData.state}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Address as per CNIC</span>
-                <span className="text-gray-800">{orderData.formData.addressCNIC || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.addressCNIC || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">Individual/Corporate</span>
-                <span className="text-gray-800">{orderData.formData.individualCorporate || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.individualCorporate || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">CNIC</span>
-                <span className="text-gray-800">{orderData.formData.cnic || 'Not provided'}</span>
+                <span className="text-gray-800">
+                  {orderData.formData.cnic || "Not provided"}
+                </span>
               </div>
 
               <div className="flex items-center justify-between py-4 border-b border-gray-100">
                 <span className="text-gray-600">CNIC Images</span>
                 <span className="text-gray-800">
-                  {orderData.formData.cnicFrontImage ? 'Front: ✓' : 'Front: ✗'} 
-                  {' | '}
-                  {orderData.formData.cnicBackImage ? 'Back: ✓' : 'Back: ✗'}
+                  {orderData.formData.cnicFrontImage ? "Front: ✓" : "Front: ✗"}
+                  {" | "}
+                  {orderData.formData.cnicBackImage ? "Back: ✓" : "Back: ✗"}
                 </span>
               </div>
 
               {orderData.formData.statusFilter && (
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <span className="text-gray-600">Status Filter</span>
-                  <span className="text-gray-800">{orderData.formData.statusFilter}</span>
+                  <span className="text-gray-800">
+                    {orderData.formData.statusFilter}
+                  </span>
                 </div>
               )}
 
               {orderData.formData.salesTaxRegistration && (
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <span className="text-gray-600">Sales Tax Registration</span>
-                  <span className="text-gray-800">{orderData.formData.salesTaxRegistration}</span>
+                  <span className="text-gray-800">
+                    {orderData.formData.salesTaxRegistration}
+                  </span>
                 </div>
               )}
 
               {orderData.formData.ntnNumber && (
                 <div className="flex items-center justify-between py-4 border-b border-gray-100">
                   <span className="text-gray-600">NTN Number</span>
-                  <span className="text-gray-800">{orderData.formData.ntnNumber}</span>
+                  <span className="text-gray-800">
+                    {orderData.formData.ntnNumber}
+                  </span>
                 </div>
               )}
 
               {orderData.formData.comments && (
                 <div className="flex flex-col py-4 border-b border-gray-100">
                   <span className="text-gray-600 mb-2">Comments</span>
-                  <span className="text-gray-800 text-sm bg-gray-50 p-3 rounded">{orderData.formData.comments}</span>
+                  <span className="text-gray-800 text-sm bg-gray-50 p-3 rounded">
+                    {orderData.formData.comments}
+                  </span>
                 </div>
               )}
             </div>
@@ -921,34 +1134,49 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
             <div className="mt-8 space-y-4">
               <div className="flex justify-between py-2">
                 <span className="text-gray-600">Company Price</span>
-                <span className="text-gray-800">{basePrice.toLocaleString()} PKR</span>
+                <span className="text-gray-800">
+                  {basePrice.toLocaleString()} PKR
+                </span>
               </div>
-              
+
               <div className="flex justify-between py-2">
-                <span className="text-gray-600">Freight / Insurance Charges</span>
+                <span className="text-gray-600">
+                  Freight / Insurance Charges
+                </span>
                 <span className="text-gray-800">0 PKR</span>
               </div>
-              
+
               <div className="flex justify-between py-2 border-t border-gray-200 pt-4">
                 <span className="text-gray-700 font-medium">Gross Price</span>
-                <span className="text-gray-800 font-semibold">{basePrice.toLocaleString()} PKR</span>
+                <span className="text-gray-800 font-semibold">
+                  {basePrice.toLocaleString()} PKR
+                </span>
               </div>
-              
+
               <div className="flex justify-between py-2 border-b border-gray-200 pb-4">
-                <span className="text-gray-700 font-medium">Advance Payment (20%)</span>
-                <span className="text-gray-800 font-semibold">{advancePayment.toLocaleString()} PKR</span>
+                <span className="text-gray-700 font-medium">
+                  Advance Payment (20%)
+                </span>
+                <span className="text-gray-800 font-semibold">
+                  {advancePayment.toLocaleString()} PKR
+                </span>
               </div>
             </div>
 
             {/* Footer Notes */}
             <div className="mt-6 text-xs text-gray-500 space-y-2">
-              <p>*Performance related metrics are based on controlled conditions. Actual performance will vary depending on driving behaviour, environment and other influencing factors.</p>
-              <p><strong>Note:</strong> Bank charges may apply.</p>
+              <p>
+                *Performance related metrics are based on controlled conditions.
+                Actual performance will vary depending on driving behaviour,
+                environment and other influencing factors.
+              </p>
+              <p>
+                <strong>Note:</strong> Bank charges may apply.
+              </p>
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-8 border-t border-gray-200 pt-6 gap-4">
-              
               {/* Upload Button */}
               <div className="flex items-center gap-3">
                 <button
@@ -959,7 +1187,9 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
                   Upload Additional Documents
                 </button>
                 {uploadedFile && (
-                  <span className="text-sm text-gray-600">{uploadedFile.name}</span>
+                  <span className="text-sm text-gray-600">
+                    {uploadedFile.name}
+                  </span>
                 )}
                 <input
                   type="file"
@@ -975,15 +1205,18 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
                 <button className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors">
                   Save Draft
                 </button>
-                <button 
-                  onClick={() => alert('Order submitted successfully! You will receive a confirmation email shortly.')}
+                <button
+                  onClick={() =>
+                    alert(
+                      "Order submitted successfully! You will receive a confirmation email shortly."
+                    )
+                  }
                   className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
                 >
                   Submit Order
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -992,26 +1225,31 @@ const OrderReview: React.FC<{ orderData: OrderData; onBackToVehicle: () => void 
 };
 
 const MainApp: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'testdrive' | 'review'>('testdrive');
+  const [currentView, setCurrentView] = useState<"testdrive" | "review">(
+    "testdrive"
+  );
   const [orderData, setOrderData] = useState<OrderData | null>(null);
 
   const handleTestDriveSubmit = (data: OrderData) => {
-    console.log('Received order data:', data);
+    console.log("Received order data:", data);
     setOrderData(data);
-    setCurrentView('review');
+    setCurrentView("review");
   };
 
   const handleBackToVehicle = () => {
-    setCurrentView('testdrive');
+    setCurrentView("testdrive");
   };
 
   return (
     <div>
-      {currentView === 'testdrive' && (
+      {currentView === "testdrive" && (
         <EVTestDrive onSubmit={handleTestDriveSubmit} />
       )}
-      {currentView === 'review' && orderData && (
-        <OrderReview orderData={orderData} onBackToVehicle={handleBackToVehicle} />
+      {currentView === "review" && orderData && (
+        <OrderReview
+          orderData={orderData}
+          onBackToVehicle={handleBackToVehicle}
+        />
       )}
     </div>
   );
