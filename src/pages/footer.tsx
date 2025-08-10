@@ -24,7 +24,7 @@ interface FooterProps {
   onPageChange: (page: PageType) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
+const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
   // Footer data with page mappings
   const footerColumns: FooterColumn[] = [
     {
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
       links: [
         { label: 'Contact Us', href: '#', page: 'contact' },
         { label: 'Customer Feedback', href: '#', page: 'contact' },
-        { label: 'Careers', href: '#' ,page:'career'}, // External link, no page mapping
+        { label: 'Careers', href: '#', page: 'career' }, // Now links to careers page
         { label: 'FAQs', href: '#' }, // No page mapping for now
       ],
     },

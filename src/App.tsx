@@ -1,7 +1,7 @@
 // App.tsx
 import { useState } from "react";
 import Navbar from "./pages/navBar";
-import type { PageType } from "./pages/types"; 
+import type { PageType } from "./pages/types";
 import ContactForm from "./pages/contactUs";
 import Footer from "./pages/footer";
 // Import page components
@@ -15,6 +15,7 @@ import AboutPage from "./pages/aboutUs";
 import News from "./pages/newsAndInsights";
 // import TestDrive from "./pages/test";
 import StoreLocation from "./pages/location";
+import CombinedCareer from "./pages/career";
 
 function App() {
   // State to track current page - properly typed
@@ -45,14 +46,16 @@ function App() {
         return <JmevPage onBack={handleBackToHome} />;
       case "about":
         return <AboutPage />;
-      case "news": 
+      case "news":
         return <News />;
       case "contact":
         return <ContactForm />;
       case "locations":
         return <StoreLocation />;
+      case "career":
+        return <CombinedCareer />;
       case "home":
-      case "homepage": 
+      case "homepage":
       default:
         return <HomePage />;
     }
@@ -65,7 +68,7 @@ function App() {
       {/* <Newsletter />
       <div className="border-t border-gray-300" />
       <Footer /> */}
-            <Footer onPageChange={handlePageChange} />
+      <Footer onPageChange={handlePageChange} />
     </div>
   );
 }

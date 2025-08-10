@@ -7,7 +7,7 @@ import SuccessPopup from "../pages/career3";
 import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
-const CombinedCareer = () => {
+export const CombinedCareer = () => {
   const [showCareerPage, setShowCareerPage] = useState(false);
 
   // --- Career Page State ---
