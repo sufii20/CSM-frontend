@@ -34,8 +34,10 @@ const TestDrive: React.FC = () => {
   });
 
   const cars = [
-    { id: "riddara", name: "RIDDARA" },
+    { id: "zeekr", name: "ZEEKR" },
     { id: "forthing", name: "FORTHING" },
+    { id: "raddara", name: "RADDARA" },
+    { id: "jmev", name: "JMEV" },
   ];
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -110,15 +112,21 @@ const TestDrive: React.FC = () => {
               CHOOSE YOUR CAR
             </h2>
             <div className="flex justify-center gap-0 mb-8">
-              {cars.map((car) => (
+              {cars.map((car, index) => (
                 <button
                   key={car.id}
                   onClick={() => setSelectedCar(car.id)}
-                  className={`px-8 py-3 font-semibold ${
+                  className={`px-6 py-3 font-semibold transition-colors duration-200 ${
                     selectedCar === car.id
                       ? "bg-black text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  } ${car.id === "ridomba" ? "rounded-l-md" : "rounded-r-md"}`}
+                  } ${
+                    index === 0
+                      ? "rounded-l-md"
+                      : index === cars.length - 1
+                      ? "rounded-r-md"
+                      : ""
+                  }`}
                 >
                   {car.name}
                 </button>
