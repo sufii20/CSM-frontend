@@ -717,13 +717,12 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
             </div>
           </div>
         </div>
-
-          {/* Newsletter Section */}
+      </div>
+        {/* Newsletter Section */}
       <Newsletter />
 
       {/* Footer Section */}
       <Footer />
-      </div>
     </div>
   );
 };
