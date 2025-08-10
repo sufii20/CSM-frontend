@@ -29,13 +29,14 @@ const TestDrive: React.FC = () => {
     secondaryPhone: "",
     state: "",
     city: "",
+    location: "",
     comments: "",
     termsAccepted: false,
   });
 
   const cars = [
     { id: "zeekr", name: "ZEEKR" },
-     { id: "raddara", name: "RADDARA" },
+    { id: "raddara", name: "RADDARA" },
     { id: "forthing", name: "FORTHING" },
     { id: "jmev", name: "JMEV" },
   ];
@@ -283,6 +284,37 @@ const TestDrive: React.FC = () => {
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                   required
                 />
+              </div>
+              {/* location */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Location <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={formData.location}
+                  onChange={(e) =>
+                    handleInputChange("location", e.target.value)
+                  }
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                  required
+                >
+                  <option value="" disabled>
+                    Select Location
+                  </option>
+                  <option value="bedian road, Lahore">
+                    Bedian road, Lahore
+                  </option>
+                  <option value="Gulberg Boulvard, Lahore">
+                    Gulberg Boulvard, Lahore
+                  </option>
+                  <option value="Blue Area Islamabad">
+                    Blue Area Islamabad
+                  </option>
+                  <option value="Clifton, Karachi">Clifton, Karachi</option>
+                  <option value="North Nazimabad, Karachi">
+                    North Nazimabad, Karachi
+                  </option>
+                </select>
               </div>
             </div>
 
