@@ -42,8 +42,9 @@ const ContactForm: React.FC = () => {
           {/* GET IN TOUCH WITH US strip - positioned at the right edge */}
           <div className="absolute top-24 right-0 bg-black text-white py-2 px-16 z-10">
             <div className="text-xs font-light tracking-wider whitespace-nowrap">
-              GET IN TOUCH WITH US • GET IN TOUCH WITH US • GET IN TOUCH WITH US •
-              GET IN TOUCH WITH US • GET IN TOUCH WITH US • GET IN TOUCH WITH US •
+              GET IN TOUCH WITH US • GET IN TOUCH WITH US • GET IN TOUCH WITH US
+              • GET IN TOUCH WITH US • GET IN TOUCH WITH US • GET IN TOUCH WITH
+              US •
             </div>
           </div>
 
@@ -105,7 +106,9 @@ const ContactForm: React.FC = () => {
         <div className="w-1/2 bg-gray-200 p-12">
           <div className="max-w-md pt-8">
             <h2 className="text-2xl font-bold text-black mb-1">WE'D LOVE TO</h2>
-            <h2 className="text-2xl font-bold text-black mb-8">HEAR FROM YOU.</h2>
+            <h2 className="text-2xl font-bold text-black mb-8">
+              HEAR FROM YOU.
+            </h2>
 
             <div className="space-y-6">
               {/* Name */}
@@ -197,8 +200,9 @@ const ContactForm: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <Newsletter />
+      <div className="border-t border-gray-300" />
       <Footer />
     </>
   );

@@ -57,7 +57,9 @@ const StoreLocations: React.FC = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center space-x-4">
             <div className="h-px bg-gray-400 w-24"></div>
-            <h2 className="text-xl font-semibold text-gray-800">Store Locations</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Store Locations
+            </h2>
             <div className="h-px bg-gray-400 w-24"></div>
           </div>
         </div>
@@ -89,7 +91,9 @@ const StoreLocations: React.FC = () => {
               {/* Left: Text Info */}
               <div className="p-6 flex flex-col justify-center flex-1">
                 <div>
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">{store.name}</h3>
+                  <h3 className="font-bold text-gray-900 text-lg mb-2">
+                    {store.name}
+                  </h3>
                   <p className="text-gray-600 text-sm mb-4">{store.address}</p>
                   <div className="space-y-1 text-sm text-gray-700">
                     <p className="flex items-center">
@@ -108,10 +112,20 @@ const StoreLocations: React.FC = () => {
                   src={store.image}
                   alt="Map location"
                   className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => window.open('https://maps.app.goo.gl/titZ4NXQMffkzXtA8', '_blank')}
+                  onClick={() =>
+                    window.open(
+                      "https://maps.app.goo.gl/titZ4NXQMffkzXtA8",
+                      "_blank"
+                    )
+                  }
                 />
-                <button 
-                  onClick={() => window.open('https://maps.app.goo.gl/titZ4NXQMffkzXtA8', '_blank')}
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://maps.app.goo.gl/titZ4NXQMffkzXtA8",
+                      "_blank"
+                    )
+                  }
                   className="absolute bottom-16 left-[-146px] bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-800 transition-colors"
                 >
                   Get Direction
@@ -124,7 +138,7 @@ const StoreLocations: React.FC = () => {
 
       {/* Newsletter Section */}
       <Newsletter />
-
+      <div className="border-t border-gray-300" />
       {/* Footer Section */}
       <Footer />
     </>

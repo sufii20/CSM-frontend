@@ -751,8 +751,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Advance Payment - Fixed */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Advance Payment{" "}
-                      <span className="text-red-500">*</span>
+                      Advance Payment <span className="text-red-500">*</span>
                     </label>
                     <select
                       value={formData.advancePayment}
@@ -894,12 +893,14 @@ const OrderReview: React.FC<{
   const basePrice = selectedCarDetails?.price
     ? parseInt(selectedCarDetails.price)
     : 8990000;
-  
-  const advancePaymentPercentage = orderData.formData.advancePayment 
-    ? parseInt(orderData.formData.advancePayment) 
+
+  const advancePaymentPercentage = orderData.formData.advancePayment
+    ? parseInt(orderData.formData.advancePayment)
     : 20; // Default to 20%
-  
-  const advancePayment = Math.floor(basePrice * (advancePaymentPercentage / 100));
+
+  const advancePayment = Math.floor(
+    basePrice * (advancePaymentPercentage / 100)
+  );
   const remainingAmount = basePrice - advancePayment;
 
   return (
@@ -1208,7 +1209,9 @@ const OrderReview: React.FC<{
                 environment and other influencing factors.
               </p>
               <p>
-                <strong>Note:</strong> Bank charges may apply. The remaining amount of {remainingAmount.toLocaleString()} PKR will be due upon delivery.
+                <strong>Note:</strong> Bank charges may apply. The remaining
+                amount of {remainingAmount.toLocaleString()} PKR will be due
+                upon delivery.
               </p>
             </div>
 
@@ -1242,7 +1245,11 @@ const OrderReview: React.FC<{
                 <button
                   onClick={() =>
                     alert(
-                      `Order submitted successfully!\n\nOrder Summary:\n- Vehicle: ${orderData.selectedBrand} ${selectedCarDetails?.name}\n- Total Price: ${basePrice.toLocaleString()} PKR\n- Advance Payment (${advancePaymentPercentage}%): ${advancePayment.toLocaleString()} PKR\n- Remaining: ${remainingAmount.toLocaleString()} PKR\n\nYou will receive a confirmation email shortly.`
+                      `Order submitted successfully!\n\nOrder Summary:\n- Vehicle: ${
+                        orderData.selectedBrand
+                      } ${
+                        selectedCarDetails?.name
+                      }\n- Total Price: ${basePrice.toLocaleString()} PKR\n- Advance Payment (${advancePaymentPercentage}%): ${advancePayment.toLocaleString()} PKR\n- Remaining: ${remainingAmount.toLocaleString()} PKR\n\nYou will receive a confirmation email shortly.`
                     )
                   }
                   className="px-6 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors"
@@ -1254,12 +1261,6 @@ const OrderReview: React.FC<{
           </div>
         </div>
       </div>
-
-        {/* Newsletter Section */}
-      <Newsletter />
-
-      {/* Footer Section */}
-      <Footer />
     </div>
   );
 };
@@ -1291,6 +1292,11 @@ const MainApp: React.FC = () => {
           onBackToVehicle={handleBackToVehicle}
         />
       )}
+      {/* Newsletter Section */}
+      <Newsletter />
+      <div className="border-t border-gray-300" />
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

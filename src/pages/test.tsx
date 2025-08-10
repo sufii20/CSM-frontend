@@ -324,10 +324,10 @@ const TestDrive: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Newsletter Section */}
       <Newsletter />
-
+      <div className="border-t border-gray-300" />
       {/* Footer Section */}
       <Footer />
     </div>

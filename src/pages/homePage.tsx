@@ -529,10 +529,10 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Newsletter Section */}
       <Newsletter />
-
+      <div className="border-t border-gray-300" />
       {/* Footer Section */}
       <Footer />
     </div>

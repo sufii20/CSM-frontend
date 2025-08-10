@@ -9,32 +9,32 @@ const CareerPage = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    fatherName: '',
-    phone: '',
-    city: ''
+    name: "",
+    fatherName: "",
+    phone: "",
+    city: "",
   });
 
   const bannerImage = careerBanner;
   const carImage = career;
 
-  const handleFileUpload = (event:any) => {
+  const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
     if (file) {
       setUploadedFile(file);
     }
   };
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = () => {
-    console.log('Form Data:', formData);
-    console.log('Uploaded File:', uploadedFile);
+    console.log("Form Data:", formData);
+    console.log("Uploaded File:", uploadedFile);
     setShowSuccessPopup(true);
   };
 
@@ -42,10 +42,10 @@ const CareerPage = () => {
     setShowSuccessPopup(false);
     // Reset form after successful submission
     setFormData({
-      name: '',
-      fatherName: '',
-      phone: '',
-      city: ''
+      name: "",
+      fatherName: "",
+      phone: "",
+      city: "",
     });
     setUploadedFile(null);
   };
@@ -57,9 +57,15 @@ const CareerPage = () => {
 
       {/* Banner */}
       <div className="relative">
-        <img src={bannerImage} alt="Career Banner" className="w-full h-[400px] object-cover" />
+        <img
+          src={bannerImage}
+          alt="Career Banner"
+          className="w-full h-[400px] object-cover"
+        />
         <div className="absolute inset-0 flex items-end justify-start bg-black bg-opacity-30 p-6">
-          <h1 className="text-white text-lg md:text-xl font-semibold">WE ARE HIRING</h1>
+          <h1 className="text-white text-lg md:text-xl font-semibold">
+            WE ARE HIRING
+          </h1>
         </div>
       </div>
 
@@ -130,7 +136,9 @@ const CareerPage = () => {
                 />
                 <div className="pointer-events-none">
                   {uploadedFile ? (
-                    <span className="text-green-600">✓ {uploadedFile.name}</span>
+                    <span className="text-green-600">
+                      ✓ {uploadedFile.name}
+                    </span>
                   ) : (
                     <>📎 Click To Upload Document</>
                   )}
@@ -155,10 +163,10 @@ const CareerPage = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Newsletter Section */}
       <Newsletter />
-
+      <div className="border-t border-gray-300" />
       {/* Footer Section */}
       <Footer />
     </div>
