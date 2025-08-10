@@ -261,7 +261,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                 <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
                   STEP
                 </span>
-                <span className="text-gray-500/40 text-8xl font-bold">1</span>
+                <span className="text-gray-500/40 text-5xl font-bold">1</span>
               </div>
             </div>
             <div className="ml-28 flex items-center justify-center mb-6">
@@ -321,7 +321,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                 <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
                   STEP
                 </span>
-                <span className="text-gray-500/40 text-8xl font-bold">2</span>
+                <span className="text-gray-500/40 text-5xl font-bold">2</span>
               </div>
             </div>
             <div className="ml-28">
