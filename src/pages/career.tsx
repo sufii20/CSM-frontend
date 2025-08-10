@@ -1,7 +1,9 @@
 import { useState } from "react";
 import career from "../assets/career.png";
 import careerBanner from "../assets/CarrerBanner.png";
-import SuccessPopup from "../pages/career3"; // Import the SuccessPopup component
+import SuccessPopup from "../pages/career3";
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer"; // Import the SuccessPopup component
 
 const CareerPage = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -153,6 +155,12 @@ const CareerPage = () => {
           </button>
         </div>
       </div>
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

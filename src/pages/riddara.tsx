@@ -34,6 +34,8 @@ import ModernTrunk from "../assets/ModernTrunk.png";
 // Import MainApp for test drive navigation
 import MainApp from '../pages/testDrive';
 import TestDrive from "../pages/test";
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 
 interface RiddaraProps {
   onBack: () => void;
@@ -715,6 +717,12 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
             </div>
           </div>
         </div>
+
+          {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
       </div>
     </div>
   );

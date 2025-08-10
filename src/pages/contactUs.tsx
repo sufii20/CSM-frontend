@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Twitter, Facebook, Linkedin, Mail } from "lucide-react";
-
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 interface FormData {
   name: string;
   emailPhone: string;
@@ -194,7 +195,10 @@ const ContactForm: React.FC = () => {
           </div>
         </div>
       </div>
+      
+     
     </div>
+    
   );
 };
 

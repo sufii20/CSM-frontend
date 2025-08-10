@@ -65,9 +65,9 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <Navbar onPageChange={handlePageChange} currentPage={currentPage} />
       <main className="flex-grow">{renderCurrentPage()}</main>
-      <Newsletter />
+      {/* <Newsletter />
       <div className="border-t border-gray-300" />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }

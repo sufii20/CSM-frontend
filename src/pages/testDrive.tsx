@@ -23,7 +23,8 @@ import img4 from "../assets/Exterior/img4.png";
 import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
-
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
 
@@ -1253,6 +1254,12 @@ const OrderReview: React.FC<{
           </div>
         </div>
       </div>
+
+        {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

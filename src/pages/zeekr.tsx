@@ -18,7 +18,8 @@ import ForthingSpec from '../assets/Forthing/ForthingSpecs.png';
 import ForthingBig from '../assets/Forthing/Grid/ForthingBig.png';
 import ForthingLeft from '../assets/Forthing/Grid/ForthingLeft.png';
 import ForthingRight from '../assets/Forthing/Grid/ForthingRight.png';
-
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 export const Forthing = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentSlideIndex2, setCurrentSlideIndex2] = useState(0);
@@ -455,6 +456,13 @@ export const Forthing = () => {
           </div>
         </div>
       </div>
+
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

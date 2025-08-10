@@ -27,7 +27,8 @@ import ForthingRight from "../assets/Forthing/Grid/ForthingRight.png";
 // Import TestDrive for test drive navigation
 import TestDrive from '../pages/test';
 import MainApp from "../pages/testDrive";
-
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 // Define the props interface
 interface ForthingProps {
   onBack: () => void;
@@ -732,6 +733,13 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
           </div>
         </div>
       </div>
+
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

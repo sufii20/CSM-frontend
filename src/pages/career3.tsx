@@ -1,5 +1,7 @@
 import React from "react";
 import { Check } from "lucide-react";
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 
 const SuccessPopup: React.FC = () => {
   return (
@@ -29,6 +31,12 @@ const SuccessPopup: React.FC = () => {
           </button>
         </div>
       </div>
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

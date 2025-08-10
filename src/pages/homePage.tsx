@@ -35,6 +35,8 @@ import fortingInterior from "../assets/interiorView/ForthingInterior.png";
 import jmeVInterior from "../assets/interiorView/JMeVInterior.png";
 import zeekrX from "../assets/interiorView/ZeekeX.png";
 import zeekrInterior from "../assets/interiorView/ZeekrInterior.png";
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
@@ -527,6 +529,12 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };

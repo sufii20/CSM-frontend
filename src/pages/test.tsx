@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { X, MessageSquare, Phone, Hash } from "lucide-react";
 import testDrive from "../assets/testDrive.png";
-
+import Newsletter from "../pages/newsLetter";
+import Footer from "../pages/footer";
 interface TopIconButtonProps {
   icon: React.ReactNode;
   onClick?: () => void;
@@ -323,6 +324,12 @@ const TestDrive: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Newsletter Section */}
+      <Newsletter />
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };
