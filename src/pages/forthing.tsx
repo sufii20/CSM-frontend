@@ -26,7 +26,7 @@ import ForthingLeft from "../assets/Forthing/Grid/ForthingLeft.png";
 import ForthingRight from "../assets/Forthing/Grid/ForthingRight.png";
 // Import TestDrive for test drive navigation
 import TestDrive from "../pages/test";
-import MainApp from "../pages/testDrive";
+import MainApp from "../pages/testDrive2";
 import Newsletter from "../pages/newsLetter";
 import Footer from "../pages/footer";
 // Define the props interface
