@@ -33,7 +33,7 @@ import FeatureRight from "../assets/JMEV_page/Grid/FeatureRight.png";
 import JmevSpecs from "../assets/JMEV_page/JmevSpecs.png";
 // Import TestDrive for test drive navigation
 import TestDrive from "../pages/test";
-import MainApp from "../pages/testDrive"; // Import MainApp for test drive navigation
+import MainApp from "../pages/testDrive1"; // Import MainApp for test drive navigation
 import Newsletter from "../pages/newsLetter";
 import Footer from "../pages/footer";
 // Define interfaces for type safety
