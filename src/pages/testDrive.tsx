@@ -271,46 +271,12 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             </div>
             <div className="ml-28 flex justify-center">
               <button
-                onClick={() => setSelectedBrand("ZEEKR")}
-                className={`px-8 py-3 text-sm font-semibold rounded-l-md ${
-                  selectedBrand === "ZEEKR"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
+                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
               >
-                ZEEKR
-              </button>
-              <button
-                onClick={() => setSelectedBrand("RIDDARA")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "RIDDARA"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                RIDDARA
-              </button>
-              <button
-                onClick={() => setSelectedBrand("FORTHING")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "FORTHING"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                FORTHING
-              </button>
-              <button
-                onClick={() => setSelectedBrand("JMEV")}
-                className={`px-8 py-3 text-sm font-semibold rounded-r-md ${
-                  selectedBrand === "JMEV"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                JMEV
+                RADDARA
               </button>
             </div>
+
 
             {/* Select Variant */}
             <div className="ml-28 mt-12">
