@@ -81,7 +81,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     useState<string>("");
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
-  const [selectedBrand, setSelectedBrand] = useState<string>("RIDDARA");
+  const [selectedBrand] = useState<string>("RIDDARA");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -140,7 +140,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const interiorColors = [
     { id: "black", name: "Black", image: forthingInteriorBlack },
     { id: "brown", name: "Brown", image: forthingInteriorBrown },
-    { id: "green", name: "Green", image: forthingInteriorBlack },
   ];
 
   const handleInputChange = (
@@ -270,48 +269,13 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             <div className="ml-28 flex items-center justify-center mb-6">
               <h2 className="text-2xl font-bold text-gray-800">
                 CHOOSE YOUR CAR
-              </h2>
+            </h2>
             </div>
             <div className="ml-28 flex justify-center">
               <button
-                onClick={() => setSelectedBrand("ZEEKR")}
-                className={`px-8 py-3 text-sm font-semibold rounded-l-md ${
-                  selectedBrand === "ZEEKR"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                ZEEKR
-              </button>
-              <button
-                onClick={() => setSelectedBrand("RIDDARA")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "RIDDARA"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                RIDDARA
-              </button>
-              <button
-                onClick={() => setSelectedBrand("FORTHING")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "FORTHING"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
+                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
               >
                 FORTHING
-              </button>
-              <button
-                onClick={() => setSelectedBrand("JMEV")}
-                className={`px-8 py-3 text-sm font-semibold rounded-r-md ${
-                  selectedBrand === "JMEV"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                JMEV
               </button>
             </div>
 
@@ -394,22 +358,22 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
                 INTERIOR COLOR <span className="text-red-500">*</span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
                 {interiorColors.map((color) => (
                   <div
                     key={color.id}
-                    className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
+                    className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
                       selectedInteriorColor === color.id
                         ? "ring-2 ring-blue-500 bg-blue-50"
                         : "hover:shadow-lg"
                     }`}
                     onClick={() => setSelectedInteriorColor(color.id)}
                   >
-                    <div className="mb-4">
+                    <div className="mb-4 overflow-hidden rounded">
                       <img
                         src={color.image}
                         alt={color.name}
-                        className="w-full h-20 object-cover rounded"
+                        className="w-full h-32 object-contain"
                       />
                     </div>
                     <p className="text-gray-800 text-center font-semibold">
@@ -764,6 +728,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select</option>
+                      <option value="10">10%</option>
                       <option value="20">20%</option>
                       <option value="30">30%</option>
                       <option value="40">40%</option>

@@ -79,7 +79,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     useState<string>("");
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
-  const [selectedBrand, setSelectedBrand] = useState<string>("JMEV");
+  const [selectedBrand] = useState<string>("JMEV");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -725,6 +725,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
                       <option value="">Select</option>
+                      <option value="10">10%</option>
                       <option value="20">20%</option>
                       <option value="30">30%</option>
                       <option value="40">40%</option>
