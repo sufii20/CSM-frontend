@@ -35,8 +35,8 @@ const TestDrive: React.FC = () => {
 
   const cars = [
     { id: "zeekr", name: "ZEEKR" },
+     { id: "raddara", name: "RADDARA" },
     { id: "forthing", name: "FORTHING" },
-    { id: "raddara", name: "RADDARA" },
     { id: "jmev", name: "JMEV" },
   ];
 
