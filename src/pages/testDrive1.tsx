@@ -65,7 +65,7 @@ interface OrderData {
     statusFilter: string;
     salesTaxRegistration: string;
     ntnNumber: string;
-    advancePayment: string; // Fixed: Added proper advance payment field
+    advancePayment: string;
     comments: string;
     termsAccepted: boolean;
   };
@@ -79,7 +79,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     useState<string>("");
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
-  const [selectedBrand, setSelectedBrand] = useState<string>("RIDDARA");
+  const [selectedBrand, setSelectedBrand] = useState<string>("JMEV");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -98,7 +98,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     statusFilter: "",
     salesTaxRegistration: "",
     ntnNumber: "",
-    advancePayment: "", // Fixed: Added proper advance payment field
+    advancePayment: "",
     comments: "",
     termsAccepted: false,
   });
@@ -109,7 +109,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: jmevCar1,
-      price: "7500000", // Remove commas for calculation
+      price: "7500000",
     },
     {
       id: "RD6-AWD-Pro",
@@ -137,7 +137,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const interiorColors = [
     { id: "black", name: "Black", image: jmevInteriorBlack },
     { id: "brown", name: "Brown", image: jmevInteriorBrown },
-    { id: "green", name: "Green", image: jmevInteriorBlack },
   ];
 
   const handleInputChange = (
@@ -271,42 +270,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             </div>
             <div className="ml-28 flex justify-center">
               <button
-                onClick={() => setSelectedBrand("ZEEKR")}
-                className={`px-8 py-3 text-sm font-semibold rounded-l-md ${
-                  selectedBrand === "ZEEKR"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                ZEEKR
-              </button>
-              <button
-                onClick={() => setSelectedBrand("RIDDARA")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "RIDDARA"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                RIDDARA
-              </button>
-              <button
-                onClick={() => setSelectedBrand("FORTHING")}
-                className={`px-8 py-3 text-sm font-semibold ${
-                  selectedBrand === "FORTHING"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
-              >
-                FORTHING
-              </button>
-              <button
-                onClick={() => setSelectedBrand("JMEV")}
-                className={`px-8 py-3 text-sm font-semibold rounded-r-md ${
-                  selectedBrand === "JMEV"
-                    ? "bg-black text-white"
-                    : "bg-gray-300 text-gray-700 hover:bg-gray-400"
-                }`}
+                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
               >
                 JMEV
               </button>
@@ -391,22 +355,22 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
                 INTERIOR COLOR <span className="text-red-500">*</span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
                 {interiorColors.map((color) => (
                   <div
                     key={color.id}
-                    className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
+                    className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
                       selectedInteriorColor === color.id
                         ? "ring-2 ring-blue-500 bg-blue-50"
                         : "hover:shadow-lg"
                     }`}
                     onClick={() => setSelectedInteriorColor(color.id)}
                   >
-                    <div className="mb-4">
+                    <div className="mb-4 overflow-hidden rounded">
                       <img
                         src={color.image}
                         alt={color.name}
-                        className="w-full h-20 object-cover rounded"
+                        className="w-full h-32 object-contain"
                       />
                     </div>
                     <p className="text-gray-800 text-center font-semibold">
@@ -748,7 +712,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     />
                   </div>
 
-                  {/* Advance Payment - Fixed */}
+                  {/* Advance Payment */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Advance Payment <span className="text-red-500">*</span>
@@ -848,7 +812,7 @@ const OrderReview: React.FC<{
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: jmevCar1,
-      price: "7500000", // Remove commas for calculation
+      price: "7500000",
     },
     {
       id: "RD6-AWD-Pro",
@@ -876,7 +840,6 @@ const OrderReview: React.FC<{
   const interiorColors = [
     { id: "black", name: "Black", image: jmevInteriorBlack },
     { id: "brown", name: "Brown", image: jmevInteriorBrown },
-    { id: "green", name: "Green", image: jmevInteriorBlack },
   ];
 
   const selectedCarDetails = cars.find(
@@ -896,7 +859,7 @@ const OrderReview: React.FC<{
 
   const advancePaymentPercentage = orderData.formData.advancePayment
     ? parseInt(orderData.formData.advancePayment)
-    : 20; // Default to 20%
+    : 20;
 
   const advancePayment = Math.floor(
     basePrice * (advancePaymentPercentage / 100)
