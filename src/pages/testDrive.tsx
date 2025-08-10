@@ -79,7 +79,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     useState<string>("");
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
-  const [selectedBrand, setSelectedBrand] = useState<string>("RIDDARA");
+  const [selectedBrand] = useState<string>("RIDDARA");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -903,23 +903,23 @@ const OrderReview: React.FC<{
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      410 km*
+                     632 Km*
                     </div>
                     <div className="text-gray-500">Driving Range</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">AS FAST AS</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      7.9 sec*
+                      4.5 sec*
                     </div>
-                    <div className="text-gray-500">0-100 km/hr</div>
+                    <div className="text-gray-500">To Reach 100</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      49.92 kWh*
+                      86.56 KWh*
                     </div>
-                    <div className="text-gray-500">Battery Capacity</div>
+                    <div className="text-gray-500">Capacity</div>
                   </div>
                 </div>
               </div>

@@ -905,23 +905,23 @@ const OrderReview: React.FC<{
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      410 km*
+                      1100 km*
                     </div>
                     <div className="text-gray-500">Driving Range</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">AS FAST AS</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      7.9 sec*
+                      10.9 Sec*
                     </div>
-                    <div className="text-gray-500">0-100 km/hr</div>
+                    <div className="text-gray-500">To Reach 100</div>
                   </div>
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
                     <div className="text-xl font-semibold text-gray-800">
-                      49.92 kWh*
+                     31.94 KWh*
                     </div>
-                    <div className="text-gray-500">Battery Capacity</div>
+                    <div className="text-gray-500"> Capacity</div>
                   </div>
                 </div>
               </div>
