@@ -368,11 +368,11 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     }`}
                     onClick={() => setSelectedInteriorColor(color.id)}
                   >
-                    <div className="mb-4">
+                    <div className="mb-4 overflow-hidden rounded">
                       <img
                         src={color.image}
                         alt={color.name}
-                        className="w-full h-20 object-cover rounded"
+                        className="w-full h-32 object-contain"
                       />
                     </div>
                     <p className="text-gray-800 text-center font-semibold">
