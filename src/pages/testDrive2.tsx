@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   X,
   MessageSquare,
@@ -67,7 +67,7 @@ interface OrderData {
     statusFilter: string;
     salesTaxRegistration: string;
     ntnNumber: string;
-    advancePayment: string; // Fixed: Added proper advance payment field
+    advancePayment: string;
     comments: string;
     termsAccepted: boolean;
   };
@@ -77,10 +77,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   onSubmit,
 }) => {
   const [selectedCar, setSelectedCar] = useState<string>("");
-  const [selectedExteriorColor, setSelectedExteriorColor] =
-    useState<string>("");
-  const [selectedInteriorColor, setSelectedInteriorColor] =
-    useState<string>("");
+  const [selectedExteriorColor, setSelectedExteriorColor] = useState<string>("");
+  const [selectedInteriorColor, setSelectedInteriorColor] = useState<string>("");
   const [selectedBrand] = useState<string>("RIDDARA");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -100,10 +98,37 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     statusFilter: "",
     salesTaxRegistration: "",
     ntnNumber: "",
-    advancePayment: "", // Fixed: Added proper advance payment field
+    advancePayment: "",
     comments: "",
     termsAccepted: false,
   });
+
+  // Color mapping based on your requirements
+  const colorMapping = {
+    'green': ['black'],
+    'blue': ['black'],
+    'white': ['brown'],
+    'grey': ['black', 'brown'],
+    'black': ['black', 'brown'],
+  };
+
+  // Reset interior color selection when exterior color changes
+  useEffect(() => {
+    if (selectedExteriorColor) {
+      const availableInteriorColors = colorMapping[selectedExteriorColor as keyof typeof colorMapping] || [];
+      
+      // If current interior color is not available for the new exterior color, reset it
+      if (!availableInteriorColors.includes(selectedInteriorColor)) {
+        setSelectedInteriorColor('');
+      }
+    }
+  }, [selectedExteriorColor, selectedInteriorColor]);
+
+  // Get available interior colors based on selected exterior color
+  const getAvailableInteriorColors = () => {
+    if (!selectedExteriorColor) return ['black', 'brown']; // All colors available if no exterior selected
+    return colorMapping[selectedExteriorColor as keyof typeof colorMapping] || ['black', 'brown'];
+  };
 
   const cars = [
     {
@@ -111,7 +136,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: forthingCar1,
-      price: "7500000", // Remove commas for calculation
+      price: "7500000",
     },
     {
       id: "RD6-AWD-Pro",
@@ -269,12 +294,10 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             <div className="ml-28 flex items-center justify-center mb-6">
               <h2 className="text-2xl font-bold text-gray-800">
                 CHOOSE YOUR CAR
-            </h2>
+              </h2>
             </div>
             <div className="ml-28 flex justify-center">
-              <button
-                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
-              >
+              <button className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default">
                 FORTHING
               </button>
             </div>
@@ -354,33 +377,57 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                 ))}
               </div>
 
+              {/* Color Restriction Info */}
+              {selectedExteriorColor && (
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <p className="text-sm text-blue-800">
+                    <strong>Available Interior Colors for {exteriorColors.find(c => c.id === selectedExteriorColor)?.name}:</strong>{" "}
+                    {getAvailableInteriorColors().map(color => 
+                      color.charAt(0).toUpperCase() + color.slice(1)
+                    ).join(', ')}
+                  </p>
+                </div>
+              )}
+
               {/* Interior Color */}
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
                 INTERIOR COLOR <span className="text-red-500">*</span>
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                {interiorColors.map((color) => (
-                  <div
-                    key={color.id}
-                    className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedInteriorColor === color.id
-                        ? "ring-2 ring-blue-500 bg-blue-50"
-                        : "hover:shadow-lg"
-                    }`}
-                    onClick={() => setSelectedInteriorColor(color.id)}
-                  >
-                    <div className="mb-4 overflow-hidden rounded">
-                      <img
-                        src={color.image}
-                        alt={color.name}
-                        className="w-full h-32 object-contain"
-                      />
+                {interiorColors.map((color) => {
+                  const isAvailable = getAvailableInteriorColors().includes(color.id);
+                  return (
+                    <div
+                      key={color.id}
+                      className={`bg-white p-6 rounded-lg shadow-md transition-all duration-300 ${
+                        !isAvailable 
+                          ? "opacity-50 cursor-not-allowed bg-gray-100" 
+                          : selectedInteriorColor === color.id
+                          ? "ring-2 ring-blue-500 bg-blue-50 cursor-pointer"
+                          : "hover:shadow-lg cursor-pointer"
+                      }`}
+                      onClick={() => isAvailable && setSelectedInteriorColor(color.id)}
+                    >
+                      <div className="mb-4 overflow-hidden rounded">
+                        <img
+                          src={color.image}
+                          alt={color.name}
+                          className="w-full h-32 object-contain"
+                        />
+                      </div>
+                      <p className={`text-center font-semibold ${
+                        !isAvailable ? "text-gray-400" : "text-gray-800"
+                      }`}>
+                        {color.name}
+                        {!isAvailable && (
+                          <span className="block text-xs text-gray-400 mt-1">
+                            Not available for selected exterior color
+                          </span>
+                        )}
+                      </p>
                     </div>
-                    <p className="text-gray-800 text-center font-semibold">
-                      {color.name}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -715,7 +762,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     />
                   </div>
 
-                  {/* Advance Payment - Fixed */}
+                  {/* Advance Payment */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Advance Payment <span className="text-red-500">*</span>
@@ -816,7 +863,7 @@ const OrderReview: React.FC<{
       name: "RD6 2WD Air",
       subtitle: "Body Type : Truck",
       image: forthingCar1,
-      price: "7500000", // Remove commas for calculation
+      price: "7500000",
     },
     {
       id: "RD6-AWD-Pro",
