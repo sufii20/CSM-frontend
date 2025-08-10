@@ -11,7 +11,6 @@ import ZeekrPage from "./pages/zeekr";
 import RiddaraPage from "./pages/riddara";
 import ForthingPage from "./pages/forthing";
 import JmevPage from "./pages/jmev";
-import Newsletter from "./pages/newsLetter";
 // import MainApp from './pages/testDrive'; // This should be your MainApp component that includes both EVTestDrive and OrderReview
 import AboutPage from "./pages/aboutUs";
 import News from "./pages/newsAndInsights";
