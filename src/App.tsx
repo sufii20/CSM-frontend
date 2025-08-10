@@ -1,7 +1,6 @@
 // App.tsx
 import { useState } from "react";
 import Navbar from "./pages/navBar";
-import Footer from "./pages/footer";
 import type { PageType } from "./pages/types"; 
 import ContactForm from "./pages/contactUs";
 
@@ -16,7 +15,6 @@ import AboutPage from "./pages/aboutUs";
 import News from "./pages/newsAndInsights";
 // import TestDrive from "./pages/test";
 import StoreLocation from "./pages/location";
-import JobForm from "./pages/career";
 
 function App() {
   // State to track current page - properly typed
@@ -56,7 +54,7 @@ function App() {
       case "home":
       case "homepage": 
       default:
-        return <JobForm />;
+        return <HomePage />;
     }
   };
 
