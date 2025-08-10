@@ -1,83 +1,80 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import career from "../assets/career.png";
 import careerBanner from "../assets/CarrerBanner.png";
 
 const CareerPage = () => {
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
-    fatherName: "",
-    phone: "",
-    city: "",
+    name: '',
+    fatherName: '',
+    phone: '',
+    city: ''
   });
 
   const bannerImage = careerBanner;
   const carImage = career;
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleFileUpload = (event:any) => {
+    const file = event.target.files[0];
     if (file) {
       setUploadedFile(file);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e:any) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const handleSubmit = () => {
-    console.log("Form Data:", formData);
-    console.log("Uploaded File:", uploadedFile);
-    alert("Form submitted successfully!");
+    console.log('Form Data:', formData);
+    console.log('Uploaded File:', uploadedFile);
+    alert('Form submitted successfully!');
   };
 
   return (
     <div className="font-sans text-gray-800">
       {/* Banner */}
       <div className="relative">
-        <img
-          src={bannerImage}
-          alt="Career Banner"
-          className="w-full h-[400px] object-cover"
-        />
+        <img src={bannerImage} alt="Career Banner" className="w-full h-[400px] object-cover" />
         <div className="absolute inset-0 flex items-end justify-start bg-black bg-opacity-30 p-6">
-          <h1 className="text-white text-lg md:text-xl font-semibold">
-            WE ARE HIRING
-          </h1>
+          <h1 className="text-white text-lg md:text-xl font-semibold">WE ARE HIRING</h1>
         </div>
       </div>
 
       {/* Job Section */}
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-9">
         <p className="text-sm mb-2">23-06-2025</p>
         <h2 className="text-2xl font-bold mb-6">Executive - Parts</h2>
 
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-0 items-start">
           {/* Job Image */}
           <div className="flex-1">
             <img
               src={carImage}
               alt="Hiring"
-              className="w-full object-cover border border-gray-200 h-full"
+              className="w-full object-cover border border-gray-200"
             />
           </div>
 
-          {/* Form */}
-          <div className="flex-1 bg-gray-120 border border-gray-200 max-w-md flex flex-col h-full">
-            <h3 className="font-bold text-lg mb-6 px-6 mt-6">
+          {/* Form - 3 inches shorter than image */}
+          <div
+            className="flex-1 bg-gray-200 border border-gray-100 max-w-md flex flex-col mt-16"
+            style={{ height: "calc(100% - 216px)" }} // 3 inches ≈ 216px
+          >
+            <h3 className="font-bold text-lg mb-7 px-6 mt-6">
               WE'D LOVE TO HEAR ABOUT YOU.
             </h3>
-            <div className="space-y-5 px-6 pb-6">
+            <div className="space-y-4 px-6 pb-6">
               <input
                 type="text"
                 name="name"
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full border border-gray-300 focus:outline-none py-2 px-3 bg-transparent"
+                className="w-full border-b border-gray-300 focus:outline-none py-2 bg-transparent"
               />
               <input
                 type="text"
@@ -85,7 +82,7 @@ const CareerPage = () => {
                 placeholder="Father Name"
                 value={formData.fatherName}
                 onChange={handleInputChange}
-                className="w-full border border-gray-300 focus:outline-none py-2 px-3 bg-transparent"
+                className="w-full border-b border-gray-300 focus:outline-none py-2 bg-transparent"
               />
               <input
                 type="tel"
@@ -93,7 +90,7 @@ const CareerPage = () => {
                 placeholder="Phone No."
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full border border-gray-300 focus:outline-none py-2 px-3 bg-transparent"
+                className="w-full border-b border-gray-300 focus:outline-none py-2 bg-transparent"
               />
               <input
                 type="text"
@@ -101,7 +98,7 @@ const CareerPage = () => {
                 placeholder="City"
                 value={formData.city}
                 onChange={handleInputChange}
-                className="w-full border border-gray-300 focus:outline-none py-2 px-3 bg-transparent"
+                className="w-full border-b border-gray-300 focus:outline-none py-2 bg-transparent"
               />
 
               {/* File Upload */}
@@ -114,7 +111,7 @@ const CareerPage = () => {
                 />
                 <div className="pointer-events-none">
                   {uploadedFile ? (
-                    <span className="text-green-600">✓ {uploadedFile.name}</span>
+                    <span className="text-green-600">✓ {uploadedFile}</span>
                   ) : (
                     <>📎 Click To Upload Document</>
                   )}
