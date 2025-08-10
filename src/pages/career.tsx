@@ -1,9 +1,11 @@
-import  { useState } from "react";
+import { useState } from "react";
 import career from "../assets/career.png";
 import careerBanner from "../assets/CarrerBanner.png";
+import SuccessPopup from "../pages/career3"; // Import the SuccessPopup component
 
 const CareerPage = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     fatherName: '',
@@ -31,11 +33,26 @@ const CareerPage = () => {
   const handleSubmit = () => {
     console.log('Form Data:', formData);
     console.log('Uploaded File:', uploadedFile);
-    alert('Form submitted successfully!');
+    setShowSuccessPopup(true);
+  };
+
+  const closeSuccessPopup = () => {
+    setShowSuccessPopup(false);
+    // Reset form after successful submission
+    setFormData({
+      name: '',
+      fatherName: '',
+      phone: '',
+      city: ''
+    });
+    setUploadedFile(null);
   };
 
   return (
     <div className="font-sans text-gray-800">
+      {/* Success Popup */}
+      {showSuccessPopup && <SuccessPopup onClose={closeSuccessPopup} />}
+
       {/* Banner */}
       <div className="relative">
         <img src={bannerImage} alt="Career Banner" className="w-full h-[400px] object-cover" />
@@ -111,7 +128,7 @@ const CareerPage = () => {
                 />
                 <div className="pointer-events-none">
                   {uploadedFile ? (
-                    <span className="text-green-600">✓ {uploadedFile}</span>
+                    <span className="text-green-600">✓ {uploadedFile.name}</span>
                   ) : (
                     <>📎 Click To Upload Document</>
                   )}
