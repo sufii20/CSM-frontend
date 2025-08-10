@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { ChevronLeft, Download, Upload } from "lucide-react";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 const BYDOrderReview: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -215,7 +215,7 @@ const BYDOrderReview: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

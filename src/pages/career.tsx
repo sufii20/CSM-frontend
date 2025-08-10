@@ -5,7 +5,7 @@ import career from "../assets/career.png";
 import careerBanner from "../assets/CarrerBanner.png";
 import SuccessPopup from "../pages/career3";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 
 const CombinedCareer = () => {
   const [showCareerPage, setShowCareerPage] = useState(false);
@@ -140,7 +140,7 @@ const CombinedCareer = () => {
                   <div className="pointer-events-none">
                     {uploadedFile ? (
                       <span className="text-green-600">
-                        ✓ {uploadedFile.name}
+                        ✓ {uploadedFile}
                       </span>
                     ) : (
                       <>📎 Click To Upload Document</>
@@ -162,7 +162,7 @@ const CombinedCareer = () => {
 
         <Newsletter />
         <div className="border-t border-gray-300" />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Navbar from "./pages/navBar";
 import type { PageType } from "./pages/types"; 
 import ContactForm from "./pages/contactUs";
-
+import Footer from "./pages/footer";
 // Import page components
 import HomePage from "./pages/homePage";
 import ZeekrPage from "./pages/zeekr";
@@ -45,7 +45,7 @@ function App() {
         return <JmevPage onBack={handleBackToHome} />;
       case "about":
         return <AboutPage />;
-      case "news":
+      case "news": 
         return <News />;
       case "contact":
         return <ContactForm />;
@@ -65,6 +65,7 @@ function App() {
       {/* <Newsletter />
       <div className="border-t border-gray-300" />
       <Footer /> */}
+            <Footer onPageChange={handlePageChange} />
     </div>
   );
 }

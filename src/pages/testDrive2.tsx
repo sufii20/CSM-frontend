@@ -26,7 +26,7 @@ import forthingExterior5 from "../assets/Forthing/exterior/carWhite.png";
 import forthingInteriorBlack from "../assets/Forthing/interior/forthing_int_black.png";
 import forthingInteriorBrown from "../assets/Forthing/interior/forthing-int.jpg";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
 
@@ -1312,7 +1312,7 @@ const MainApp: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

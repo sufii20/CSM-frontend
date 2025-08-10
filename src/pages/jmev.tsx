@@ -35,7 +35,7 @@ import JmevSpecs from "../assets/JMEV_page/JmevSpecs.png";
 import TestDrive from "../pages/test";
 import MainApp from "../pages/testDrive1"; // Import MainApp for test drive navigation
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 // Define interfaces for type safety
 interface CarVariant {
   image: string;
@@ -778,7 +778,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

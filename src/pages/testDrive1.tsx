@@ -24,7 +24,7 @@ import jmevExterior4 from "../assets/JMEV/exterior/white.png";
 import jmevInteriorBlack from "../assets/JMEV_page/interior/black.png";
 import jmevInteriorBrown from "../assets/JMEV_page/interior/brown.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
 
@@ -1260,7 +1260,7 @@ const MainApp: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

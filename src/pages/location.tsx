@@ -2,7 +2,7 @@ import React from "react";
 import { Phone, Mail } from "lucide-react";
 import map from "../assets/map.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 interface Store {
   name: string;
   address: string;
@@ -140,7 +140,7 @@ const StoreLocations: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

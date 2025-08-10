@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { X, MessageSquare, Phone, Hash } from "lucide-react";
 import testDrive from "../assets/testDrive.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 interface TopIconButtonProps {
   icon: React.ReactNode;
   onClick?: () => void;
@@ -369,7 +369,7 @@ const TestDrive: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

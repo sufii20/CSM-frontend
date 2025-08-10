@@ -19,7 +19,7 @@ import slide2 from "../assets/AboutUs/Values/valueB.png";
 import slide3 from "../assets/AboutUs/Values/valueC.png";
 import slide4 from "../assets/AboutUs/Values/valueD.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 
 // Reusable heading with lines
 const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
@@ -265,7 +265,7 @@ export const AboutUs: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

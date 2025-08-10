@@ -4,7 +4,7 @@ import news1 from "../assets/news1.png";
 import news2 from "../assets/news2.png";
 import news3 from "../assets/news3.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 interface ShowMoreTextProps {
   text: string;
   wordLimit?: number;
@@ -140,7 +140,7 @@ const NewsPage: React.FC = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

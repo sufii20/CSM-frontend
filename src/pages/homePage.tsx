@@ -36,7 +36,7 @@ import jmeVInterior from "../assets/interiorView/JMeVInterior.png";
 import zeekrX from "../assets/interiorView/ZeekeX.png";
 import zeekrInterior from "../assets/interiorView/ZeekrInterior.png";
 import Newsletter from "../pages/newsLetter";
-import Footer from "../pages/footer";
+// import Footer from "../pages/footer";
 
 const Homepage = () => {
   const [currentHeroBanner, setCurrentHeroBanner] = useState(0);
@@ -550,7 +550,7 @@ const Homepage = () => {
       <Newsletter />
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
