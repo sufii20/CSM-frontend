@@ -5,7 +5,7 @@ import Newsletter from "../pages/newsLetter";
 
 // Import images for different brands and variants
 // ZEEKR Images
-import zeekrVariant1 from "../assets/Forthing/exterior/carBlack.png"; 
+import zeekrVariant1 from "../assets/Forthing/exterior/carBlack.png";
 import zeekrVariant2 from "../assets/Forthing/exterior/carBlack.png";
 import zeekrVariant3 from "../assets/Forthing/exterior/carBlack.png";
 
@@ -175,7 +175,9 @@ const TestDrive: React.FC = () => {
   };
 
   const getCurrentVariants = () => {
-    return selectedBrand ? variants[selectedBrand as keyof typeof variants] || [] : [];
+    return selectedBrand
+      ? variants[selectedBrand as keyof typeof variants] || []
+      : [];
   };
 
   return (
@@ -271,9 +273,7 @@ const TestDrive: React.FC = () => {
                         {variant.subtitle}
                       </p>
                       {selectedVariant === variant.id && (
-                        <div className="mt-3 text-center">
-                
-                        </div>
+                        <div className="mt-3 text-center"></div>
                       )}
                     </div>
                   ))}
@@ -404,19 +404,27 @@ const TestDrive: React.FC = () => {
                   />
                 </div>
               </div>
-
               {/* State/Province */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  State/Province <span className="text-red-500">*</span>
+                  Province <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
+                <select
                   value={formData.state}
                   onChange={(e) => handleInputChange("state", e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select Province
+                  </option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Sindh">Sindh</option>
+                  <option value="Balochistan">Balochistan</option>
+                  <option value="KPK">KPK</option>
+                  <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                  <option value="Azad Kashmir">Azad Kashmir</option>
+                </select>
               </div>
 
               {/* City */}
@@ -432,7 +440,7 @@ const TestDrive: React.FC = () => {
                   required
                 />
               </div>
-              
+
               {/* Location */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">

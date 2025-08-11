@@ -533,17 +533,26 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* State/Province */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      State/Province <span className="text-red-500">*</span>
+                      Province <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
+                    <select
                       value={formData.state}
                       onChange={(e) =>
                         handleInputChange("state", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                       required
-                    />
+                    >
+                      <option value="" disabled>
+                        Select Province
+                      </option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Sindh">Sindh</option>
+                      <option value="Balochistan">Balochistan</option>
+                      <option value="KPK">KPK</option>
+                      <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                      <option value="Azad Kashmir">Azad Kashmir</option>
+                    </select>
                   </div>
 
                   {/* City */}
@@ -565,20 +574,18 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Address as per CNIC{" "}
-                      <span className="text-red-500">*</span>
+                     Address As Per CNIC <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      value={formData.addressCNIC}
+                    <input
+                      type="text"
+                      value={formData.cnic}
                       onChange={(e) =>
-                        handleInputChange("addressCNIC", e.target.value)
+                        handleInputChange("cnic", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
-                    >
-                      <option value="">Select Location</option>
-                      <option value="current">Current Address</option>
-                      <option value="permanent">Permanent Address</option>
-                    </select>
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      placeholder="Address as per CNIC"
+                      required
+                    />
                   </div>
 
                   {/* Individual/Corporate */}

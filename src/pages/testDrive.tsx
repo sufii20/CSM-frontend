@@ -1,9 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-  Upload,
-  ChevronLeft,
-  Download,
-} from "lucide-react";
+import { Upload, ChevronLeft, Download } from "lucide-react";
 
 // Mock image URLs - replace with your actual images
 import testDrive from "../assets/testDrive.png";
@@ -23,7 +19,6 @@ import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
-
 
 interface OrderData {
   selectedCar: string;
@@ -128,50 +123,62 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const modelRestrictions = {
     "RD6-2WD-Air": {
       exterior: ["white", "black", "grey", "blue", "green"],
-      interior: ["black", "brown", "green"]
+      interior: ["black", "brown", "green"],
     },
     "RD6-AWD-Pro": {
       exterior: ["white", "black", "grey", "blue", "green"],
-      interior: ["black", "brown", "green"]
+      interior: ["black", "brown", "green"],
     },
     "RD6-AWD-Ultra": {
       exterior: ["white", "black", "grey", "blue", "green"],
-      interior: ["brown", "green"]
-    }
+      interior: ["brown", "green"],
+    },
   };
 
   // Get filtered colors based on selected car
   const getAvailableExteriorColors = () => {
-    if (!selectedCar || !modelRestrictions[selectedCar as keyof typeof modelRestrictions]) {
+    if (
+      !selectedCar ||
+      !modelRestrictions[selectedCar as keyof typeof modelRestrictions]
+    ) {
       return allExteriorColors;
     }
-    const availableIds = modelRestrictions[selectedCar as keyof typeof modelRestrictions].exterior;
-    return allExteriorColors.filter(color => availableIds.includes(color.id));
+    const availableIds =
+      modelRestrictions[selectedCar as keyof typeof modelRestrictions].exterior;
+    return allExteriorColors.filter((color) => availableIds.includes(color.id));
   };
 
   const getAvailableInteriorColors = () => {
-    if (!selectedCar || !modelRestrictions[selectedCar as keyof typeof modelRestrictions]) {
+    if (
+      !selectedCar ||
+      !modelRestrictions[selectedCar as keyof typeof modelRestrictions]
+    ) {
       return allInteriorColors;
     }
-    const availableIds = modelRestrictions[selectedCar as keyof typeof modelRestrictions].interior;
-    return allInteriorColors.filter(color => availableIds.includes(color.id));
+    const availableIds =
+      modelRestrictions[selectedCar as keyof typeof modelRestrictions].interior;
+    return allInteriorColors.filter((color) => availableIds.includes(color.id));
   };
 
   const handleCarSelection = (carId: string) => {
     setSelectedCar(carId);
-    
+
     // Reset color selections when car changes
     const availableExteriorColors = getAvailableExteriorColors();
     const availableInteriorColors = getAvailableInteriorColors();
-    
+
     // Check if current exterior color is still available
-    const isExteriorColorAvailable = availableExteriorColors.some(color => color.id === selectedExteriorColor);
+    const isExteriorColorAvailable = availableExteriorColors.some(
+      (color) => color.id === selectedExteriorColor
+    );
     if (!isExteriorColorAvailable) {
       setSelectedExteriorColor("");
     }
-    
-    // Check if current interior color is still available  
-    const isInteriorColorAvailable = availableInteriorColors.some(color => color.id === selectedInteriorColor);
+
+    // Check if current interior color is still available
+    const isInteriorColorAvailable = availableInteriorColors.some(
+      (color) => color.id === selectedInteriorColor
+    );
     if (!isInteriorColorAvailable) {
       setSelectedInteriorColor("");
     }
@@ -228,7 +235,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     });
   };
 
- 
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -284,9 +290,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               </h2>
             </div>
             <div className="ml-28 flex justify-center">
-              <button
-                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
-              >
+              <button className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default">
                 RIDDARA
               </button>
             </div>
@@ -341,13 +345,15 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
                 EXTERIOR COLOR <span className="text-red-500">*</span>
               </h3>
-              
+
               {!selectedCar && (
                 <div className="text-center py-8">
-                  <p className="text-gray-500 text-lg">Please select a car variant first</p>
+                  <p className="text-gray-500 text-lg">
+                    Please select a car variant first
+                  </p>
                 </div>
               )}
-              
+
               {selectedCar && (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {getAvailableExteriorColors().map((color) => (
@@ -379,13 +385,15 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
                 INTERIOR COLOR <span className="text-red-500">*</span>
               </h3>
-              
+
               {!selectedCar && (
                 <div className="text-center py-8">
-                  <p className="text-gray-500 text-lg">Please select a car variant first</p>
+                  <p className="text-gray-500 text-lg">
+                    Please select a car variant first
+                  </p>
                 </div>
               )}
-              
+
               {selectedCar && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {getAvailableInteriorColors().map((color) => (
@@ -556,17 +564,26 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* State/Province */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      State/Province <span className="text-red-500">*</span>
+                      Province <span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
+                    <select
                       value={formData.state}
                       onChange={(e) =>
                         handleInputChange("state", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                       required
-                    />
+                    >
+                      <option value="" disabled>
+                        Select Province
+                      </option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Sindh">Sindh</option>
+                      <option value="Balochistan">Balochistan</option>
+                      <option value="KPK">KPK</option>
+                      <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                      <option value="Azad Kashmir">Azad Kashmir</option>
+                    </select>
                   </div>
 
                   {/* City */}
@@ -588,20 +605,18 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Address as per CNIC{" "}
-                      <span className="text-red-500">*</span>
+                     Address As Per CNIC <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      value={formData.addressCNIC}
+                    <input
+                      type="text"
+                      value={formData.cnic}
                       onChange={(e) =>
-                        handleInputChange("addressCNIC", e.target.value)
+                        handleInputChange("cnic", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
-                    >
-                      <option value="">Select Location</option>
-                      <option value="current">Current Address</option>
-                      <option value="permanent">Permanent Address</option>
-                    </select>
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      placeholder="Address as per CNIC"
+                      required
+                    />
                   </div>
 
                   {/* Individual/Corporate */}
@@ -617,7 +632,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
-                      <option value="">Select</option>
+                      <option value="" disabled>
+                        Select
+                      </option>
                       <option value="Individual">Individual</option>
                       <option value="Corporate">Corporate</option>
                     </select>
@@ -697,7 +714,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Status (filter non-filter) */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Status (filter non-filter)
+                      Status (filler non-filler)
                     </label>
                     <select
                       value={formData.statusFilter}
@@ -934,7 +951,7 @@ const OrderReview: React.FC<{
                   <div>
                     <div className="text-gray-500 mb-1">UP TO</div>
                     <div className="text-xl font-semibold text-gray-800">
-                     632 Km*
+                      632 Km*
                     </div>
                     <div className="text-gray-500">Driving Range</div>
                   </div>
