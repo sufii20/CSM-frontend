@@ -121,7 +121,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
         { id: "black", name: "Black", image: jmevInteriorBlack },
         { id: "Beige", name: "Beige", image: jmevInteriorBrown },
       ],
-      Purple: [
+      purple: [
         { id: "black", name: "Black", image: jmevInteriorBlack },
         { id: "Beige", name: "Beige", image: jmevInteriorBrown },
       ],
