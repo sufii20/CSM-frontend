@@ -3,8 +3,31 @@ import testDrive from "../assets/testDrive.png";
 import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
+// Import images for different brands and variants
+// ZEEKR Images
+import zeekrVariant1 from "../assets/Forthing/exterior/carBlack.png"; 
+import zeekrVariant2 from "../assets/Forthing/exterior/carBlack.png";
+import zeekrVariant3 from "../assets/Forthing/exterior/carBlack.png";
+
+// RADDARA Images
+import raddaraVariant1 from "../assets/SelectModel.png";
+import raddaraVariant2 from "../assets/SelectModel.png";
+import raddaraVariant3 from "../assets/SelectModel.png";
+
+//Exterior
+// FORTHING Images
+import forthingVariant1 from "../assets/Forthing/exterior/carBlack.png";
+import forthingVariant2 from "../assets/Forthing/exterior/carBlue.png";
+import forthingVariant3 from "../assets/Forthing/exterior/cargrey.png";
+
+// JMEV Images (from your existing code)
+import jmevVariant1 from "../assets/JMEV_page/ColorSelector/black.png";
+import jmevVariant2 from "../assets/JMEV_page/ColorSelector/blue.png";
+import jmevVariant3 from "../assets/JMEV_page/ColorSelector/green.png";
+
 const TestDrive: React.FC = () => {
-  const [selectedCar, setSelectedCar] = useState<string>("");
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [selectedVariant, setSelectedVariant] = useState<string>("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,25 +43,140 @@ const TestDrive: React.FC = () => {
     termsAccepted: false,
   });
 
-  const cars = [
+  const brands = [
     { id: "zeekr", name: "ZEEKR" },
     { id: "raddara", name: "RADDARA" },
     { id: "forthing", name: "FORTHING" },
     { id: "jmev", name: "JMEV" },
   ];
 
+  const variants = {
+    zeekr: [
+      {
+        id: "zeekr-001",
+        name: "ZEEKR 001",
+        subtitle: "Body Type: Sedan",
+        image: zeekrVariant1,
+      },
+      {
+        id: "zeekr-009",
+        name: "ZEEKR 009",
+        subtitle: "Body Type: MPV",
+        image: zeekrVariant2,
+      },
+      {
+        id: "zeekr-x",
+        name: "ZEEKR X",
+        subtitle: "Body Type: SUV",
+        image: zeekrVariant3,
+      },
+    ],
+    raddara: [
+      {
+        id: "raddara-luxury",
+        name: "RADDARA Luxury",
+        subtitle: "Body Type: Sedan",
+        image: raddaraVariant1,
+      },
+      {
+        id: "raddara-sport",
+        name: "RADDARA Sport",
+        subtitle: "Body Type: Coupe",
+        image: raddaraVariant2,
+      },
+      {
+        id: "raddara-suv",
+        name: "RADDARA SUV",
+        subtitle: "Body Type: SUV",
+        image: raddaraVariant3,
+      },
+    ],
+    forthing: [
+      {
+        id: "forthing-t5",
+        name: "FORTHING T5",
+        subtitle: "Body Type: SUV",
+        image: forthingVariant1,
+      },
+      {
+        id: "forthing-u7",
+        name: "FORTHING U7",
+        subtitle: "Body Type: Compact SUV",
+        image: forthingVariant2,
+      },
+      {
+        id: "forthing-s7",
+        name: "FORTHING S7",
+        subtitle: "Body Type: Sedan",
+        image: forthingVariant3,
+      },
+    ],
+    jmev: [
+      {
+        id: "RD6-2WD-Air",
+        name: "RD6 2WD Air",
+        subtitle: "Body Type: Truck",
+        image: jmevVariant1,
+      },
+      {
+        id: "RD6-AWD-Pro",
+        name: "RD6 AWD Pro",
+        subtitle: "Body Type: Truck",
+        image: jmevVariant2,
+      },
+      {
+        id: "RD6-AWD-Ultra",
+        name: "RD6 AWD Ultra",
+        subtitle: "Body Type: Truck",
+        image: jmevVariant3,
+      },
+    ],
+  };
+
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted", {
-      selectedCar,
-      formData,
-    });
+  const handleBrandChange = (brandId: string) => {
+    setSelectedBrand(brandId);
+    setSelectedVariant(""); // Reset variant when brand changes
   };
 
+  const handleSubmit = () => {
+    // Basic validation
+    if (!selectedBrand) {
+      alert("Please select a car brand.");
+      return;
+    }
 
+    if (!selectedVariant) {
+      alert("Please select a car variant.");
+      return;
+    }
+
+    if (!formData.firstName || !formData.lastName || !formData.primaryPhone) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    if (!formData.termsAccepted) {
+      alert("Please accept the terms and conditions.");
+      return;
+    }
+
+    console.log("Form submitted", {
+      selectedBrand,
+      selectedVariant,
+      formData,
+    });
+
+    // Here you can add your form submission logic
+    alert("Test drive request submitted successfully!");
+  };
+
+  const getCurrentVariants = () => {
+    return selectedBrand ? variants[selectedBrand as keyof typeof variants] || [] : [];
+  };
 
   return (
     <div className="w-full">
@@ -71,35 +209,82 @@ const TestDrive: React.FC = () => {
       {/* Form Section */}
       <div className="bg-gray-100 min-h-screen py-16">
         <div className="max-w-4xl mx-auto px-6">
-          {/* Choose Your Car */}
+          {/* Choose Your Car Brand */}
           <div className="bg-white p-8 rounded-lg shadow-md mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-              CHOOSE YOUR CAR
+              CHOOSE YOUR CAR BRAND
             </h2>
             <div className="flex justify-center gap-0 mb-8">
-              {cars.map((car, index) => (
+              {brands.map((brand, index) => (
                 <button
-                  key={car.id}
-                  onClick={() => setSelectedCar(car.id)}
+                  key={brand.id}
+                  onClick={() => handleBrandChange(brand.id)}
                   className={`px-6 py-3 font-semibold transition-colors duration-200 ${
-                    selectedCar === car.id
+                    selectedBrand === brand.id
                       ? "bg-black text-white"
                       : "bg-gray-200 text-gray-800 hover:bg-gray-300"
                   } ${
                     index === 0
                       ? "rounded-l-md"
-                      : index === cars.length - 1
+                      : index === brands.length - 1
                       ? "rounded-r-md"
                       : ""
                   }`}
                 >
-                  {car.name}
+                  {brand.name}
                 </button>
               ))}
             </div>
 
+            {/* Select Variant - Only show if brand is selected */}
+            {selectedBrand && (
+              <div className="mt-8">
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                  SELECT VARIANT <span className="text-red-500">*</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {getCurrentVariants().map((variant) => (
+                    <div
+                      key={variant.id}
+                      className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 border-2 ${
+                        selectedVariant === variant.id
+                          ? "ring-2 ring-blue-500 bg-blue-50 border-blue-200"
+                          : "hover:shadow-lg border-gray-200 hover:border-gray-300"
+                      }`}
+                      onClick={() => setSelectedVariant(variant.id)}
+                    >
+                      <div className="mb-4">
+                        <img
+                          src={variant.image}
+                          alt={variant.name}
+                          className="w-full h-24 object-contain"
+                          onError={(e) => {
+                            // Fallback to a default image if the specific variant image fails to load
+                            e.currentTarget.src = testDrive;
+                          }}
+                        />
+                      </div>
+                      <h4 className="font-bold text-gray-800 text-center text-lg mb-2">
+                        {variant.name}
+                      </h4>
+                      <p className="text-gray-600 text-sm text-center">
+                        {variant.subtitle}
+                      </p>
+                      {selectedVariant === variant.id && (
+                        <div className="mt-3 text-center">
+                          <span className="inline-block bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                            Selected
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Form Fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {/* First Name */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -249,7 +434,8 @@ const TestDrive: React.FC = () => {
                   required
                 />
               </div>
-              {/* location */}
+              
+              {/* Location */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Location <span className="text-red-500">*</span>
