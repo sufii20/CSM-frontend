@@ -6,13 +6,13 @@ import testDrive from "../assets/testDrive.png";
 import car1 from "../assets/SelectModel.png";
 import car2 from "../assets/SelectModel.png";
 import car3 from "../assets/SelectModel.png";
-import img1 from "../assets/Exterior/img1.png";
-import img2 from "../assets/Exterior/img2.png";
-import img3 from "../assets/Exterior/img3.png";
-import img4 from "../assets/Exterior/img4.png";
-import img5 from "../assets/Exterior/img5.png";
+import img1 from "../assets/Exterior/img4.png";
+import img2 from "../assets/Exterior/img1.png";
+import img3 from "../assets/Exterior/img2.png";
+import img4 from "../assets/Exterior/img3.png";
+import img5 from "../assets/Exterior/img7.png";
 import img6 from "../assets/Exterior/img6.png";
-import img7 from "../assets/Exterior/img7.png";
+import img7 from "../assets/Exterior/img5.png";
 import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
@@ -21,7 +21,7 @@ import Newsletter from "../pages/newsLetter";
 const bannerImage = testDrive;
 
 // Type definitions
-type ExteriorColor = 'green' | 'blue' | 'grey' | 'white' | 'red' | 'black' | 'silver';
+type ExteriorColor = 'greenB' |'whiteB' | 'blue' | 'grey'  | 'green' | 'black' | 'white';
 type InteriorColor = 'black' | 'brown' | 'green';
 
 type ExteriorRestrictions = {
@@ -122,13 +122,13 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   ];
 
   const allExteriorColors = [
-    { id: "green", name: "Green", image: img1 },
+    { id: "greenB", name: "Green & Black Roof", image: img1 },
     { id: "blue", name: "Blue", image: img2 },
     { id: "grey", name: "Grey", image: img3 },
-    { id: "white", name: "White", image: img4 },
-    { id: "red", name: "Red", image: img5 },
+    { id: "whiteb", name: "White & Black", image: img4 },
+    { id: "green", name: "Green", image: img5 },
     { id: "black", name: "Black", image: img6 },
-    { id: "silver", name: "Silver", image: img7 },
+    { id: "white", name: "White", image: img7 },
   ];
 
   const allInteriorColors = [
@@ -140,35 +140,35 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const modelRestrictions: ModelRestrictions = {
     "RD6-2WD-Air": {
       exterior: {
-        green: ["black", "brown"],
+        greenB: [],
+        whiteB: [],
         blue: ["black", "brown"],
-        grey: ["black", "green"],
-        white: ["black", "brown", "green"],
-        red: ["black", "brown"],
+        grey: ["black", "brown"],
+        green: ["green"],
         black: ["black", "brown"],
-        silver: ["black", "brown", "green"]
+        white: ["black", "brown"]
       }
     },
     "RD6-AWD-Pro": {
       exterior: {
-        green: ["black", "green"],
-        blue: ["black", "brown", "green"],
-        grey: ["black", "brown"],
-        white: ["black", "brown", "green"],
-        red: ["black", "brown"],
-        black: ["black", "green"],
-        silver: ["black", "brown", "green"]
+        greenB: [ "green"],
+        blue: [ "brown"],
+        grey: [ "brown"],
+        whiteB: [ "brown"],
+        green: ["green"],
+        black: ["brown"],
+        white: [ "brown"]
       }
     },
     "RD6-AWD-Ultra": {
       exterior: {
+        greenB: [ "green"],
+        blue: [ "brown"],
+        grey: [ "brown"],
+        whiteB: [ "brown"],
         green: ["green"],
-        blue: ["brown", "green"],
-        grey: ["brown"],
-        white: ["brown", "green"],
-        red: ["brown"],
-        black: ["green"],
-        silver: ["brown", "green"]
+        black: ["brown"],
+        white: [ "brown"]
       }
     }
   };
