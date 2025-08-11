@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowLeft,MessageCircle  } from "lucide-react";
 
 import JMEVBanner from "../assets/HeroBanner/JMEVBanner.png";
 // Car color variants
@@ -93,6 +93,14 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
   // Function to go back from test drive page to JMEV page
   const handleBackFromTestDrivePage = (): void => {
     setShowTestDrivePage(false);
+  };
+
+    // WhatsApp function
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+923001234567"; // Replace with your actual WhatsApp number
+    const message = "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // If showing test drive component, render it with transparent back button overlay
@@ -382,6 +390,14 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
           alt="JMEV Hero Banner"
           className="w-full h-auto object-cover"
         />
+        {/* WhatsApp Button - Top Right */}
+        <button
+          onClick={handleWhatsAppClick}
+          className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
+          title="Chat on WhatsApp"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
 
         {/* Test Drive Button positioned at bottom left */}
         <div className="absolute bottom-8 left-8">
