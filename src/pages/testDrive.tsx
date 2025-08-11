@@ -1,26 +1,40 @@
 import React, { useState, useRef } from "react";
 import { Upload, ChevronLeft, Download, ChevronRight } from "lucide-react";
 
-// Mock image URLs - replace with your actual images
+// Mock image URLs
 import testDrive from "../assets/testDrive.png";
 import car1 from "../assets/SelectModel.png";
 import car2 from "../assets/SelectModel.png";
 import car3 from "../assets/SelectModel.png";
-//Exterior - Updated to 7 colors
 import img1 from "../assets/Exterior/img1.png";
 import img2 from "../assets/Exterior/img2.png";
 import img3 from "../assets/Exterior/img3.png";
 import img4 from "../assets/Exterior/img4.png";
-import img5 from "../assets/Exterior/img5.png"; // New color
-import img6 from "../assets/Exterior/img6.png"; // New color
-import img7 from "../assets/Exterior/img7.png"; // New color
-//Interior
+import img5 from "../assets/Exterior/img5.png";
+import img6 from "../assets/Exterior/img6.png";
+import img7 from "../assets/Exterior/img7.png";
 import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
 import Newsletter from "../pages/newsLetter";
 
 const bannerImage = testDrive;
+
+// Type definitions
+type ExteriorColor = 'green' | 'blue' | 'grey' | 'white' | 'red' | 'black' | 'silver';
+type InteriorColor = 'black' | 'brown' | 'green';
+
+type ExteriorRestrictions = {
+  [key in ExteriorColor]: InteriorColor[];
+};
+
+type ModelRestriction = {
+  exterior: ExteriorRestrictions;
+};
+
+type ModelRestrictions = {
+  [model: string]: ModelRestriction;
+};
 
 interface OrderData {
   selectedCar: string;
@@ -55,32 +69,29 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   onSubmit,
 }) => {
   const [selectedCar, setSelectedCar] = useState<string>("");
-  const [selectedExteriorColor, setSelectedExteriorColor] =
-    useState<string>("");
-  const [selectedInteriorColor, setSelectedInteriorColor] =
-    useState<string>("");
+  const [selectedExteriorColor, setSelectedExteriorColor] = useState<string>("");
+  const [selectedInteriorColor, setSelectedInteriorColor] = useState<string>("");
   const [selectedBrand] = useState<string>("RIDDARA");
   const [colorSliderIndex, setColorSliderIndex] = useState<number>(0);
 
-  // Helper function to get visible items count based on screen size
   const getVisibleItemsCount = () => {
     if (typeof window !== 'undefined') {
-      if (window.innerWidth < 640) return 2; // Mobile: show 2 items
-      if (window.innerWidth < 768) return 3; // Tablet: show 3 items  
-      return 4; // Desktop: show 4 items
+      if (window.innerWidth < 640) return 2;
+      if (window.innerWidth < 768) return 3;  
+      return 4;
     }
-    return 4; // Default
+    return 4;
   };
 
-  // Helper function to get item width based on screen size
   const getItemWidth = () => {
     if (typeof window !== 'undefined') {
-      if (window.innerWidth < 640) return 140; // Mobile
-      if (window.innerWidth < 768) return 160; // Tablet
-      return 180; // Desktop
+      if (window.innerWidth < 640) return 140;
+      if (window.innerWidth < 768) return 160;
+      return 180;
     }
-    return 180; // Default
+    return 180;
   };
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -105,30 +116,11 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   });
 
   const cars = [
-    {
-      id: "RD6-2WD-Air",
-      name: "RD6 2WD Air",
-      subtitle: "Body Type : Truck",
-      image: car1,
-      price: "7500000",
-    },
-    {
-      id: "RD6-AWD-Pro",
-      name: "RD6 AWD Pro",
-      subtitle: "Body Type : Truck",
-      image: car2,
-      price: "8250000",
-    },
-    {
-      id: "RD6-AWD-Ultra",
-      name: "RD6 AWD Ultra",
-      subtitle: "Body Type : Truck",
-      image: car3,
-      price: "8990000",
-    },
+    { id: "RD6-2WD-Air", name: "RD6 2WD Air", subtitle: "Body Type : Truck", image: car1, price: "7500000" },
+    { id: "RD6-AWD-Pro", name: "RD6 AWD Pro", subtitle: "Body Type : Truck", image: car2, price: "8250000" },
+    { id: "RD6-AWD-Ultra", name: "RD6 AWD Ultra", subtitle: "Body Type : Truck", image: car3, price: "8990000" },
   ];
 
-  // Updated to 7 exterior colors
   const allExteriorColors = [
     { id: "green", name: "Green", image: img1 },
     { id: "blue", name: "Blue", image: img2 },
@@ -145,75 +137,77 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     { id: "green", name: "Green", image: interiorgreen },
   ];
 
-  // Model-specific color restrictions - updated to include all 7 colors
-  const modelRestrictions = {
+  const modelRestrictions: ModelRestrictions = {
     "RD6-2WD-Air": {
-      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
-      interior: ["black", "brown", "green"],
+      exterior: {
+        green: ["black", "brown"],
+        blue: ["black", "brown"],
+        grey: ["black", "green"],
+        white: ["black", "brown", "green"],
+        red: ["black", "brown"],
+        black: ["black", "brown"],
+        silver: ["black", "brown", "green"]
+      }
     },
     "RD6-AWD-Pro": {
-      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
-      interior: ["black", "brown", "green"],
+      exterior: {
+        green: ["black", "green"],
+        blue: ["black", "brown", "green"],
+        grey: ["black", "brown"],
+        white: ["black", "brown", "green"],
+        red: ["black", "brown"],
+        black: ["black", "green"],
+        silver: ["black", "brown", "green"]
+      }
     },
     "RD6-AWD-Ultra": {
-      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
-      interior: ["brown", "green"],
-    },
+      exterior: {
+        green: ["green"],
+        blue: ["brown", "green"],
+        grey: ["brown"],
+        white: ["brown", "green"],
+        red: ["brown"],
+        black: ["green"],
+        silver: ["brown", "green"]
+      }
+    }
   };
 
-  // Get filtered colors based on selected car
   const getAvailableExteriorColors = () => {
-    if (
-      !selectedCar ||
-      !modelRestrictions[selectedCar as keyof typeof modelRestrictions]
-    ) {
-      return allExteriorColors;
-    }
-    const availableIds =
-      modelRestrictions[selectedCar as keyof typeof modelRestrictions].exterior;
-    return allExteriorColors.filter((color) => availableIds.includes(color.id));
+    if (!selectedCar) return allExteriorColors;
+    return allExteriorColors.filter(color => 
+      color.id in modelRestrictions[selectedCar].exterior
+    );
   };
 
   const getAvailableInteriorColors = () => {
-    if (
-      !selectedCar ||
-      !modelRestrictions[selectedCar as keyof typeof modelRestrictions]
-    ) {
-      return allInteriorColors;
-    }
-    const availableIds =
-      modelRestrictions[selectedCar as keyof typeof modelRestrictions].interior;
-    return allInteriorColors.filter((color) => availableIds.includes(color.id));
+    if (!selectedCar || !selectedExteriorColor) return [];
+    
+    const carRestrictions = modelRestrictions[selectedCar];
+    if (!carRestrictions) return [];
+    
+    const exteriorRestrictions = carRestrictions.exterior;
+    const allowedInteriorIds = exteriorRestrictions[selectedExteriorColor as ExteriorColor];
+    
+    if (!allowedInteriorIds) return [];
+    
+    return allInteriorColors.filter(interior => 
+      allowedInteriorIds.includes(interior.id as InteriorColor)
+    );
   };
 
   const handleCarSelection = (carId: string) => {
     setSelectedCar(carId);
-
-    // Reset color selections when car changes
-    const availableExteriorColors = getAvailableExteriorColors();
-    const availableInteriorColors = getAvailableInteriorColors();
-
-    // Check if current exterior color is still available
-    const isExteriorColorAvailable = availableExteriorColors.some(
-      (color) => color.id === selectedExteriorColor
-    );
-    if (!isExteriorColorAvailable) {
-      setSelectedExteriorColor("");
-    }
-
-    // Check if current interior color is still available
-    const isInteriorColorAvailable = availableInteriorColors.some(
-      (color) => color.id === selectedInteriorColor
-    );
-    if (!isInteriorColorAvailable) {
-      setSelectedInteriorColor("");
-    }
-
-    // Reset slider index
+    setSelectedExteriorColor("");
+    setSelectedInteriorColor("");
     setColorSliderIndex(0);
   };
 
-  // Slider navigation functions
+  const handleExteriorColorSelection = (colorId: string) => {
+    setSelectedExteriorColor(colorId);
+    setSelectedInteriorColor("");
+  };
+
   const nextColor = () => {
     const availableColors = getAvailableExteriorColors();
     const visibleItems = getVisibleItemsCount();
@@ -225,25 +219,16 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     setColorSliderIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleInputChange = (
-    field: string,
-    value: string | boolean | File | null
-  ) => {
+  const handleInputChange = (field: string, value: string | boolean | File | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleFileUpload = (
-    field: string,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileUpload = (field: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     handleInputChange(field, file);
   };
 
   const handleSubmit = () => {
-    console.log("Submit button clicked");
-
-    // Basic validation
     if (!selectedCar || !selectedExteriorColor || !selectedInteriorColor) {
       alert("Please select a car, exterior color, and interior color.");
       return;
@@ -264,9 +249,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
       return;
     }
 
-    console.log("Validation passed, calling onSubmit");
-
-    // Navigate to review page with all selected data
     onSubmit({
       selectedCar,
       selectedExteriorColor,
@@ -280,33 +262,16 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     <div className="w-full">
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${bannerImage})` }}
-        />
-
-        {/* Background overlay */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${bannerImage})` }} />
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-
-        {/* Main content */}
         <div className="relative z-20 flex items-center justify-center h-full">
           <div className="text-center text-white max-w-2xl px-6">
             <h1 className="text-4xl md:text-5xl font-bold tracking-wider mb-8 drop-shadow-lg">
               BOOK YOUR DREAM CAR
             </h1>
-
             <p className="text-lg md:text-xl leading-relaxed mb-12 opacity-90 drop-shadow-md max-w-lg mx-auto">
-              Pick your favorite EV and make it yours with proper convenience
-              and ease.
+              Pick your favorite EV and make it yours with proper convenience and ease.
             </p>
-          </div>
-        </div>
-
-        {/* Model badge */}
-        <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="bg-white/10 border border-white/20 rounded-full px-6 py-2 backdrop-blur-sm">
-            {/* <span className="text-white font-semibold text-lg tracking-widest">TX</span> */}
           </div>
         </div>
       </div>
@@ -316,27 +281,14 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
         <div className="max-w-6xl mx-auto px-6">
           {/* Step 1: Choose Your Car */}
           <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
-            {/* Step 1 watermark */}
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
-              <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
-                  STEP
-                </span>
-                <span className="text-gray-500/40 text-5xl font-bold">1</span>
-              </div>
-            </div>
             <div className="ml-28 flex items-center justify-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-800">
-                CHOOSE YOUR CAR
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800">CHOOSE YOUR CAR</h2>
             </div>
             <div className="ml-28 flex justify-center">
               <button className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default">
                 RIDDARA
               </button>
             </div>
-
-            {/* Select Variant */}
             <div className="ml-28 mt-12">
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
                 SELECT VARIANT <span className="text-red-500">*</span>
@@ -346,52 +298,30 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   <div
                     key={car.id}
                     className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedCar === car.id
-                        ? "ring-2 ring-blue-500 bg-blue-50"
-                        : "hover:shadow-lg"
+                      selectedCar === car.id ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-lg"
                     }`}
                     onClick={() => handleCarSelection(car.id)}
                   >
                     <div className="mb-4">
-                      <img
-                        src={car.image}
-                        alt={car.name}
-                        className="w-full h-24 object-contain"
-                      />
+                      <img src={car.image} alt={car.name} className="w-full h-24 object-contain" />
                     </div>
-                    <h4 className="font-bold text-gray-800 text-center text-lg mb-2">
-                      {car.name}
-                    </h4>
-                    <p className="text-gray-600 text-sm text-center">
-                      {car.subtitle}
-                    </p>
+                    <h4 className="font-bold text-gray-800 text-center text-lg mb-2">{car.name}</h4>
+                    <p className="text-gray-600 text-sm text-center">{car.subtitle}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Step 2: Exterior Color - Only show if car is selected */}
+          {/* Step 2: Exterior Color */}
           {selectedCar && (
             <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
-              {/* Step 2 watermark */}
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
-                <div className="flex items-center">
-                  <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
-                    STEP
-                  </span>
-                  <span className="text-gray-500/40 text-5xl font-bold">2</span>
-                </div>
-              </div>
               <div className="ml-28">
                 <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
                   EXTERIOR COLOR <span className="text-red-500">*</span>
                 </h3>
-
-                {/* Mobile-responsive slider with arrows */}
                 <div className="relative w-full">
                   <div className="flex items-center">
-                    {/* Left Arrow */}
                     <button
                       onClick={prevColor}
                       className={`p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex-shrink-0 z-10 ${
@@ -401,41 +331,27 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
-                    
-                    {/* Slider Container */}
                     <div className="flex-1 mx-4 overflow-hidden">
                       <div 
                         className="flex gap-4 transition-transform duration-300 ease-in-out"
-                        style={{
-                          transform: `translateX(-${colorSliderIndex * getItemWidth()}px)`
-                        }}
+                        style={{ transform: `translateX(-${colorSliderIndex * getItemWidth()}px)` }}
                       >
                         {getAvailableExteriorColors().map((color) => (
                           <div
                             key={color.id}
                             className={`bg-white p-3 sm:p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 flex-shrink-0 w-32 sm:w-36 md:w-40 ${
-                              selectedExteriorColor === color.id
-                                ? "ring-2 ring-blue-500 bg-blue-50"
-                                : "hover:shadow-lg"
+                              selectedExteriorColor === color.id ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-lg"
                             }`}
-                            onClick={() => setSelectedExteriorColor(color.id)}
+                            onClick={() => handleExteriorColorSelection(color.id)}
                           >
                             <div className="mb-3 h-20 sm:h-24 flex items-center justify-center overflow-hidden rounded">
-                              <img
-                                src={color.image}
-                                alt={color.name}
-                                className="w-full h-full object-contain"
-                              />
+                              <img src={color.image} alt={color.name} className="w-full h-full object-contain" />
                             </div>
-                            <p className="text-gray-800 text-center font-semibold text-xs sm:text-sm">
-                              {color.name}
-                            </p>
+                            <p className="text-gray-800 text-center font-semibold text-xs sm:text-sm">{color.name}</p>
                           </div>
                         ))}
                       </div>
                     </div>
-                    
-                    {/* Right Arrow */}
                     <button
                       onClick={nextColor}
                       className={`p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex-shrink-0 z-10 ${
@@ -447,67 +363,31 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
-                  
-                  {/* Dot indicators */}
-                  {getAvailableExteriorColors().length > getVisibleItemsCount() && (
-                    <div className="flex justify-center mt-4 gap-2">
-                      {Array.from({ 
-                        length: Math.max(1, getAvailableExteriorColors().length - getVisibleItemsCount() + 1)
-                      }).map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setColorSliderIndex(index)}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                            colorSliderIndex === index ? 'bg-blue-500' : 'bg-gray-300'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
           )}
 
-          {/* Step 3: Interior Color - Only show if exterior color is selected */}
+          {/* Step 3: Interior Color */}
           {selectedCar && selectedExteriorColor && (
             <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
-              {/* Step 3 watermark */}
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
-                <div className="flex items-center">
-                  <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
-                    STEP
-                  </span>
-                  <span className="text-gray-500/40 text-5xl font-bold">3</span>
-                </div>
-              </div>
               <div className="ml-28">
-                {/* Interior Color */}
                 <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
                   INTERIOR COLOR <span className="text-red-500">*</span>
                 </h3>
-
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {getAvailableInteriorColors().map((color) => (
                     <div
                       key={color.id}
                       className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                        selectedInteriorColor === color.id
-                          ? "ring-2 ring-blue-500 bg-blue-50"
-                          : "hover:shadow-lg"
+                        selectedInteriorColor === color.id ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-lg"
                       }`}
                       onClick={() => setSelectedInteriorColor(color.id)}
                     >
                       <div className="mb-4 overflow-hidden rounded">
-                        <img
-                          src={color.image}
-                          alt={color.name}
-                          className="w-full h-32 object-contain"
-                        />
+                        <img src={color.image} alt={color.name} className="w-full h-32 object-contain" />
                       </div>
-                      <p className="text-gray-800 text-center font-semibold">
-                        {color.name}
-                      </p>
+                      <p className="text-gray-800 text-center font-semibold">{color.name}</p>
                     </div>
                   ))}
                 </div>
