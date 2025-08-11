@@ -1,6 +1,6 @@
 import React from 'react';
 import logoMain from '../assets/logo-main.svg';
-import type { PageType } from './types'; // Adjust this path based on where your types file is
+import type { PageType } from './types'; 
 
 // Types
 interface FooterLink {
@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
         { label: 'Contact Us', href: '#', page: 'contact' },
         { label: 'Customer Feedback', href: '#', page: 'contact' },
         { label: 'Careers', href: '#', page: 'career' }, // Now links to careers page
-        { label: 'FAQs', href: '#' }, // No page mapping for now
+        { label: 'FAQs', href: '#' , page : 'faqs' }, // Now links to FAQs page
       ],
     },
     {

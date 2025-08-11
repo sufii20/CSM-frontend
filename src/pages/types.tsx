@@ -34,5 +34,7 @@ export type PageType =
   | "about"
   | "career"
   | "news"
+  | "faqs"
+  | "termsAndConditions"
   | "contact"
   | "locations";

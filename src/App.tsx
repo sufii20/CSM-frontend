@@ -17,7 +17,7 @@ import News from "./pages/newsAndInsights";
 import StoreLocation from "./pages/location";
 import CombinedCareer from "./pages/career";
 import TermsAndConditions from "./pages/termsAndConditions";
-
+import FAQPage from "./pages/faqs";
 function App() {
   // State to track current page - properly typed
   const [currentPage, setCurrentPage] = useState<PageType>("home");
@@ -55,6 +55,8 @@ function App() {
         return <StoreLocation />;
       case "career":
         return <CombinedCareer />;
+      case "faqs":
+        return <FAQPage />;
       case "home":
       case "homepage":
       default:
