@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft,
+  MessageCircle,
+} from "lucide-react";
 import whiteCar from "../assets/car_white.webp";
 import blueCar from "../assets/car_blue.webp";
 import greyCar from "../assets/car_gray.webp";
@@ -98,6 +103,17 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
       </div>
     );
   }
+
+  // WhatsApp function
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+923001234567"; // Replace with your actual WhatsApp number
+    const message =
+      "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   // If showing test drive page, render it with transparent back button overlay
   if (showTestDrivePage) {
@@ -308,6 +324,14 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
           <div className="flex-1 flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-24">
             <div className="text-white max-w-lg"></div>
           </div>
+          {/* WhatsApp Button - Top Right */}
+          <button
+            onClick={handleWhatsAppClick}
+            className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
+            title="Chat on WhatsApp"
+          >
+            <MessageCircle className="w-6 h-6" />
+          </button>
 
           {/* Buttons positioned at bottom corners */}
           <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 flex justify-between">
