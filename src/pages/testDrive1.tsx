@@ -121,6 +121,10 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
         { id: "black", name: "Black", image: jmevInteriorBlack },
         { id: "Beige", name: "Beige", image: jmevInteriorBrown },
       ],
+      Purple: [
+        { id: "black", name: "Black", image: jmevInteriorBlack },
+        { id: "Beige", name: "Beige", image: jmevInteriorBrown },
+      ],
     };
 
     return interiorColorMap[exteriorColorId] || [];
@@ -662,7 +666,10 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
-                      <option value="" disabled> Yes or No</option>
+                      <option value="" disabled>
+                        {" "}
+                        Yes or No
+                      </option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>

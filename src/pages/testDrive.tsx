@@ -1,16 +1,19 @@
 import React, { useState, useRef } from "react";
-import { Upload, ChevronLeft, Download } from "lucide-react";
+import { Upload, ChevronLeft, Download, ChevronRight } from "lucide-react";
 
 // Mock image URLs - replace with your actual images
 import testDrive from "../assets/testDrive.png";
 import car1 from "../assets/SelectModel.png";
 import car2 from "../assets/SelectModel.png";
 import car3 from "../assets/SelectModel.png";
-//Exterior
+//Exterior - Updated to 7 colors
 import img1 from "../assets/Exterior/img1.png";
 import img2 from "../assets/Exterior/img2.png";
 import img3 from "../assets/Exterior/img3.png";
 import img4 from "../assets/Exterior/img4.png";
+import img5 from "../assets/Exterior/img5.png"; // New color
+import img6 from "../assets/Exterior/img6.png"; // New color
+import img7 from "../assets/Exterior/img7.png"; // New color
 //Interior
 import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
@@ -57,6 +60,27 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
   const [selectedBrand] = useState<string>("RIDDARA");
+  const [colorSliderIndex, setColorSliderIndex] = useState<number>(0);
+
+  // Helper function to get visible items count based on screen size
+  const getVisibleItemsCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 2; // Mobile: show 2 items
+      if (window.innerWidth < 768) return 3; // Tablet: show 3 items  
+      return 4; // Desktop: show 4 items
+    }
+    return 4; // Default
+  };
+
+  // Helper function to get item width based on screen size
+  const getItemWidth = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 140; // Mobile
+      if (window.innerWidth < 768) return 160; // Tablet
+      return 180; // Desktop
+    }
+    return 180; // Default
+  };
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -104,12 +128,15 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     },
   ];
 
-  // All available colors
+  // Updated to 7 exterior colors
   const allExteriorColors = [
     { id: "green", name: "Green", image: img1 },
     { id: "blue", name: "Blue", image: img2 },
     { id: "grey", name: "Grey", image: img3 },
     { id: "white", name: "White", image: img4 },
+    { id: "red", name: "Red", image: img5 },
+    { id: "black", name: "Black", image: img6 },
+    { id: "silver", name: "Silver", image: img7 },
   ];
 
   const allInteriorColors = [
@@ -118,18 +145,18 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     { id: "green", name: "Green", image: interiorgreen },
   ];
 
-  // Model-specific color restrictions based on the table
+  // Model-specific color restrictions - updated to include all 7 colors
   const modelRestrictions = {
     "RD6-2WD-Air": {
-      exterior: ["white", "black", "grey", "blue", "green"],
+      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
       interior: ["black", "brown", "green"],
     },
     "RD6-AWD-Pro": {
-      exterior: ["white", "black", "grey", "blue", "green"],
+      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
       interior: ["black", "brown", "green"],
     },
     "RD6-AWD-Ultra": {
-      exterior: ["white", "black", "grey", "blue", "green"],
+      exterior: ["white", "black", "grey", "blue", "green", "red", "silver"],
       interior: ["brown", "green"],
     },
   };
@@ -181,6 +208,21 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     if (!isInteriorColorAvailable) {
       setSelectedInteriorColor("");
     }
+
+    // Reset slider index
+    setColorSliderIndex(0);
+  };
+
+  // Slider navigation functions
+  const nextColor = () => {
+    const availableColors = getAvailableExteriorColors();
+    const visibleItems = getVisibleItemsCount();
+    const maxIndex = Math.max(0, availableColors.length - visibleItems);
+    setColorSliderIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
+  const prevColor = () => {
+    setColorSliderIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const handleInputChange = (
@@ -346,29 +388,82 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   EXTERIOR COLOR <span className="text-red-500">*</span>
                 </h3>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {getAvailableExteriorColors().map((color) => (
-                    <div
-                      key={color.id}
-                      className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                        selectedExteriorColor === color.id
-                          ? "ring-2 ring-blue-500 bg-blue-50"
-                          : "hover:shadow-lg"
+                {/* Mobile-responsive slider with arrows */}
+                <div className="relative w-full">
+                  <div className="flex items-center">
+                    {/* Left Arrow */}
+                    <button
+                      onClick={prevColor}
+                      className={`p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex-shrink-0 z-10 ${
+                        colorSliderIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
                       }`}
-                      onClick={() => setSelectedExteriorColor(color.id)}
+                      disabled={colorSliderIndex === 0}
                     >
-                      <div className="mb-4">
-                        <img
-                          src={color.image}
-                          alt={color.name}
-                          className="w-full h-20 object-cover rounded"
-                        />
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    
+                    {/* Slider Container */}
+                    <div className="flex-1 mx-4 overflow-hidden">
+                      <div 
+                        className="flex gap-4 transition-transform duration-300 ease-in-out"
+                        style={{
+                          transform: `translateX(-${colorSliderIndex * getItemWidth()}px)`
+                        }}
+                      >
+                        {getAvailableExteriorColors().map((color) => (
+                          <div
+                            key={color.id}
+                            className={`bg-white p-3 sm:p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 flex-shrink-0 w-32 sm:w-36 md:w-40 ${
+                              selectedExteriorColor === color.id
+                                ? "ring-2 ring-blue-500 bg-blue-50"
+                                : "hover:shadow-lg"
+                            }`}
+                            onClick={() => setSelectedExteriorColor(color.id)}
+                          >
+                            <div className="mb-3 h-20 sm:h-24 flex items-center justify-center overflow-hidden rounded">
+                              <img
+                                src={color.image}
+                                alt={color.name}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                            <p className="text-gray-800 text-center font-semibold text-xs sm:text-sm">
+                              {color.name}
+                            </p>
+                          </div>
+                        ))}
                       </div>
-                      <p className="text-gray-800 text-center font-semibold">
-                        {color.name}
-                      </p>
                     </div>
-                  ))}
+                    
+                    {/* Right Arrow */}
+                    <button
+                      onClick={nextColor}
+                      className={`p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex-shrink-0 z-10 ${
+                        colorSliderIndex >= getAvailableExteriorColors().length - getVisibleItemsCount() 
+                          ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      disabled={colorSliderIndex >= getAvailableExteriorColors().length - getVisibleItemsCount()}
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Dot indicators */}
+                  {getAvailableExteriorColors().length > getVisibleItemsCount() && (
+                    <div className="flex justify-center mt-4 gap-2">
+                      {Array.from({ 
+                        length: Math.max(1, getAvailableExteriorColors().length - getVisibleItemsCount() + 1)
+                      }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setColorSliderIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            colorSliderIndex === index ? 'bg-blue-500' : 'bg-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
