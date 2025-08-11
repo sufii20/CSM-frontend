@@ -327,7 +327,7 @@ export const RiddaraShowcase: React.FC<RiddaraProps> = ({ onBack }) => {
           {/* WhatsApp Button - Top Right */}
           <button
             onClick={handleWhatsAppClick}
-            className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
+                     className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-black/20 hover:bg-black-900 border border-white backdrop-blur  text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
             title="Chat on WhatsApp"
           >
             <MessageCircle className="w-6 h-6" />
