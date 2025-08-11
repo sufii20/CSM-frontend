@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowLeft, MessageCircle } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft,
+  MessageCircle,
+} from "lucide-react";
 import ForthingBanner from "../assets/Forthing/HeroBanner/ForthingBanner.png";
 
 import whiteCar from "../assets/Forthing/HeroBanner/colorSelect/carWhite.png";
@@ -58,9 +63,12 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
   // WhatsApp function
   const handleWhatsAppClick = () => {
     const phoneNumber = "+923001234567"; // Replace with your actual WhatsApp number
-    const message = "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const message =
+      "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   // Navigation function for Book Now button
@@ -127,24 +135,26 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
 
   // Car color variants for Forthing - using your existing images as base
   // Note: You'll need to add actual color variant images to your assets
+  // Car color variants for forthing
+
   const cars = [
-    {
-      image: greyCar, // Using your existing image as main
-      color: "Silver Metallic",
-      bgColor: "bg-gray-400",
-      colorCode: "#C0C0C0",
-    },
     {
       image: blueCar, // Replace with actual blue variant when available
       color: "Deep Blue",
       bgColor: "bg-blue-900",
-      colorCode: "#1e3a8a",
+      colorCode: "#1082ba",
     },
     {
       image: whiteCar, // Replace with actual white variant when available
       color: "Pearl White",
       bgColor: "bg-white",
       colorCode: "#FFFFFF",
+    },
+    {
+      image: greyCar, // Using your existing image as main
+      color: "Silver Metallic",
+      bgColor: "bg-gray-400",
+      colorCode: "#C0C0C0",
     },
     {
       image: blackCar, // Replace with actual black variant when available
@@ -157,7 +167,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
       image: greenCar, // Replace with actual green variant when available
       color: "Forest Green",
       bgColor: "bg-green-700",
-      colorCode: "#15803d",
+      colorCode: "#a0dcc1",
     },
   ];
 
@@ -337,7 +347,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
         <ArrowLeft className="w-5 h-5 text-gray-700" />
         <span className="text-sm font-medium text-gray-700">Back to Home</span>
       </button>
-      
+
       {/* Hero Banner Section */}
       <div className="relative w-full">
         <img

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowLeft,MessageCircle  } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowLeft,
+  MessageCircle,
+} from "lucide-react";
 
 import JMEVBanner from "../assets/HeroBanner/JMEVBanner.png";
 // Car color variants
@@ -95,12 +100,15 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
     setShowTestDrivePage(false);
   };
 
-    // WhatsApp function
+  // WhatsApp function
   const handleWhatsAppClick = () => {
     const phoneNumber = "+923001234567"; // Replace with your actual WhatsApp number
-    const message = "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const message =
+      "Hi! I'm interested in the Forthing vehicle. Can you provide more information?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   // If showing test drive component, render it with transparent back button overlay
@@ -146,12 +154,13 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
   }
 
   // Car color variants for JMEV
+  // Car color variants for JMEV
   const cars: CarVariant[] = [
     {
       image: greenCar,
-      color: "Green with black top",
-      bgColor: "bg-gradient-to-b from-black to-green-700",
-      colorCode: "#65775D",
+      color: "Green",
+      bgColor: "bg-green-700",
+      colorCode: "#a0dcc1",
     },
     {
       image: blueCar,
@@ -163,13 +172,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
       image: purpleCar,
       color: "Purple",
       bgColor: "bg-gray-400",
-      colorCode: "#ACB3C0",
-    },
-    {
-      image: whiteCar,
-      color: "White with black top",
-      bgColor: "bg-gradient-to-b from-black to-white",
-      colorCode: "#FFFFFF",
+      colorCode: "#c5a0dc",
     },
     {
       image: whiteCar,
@@ -182,12 +185,6 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
       color: "Black",
       bgColor: "bg-black",
       colorCode: "#000000",
-    },
-    {
-      image: greenCar,
-      color: "Green",
-      bgColor: "bg-green-700",
-      colorCode: "#65775D",
     },
   ];
 
@@ -393,7 +390,7 @@ const JMEV: React.FC<JMEVProps> = ({ onBack }) => {
         {/* WhatsApp Button - Top Right */}
         <button
           onClick={handleWhatsAppClick}
-                  className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-black/20 hover:bg-black-900 border border-white backdrop-blur  text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
+          className="absolute top-8 right-8 flex items-center justify-center w-12 h-12 bg-black/20 hover:bg-black-900 border border-white backdrop-blur  text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-30"
           title="Chat on WhatsApp"
         >
           <MessageCircle className="w-6 h-6" />
