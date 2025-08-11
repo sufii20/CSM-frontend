@@ -31,10 +31,10 @@ import call from "../assets/services/callCenter.png";
 import merchandise from "../assets/services/MErchandise.png";
 import customer from "../assets/HeroBanner/whatsapp.jpg";
 //Interior images
-import fortingInterior from "../assets/interiorView/ForthingInterior.png";
-import jmeVInterior from "../assets/interiorView/JMeVInterior.png";
-import zeekrX from "../assets/interiorView/ZeekeX.png";
-import zeekrInterior from "../assets/interiorView/ZeekrInterior.png";
+import fortingInterior from "../assets/Homepage-interior/ForthingInterior.png";
+import jmeVInterior from "../assets/Homepage-interior/JMeVInterior.png";
+import zeekrX from "../assets/Homepage-interior/ZeekeX.png";
+import zeekrInterior from "../assets/Homepage-interior/ZeekrInterior.png";
 import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
