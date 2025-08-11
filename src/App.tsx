@@ -16,6 +16,7 @@ import News from "./pages/newsAndInsights";
 // import TestDrive from "./pages/test";
 import StoreLocation from "./pages/location";
 import CombinedCareer from "./pages/career";
+import TermsAndConditions from "./pages/termsAndConditions";
 
 function App() {
   // State to track current page - properly typed
