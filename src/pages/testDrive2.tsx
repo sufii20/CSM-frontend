@@ -1,9 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  X,
-  MessageSquare,
-  Phone,
-  Hash,
   Upload,
   ChevronLeft,
   Download,
@@ -29,20 +25,6 @@ import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
-
-interface TopIconButtonProps {
-  icon: React.ReactNode;
-  onClick?: () => void;
-}
-
-const TopIconButton: React.FC<TopIconButtonProps> = ({ icon, onClick }) => (
-  <button
-    onClick={onClick}
-    className="w-11 h-11 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 hover:scale-105 backdrop-blur-sm"
-  >
-    {icon}
-  </button>
-);
 
 interface OrderData {
   selectedCar: string;
@@ -218,9 +200,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     });
   };
 
-  const handleIconClick = (iconName: string) => {
-    console.log(`${iconName} clicked`);
-  };
+
 
   return (
     <div className="w-full">
@@ -234,26 +214,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
 
         {/* Background overlay */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-
-        {/* Top right icons */}
-        <div className="absolute top-5 right-5 z-20 flex flex-col gap-4">
-          <TopIconButton
-            icon={<X className="w-5 h-5 text-white" />}
-            onClick={() => handleIconClick("close")}
-          />
-          <TopIconButton
-            icon={<MessageSquare className="w-5 h-5 text-white" />}
-            onClick={() => handleIconClick("message")}
-          />
-          <TopIconButton
-            icon={<Phone className="w-5 h-5 text-white" />}
-            onClick={() => handleIconClick("phone")}
-          />
-          <TopIconButton
-            icon={<Hash className="w-5 h-5 text-white" />}
-            onClick={() => handleIconClick("hash")}
-          />
-        </div>
 
         {/* Main content */}
         <div className="relative z-20 flex items-center justify-center h-full">
