@@ -16,7 +16,6 @@ import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
 import Newsletter from "../pages/newsLetter";
-// import Footer from "../pages/footer";
 
 const bannerImage = testDrive;
 
@@ -330,31 +329,23 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             </div>
           </div>
 
-          {/* Step 2: Exterior Color */}
-          <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
-            {/* Step 2 watermark */}
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
-              <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
-                  STEP
-                </span>
-                <span className="text-gray-500/40 text-5xl font-bold">2</span>
-              </div>
-            </div>
-            <div className="ml-28">
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
-                EXTERIOR COLOR <span className="text-red-500">*</span>
-              </h3>
-
-              {!selectedCar && (
-                <div className="text-center py-8">
-                  <p className="text-gray-500 text-lg">
-                    Please select a car variant first
-                  </p>
+          {/* Step 2: Exterior Color - Only show if car is selected */}
+          {selectedCar && (
+            <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
+              {/* Step 2 watermark */}
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
+                <div className="flex items-center">
+                  <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                    STEP
+                  </span>
+                  <span className="text-gray-500/40 text-5xl font-bold">2</span>
                 </div>
-              )}
+              </div>
+              <div className="ml-28">
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                  EXTERIOR COLOR <span className="text-red-500">*</span>
+                </h3>
 
-              {selectedCar && (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {getAvailableExteriorColors().map((color) => (
                     <div
@@ -379,22 +370,28 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
+            </div>
+          )}
 
-              {/* Interior Color */}
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
-                INTERIOR COLOR <span className="text-red-500">*</span>
-              </h3>
-
-              {!selectedCar && (
-                <div className="text-center py-8">
-                  <p className="text-gray-500 text-lg">
-                    Please select a car variant first
-                  </p>
+          {/* Step 3: Interior Color - Only show if exterior color is selected */}
+          {selectedCar && selectedExteriorColor && (
+            <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
+              {/* Step 3 watermark */}
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
+                <div className="flex items-center">
+                  <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                    STEP
+                  </span>
+                  <span className="text-gray-500/40 text-5xl font-bold">3</span>
                 </div>
-              )}
+              </div>
+              <div className="ml-28">
+                {/* Interior Color */}
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                  INTERIOR COLOR <span className="text-red-500">*</span>
+                </h3>
 
-              {selectedCar && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {getAvailableInteriorColors().map((color) => (
                     <div
@@ -419,9 +416,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Step 3: Complete Form */}
           <div className="bg-gray-200/50 p-8 rounded-lg relative">

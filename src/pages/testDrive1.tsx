@@ -16,6 +16,7 @@ import jmevExterior1 from "../assets/JMEV/exterior/black.png";
 import jmevExterior2 from "../assets/JMEV/exterior/blue.png";
 import jmevExterior3 from "../assets/JMEV/exterior/green.png";
 import jmevExterior4 from "../assets/JMEV/exterior/white.png";
+import jmevExterior5 from "../assets/JMEV_page/ColorSelector/Purple.png";
 // JMEV Interior
 import jmevInteriorBlack from "../assets/JMEV_page/interior/black.png";
 import jmevInteriorBrown from "../assets/JMEV_page/interior/brown.png";
@@ -86,20 +87,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   });
 
   const cars = [
-    {
-      id: "RD6-2WD-Air",
-      name: "RD6 2WD Air",
-      subtitle: "Body Type : Truck",
-      image: jmevCar1,
-      price: "7500000",
-    },
-    {
-      id: "RD6-AWD-Pro",
-      name: "RD6 AWD Pro",
-      subtitle: "Body Type : Truck",
-      image: jmevCar2,
-      price: "8250000",
-    },
+
+ 
     {
       id: "RD6-AWD-Ultra",
       name: "RD6 AWD Ultra",
@@ -112,14 +101,34 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const exteriorColors = [
     { id: "green", name: "Green", image: jmevExterior3 },
     { id: "blue", name: "Blue", image: jmevExterior2 },
-    { id: "grey", name: "Grey", image: jmevExterior1 },
+    { id: "grey", name: "Black", image: jmevExterior1 },
     { id: "white", name: "White", image: jmevExterior4 },
+    { id: "purple", name: "Purple", image: jmevExterior5 }
   ];
 
-  const interiorColors = [
-    { id: "black", name: "Black", image: jmevInteriorBlack },
-    { id: "brown", name: "Brown", image: jmevInteriorBrown },
-  ];
+  // Interior colors mapped to exterior colors
+  const getInteriorColorsForExterior = (exteriorColorId: string) => {
+    const interiorColorMap: { [key: string]: Array<{ id: string; name: string; image: any }> } = {
+      green: [
+        { id: "black", name: "Black", image: jmevInteriorBlack },
+        { id: "Beige", name: "Beige", image: jmevInteriorBrown },
+      ],
+      blue: [
+        { id: "black", name: "Black", image: jmevInteriorBlack },
+        { id: "Beige", name: "Beige", image: jmevInteriorBrown },
+      ],
+      grey: [
+        { id: "Beige", name: "Beige", image: jmevInteriorBrown },
+        { id: "black", name: "Black", image: jmevInteriorBlack },
+      ],
+      white: [
+        { id: "black", name: "Black", image: jmevInteriorBlack },
+        { id: "Beige", name: "Beige", image: jmevInteriorBrown },
+      ],
+    };
+    
+    return interiorColorMap[exteriorColorId] || [];
+  };
 
   const handleInputChange = (
     field: string,
@@ -134,6 +143,19 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   ) => {
     const file = event.target.files?.[0] || null;
     handleInputChange(field, file);
+  };
+
+  const handleCarSelection = (carId: string) => {
+    setSelectedCar(carId);
+    // Reset selections when car changes
+    setSelectedExteriorColor("");
+    setSelectedInteriorColor("");
+  };
+
+  const handleExteriorColorSelection = (colorId: string) => {
+    setSelectedExteriorColor(colorId);
+    // Reset interior color when exterior color changes
+    setSelectedInteriorColor("");
   };
 
   const handleSubmit = () => {
@@ -171,8 +193,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
       formData,
     });
   };
-
-
 
   return (
     <div className="w-full">
@@ -235,13 +255,12 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                 JMEV
               </button>
             </div>
-
             {/* Select Variant */}
             <div className="ml-28 mt-12">
               <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
                 SELECT VARIANT <span className="text-red-500">*</span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 max-w-md mx-auto">
                 {cars.map((car) => (
                   <div
                     key={car.id}
@@ -250,7 +269,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                         ? "ring-2 ring-blue-500 bg-blue-50"
                         : "hover:shadow-lg"
                     }`}
-                    onClick={() => setSelectedCar(car.id)}
+                    onClick={() => handleCarSelection(car.id)}
                   >
                     <div className="mb-4">
                       <img
@@ -271,76 +290,82 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
             </div>
           </div>
 
-          {/* Step 2: Exterior Color */}
-          <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
-            {/* Step 2 watermark */}
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
-              <div className="flex items-center">
-                <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
-                  STEP
-                </span>
-                <span className="text-gray-500/40 text-5xl font-bold">2</span>
+          {/* Step 2: Exterior Color - Only show if car is selected */}
+          {selectedCar && (
+            <div className="bg-gray-200/50 p-8 rounded-lg mb-8 relative">
+              {/* Step 2 watermark */}
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-90">
+                <div className="flex items-center">
+                  <span className="text-gray-500/40 text-2xl font-bold tracking-widest mr-2">
+                    STEP
+                  </span>
+                  <span className="text-gray-500/40 text-5xl font-bold">2</span>
+                </div>
               </div>
-            </div>
-            <div className="ml-28">
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
-                EXTERIOR COLOR <span className="text-red-500">*</span>
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {exteriorColors.map((color) => (
-                  <div
-                    key={color.id}
-                    className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedExteriorColor === color.id
-                        ? "ring-2 ring-blue-500 bg-blue-50"
-                        : "hover:shadow-lg"
-                    }`}
-                    onClick={() => setSelectedExteriorColor(color.id)}
-                  >
-                    <div className="mb-4">
-                      <img
-                        src={color.image}
-                        alt={color.name}
-                        className="w-full h-20 object-cover rounded"
-                      />
+              <div className="ml-28">
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-6">
+                  EXTERIOR COLOR <span className="text-red-500">*</span>
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  {exteriorColors.map((color) => (
+                    <div
+                      key={color.id}
+                      className={`bg-white p-4 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
+                        selectedExteriorColor === color.id
+                          ? "ring-2 ring-blue-500 bg-blue-50"
+                          : "hover:shadow-lg"
+                      }`}
+                      onClick={() => handleExteriorColorSelection(color.id)}
+                    >
+                      <div className="mb-4">
+                        <img
+                          src={color.image}
+                          alt={color.name}
+                          className="w-full h-20 object-cover rounded"
+                        />
+                      </div>
+                      <p className="text-gray-800 text-center font-semibold">
+                        {color.name}
+                      </p>
                     </div>
-                    <p className="text-gray-800 text-center font-semibold">
-                      {color.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Interior Color */}
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
-                INTERIOR COLOR <span className="text-red-500">*</span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                {interiorColors.map((color) => (
-                  <div
-                    key={color.id}
-                    className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                      selectedInteriorColor === color.id
-                        ? "ring-2 ring-blue-500 bg-blue-50"
-                        : "hover:shadow-lg"
-                    }`}
-                    onClick={() => setSelectedInteriorColor(color.id)}
-                  >
-                    <div className="mb-4 overflow-hidden rounded">
-                      <img
-                        src={color.image}
-                        alt={color.name}
-                        className="w-full h-32 object-contain"
-                      />
+                {/* Interior Color - Only show if exterior color is selected */}
+                {selectedExteriorColor && (
+                  <>
+                    <h3 className="text-xl font-bold text-gray-800 text-center mb-6 mt-12">
+                      INTERIOR COLOR <span className="text-red-500">*</span>
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                      {getInteriorColorsForExterior(selectedExteriorColor).map((color) => (
+                        <div
+                          key={color.id}
+                          className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
+                            selectedInteriorColor === color.id
+                              ? "ring-2 ring-blue-500 bg-blue-50"
+                              : "hover:shadow-lg"
+                          }`}
+                          onClick={() => setSelectedInteriorColor(color.id)}
+                        >
+                          <div className="mb-4 overflow-hidden rounded">
+                            <img
+                              src={color.image}
+                              alt={color.name}
+                              className="w-full h-32 object-contain"
+                            />
+                          </div>
+                          <p className="text-gray-800 text-center font-semibold">
+                            {color.name}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                    <p className="text-gray-800 text-center font-semibold">
-                      {color.name}
-                    </p>
-                  </div>
-                ))}
+                  </>
+                )}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Step 3: Complete Form */}
           <div className="bg-gray-200/50 p-8 rounded-lg relative">
