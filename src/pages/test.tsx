@@ -272,9 +272,7 @@ const TestDrive: React.FC = () => {
                       </p>
                       {selectedVariant === variant.id && (
                         <div className="mt-3 text-center">
-                          <span className="inline-block bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-                            Selected
-                          </span>
+                
                         </div>
                       )}
                     </div>
