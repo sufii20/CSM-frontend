@@ -602,7 +602,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                     Address As Per CNIC <span className="text-red-500">*</span>
+                      Address As Per CNIC{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -720,7 +721,9 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
-                      <option value="">Yes or No</option>
+                       <option value="" disabled>
+                        Select yes or no
+                      </option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -740,7 +743,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                           e.target.value
                         )
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm disabled:bg-gray-100"
                     />
                   </div>
 
@@ -755,7 +759,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       onChange={(e) =>
                         handleInputChange("ntnNumber", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm disabled:bg-gray-100"
                     />
                   </div>
 
@@ -769,7 +774,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       onChange={(e) =>
                         handleInputChange("advancePayment", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white disabled:bg-gray-100"
                     >
                       <option value="">Select</option>
                       <option value="10">10%</option>

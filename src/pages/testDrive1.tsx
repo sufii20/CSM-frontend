@@ -1,9 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-  Upload,
-  ChevronLeft,
-  Download,
-} from "lucide-react";
+import { Upload, ChevronLeft, Download } from "lucide-react";
 
 // Mock image URLs - replace with your actual images
 import testDrive from "../assets/testDrive.png";
@@ -87,8 +83,6 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   });
 
   const cars = [
-
- 
     {
       id: "RD6-AWD-Ultra",
       name: "RD6 AWD Ultra",
@@ -103,12 +97,14 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     { id: "blue", name: "Blue", image: jmevExterior2 },
     { id: "grey", name: "Black", image: jmevExterior1 },
     { id: "white", name: "White", image: jmevExterior4 },
-    { id: "purple", name: "Purple", image: jmevExterior5 }
+    { id: "purple", name: "Purple", image: jmevExterior5 },
   ];
 
   // Interior colors mapped to exterior colors
   const getInteriorColorsForExterior = (exteriorColorId: string) => {
-    const interiorColorMap: { [key: string]: Array<{ id: string; name: string; image: any }> } = {
+    const interiorColorMap: {
+      [key: string]: Array<{ id: string; name: string; image: any }>;
+    } = {
       green: [
         { id: "black", name: "Black", image: jmevInteriorBlack },
         { id: "Beige", name: "Beige", image: jmevInteriorBrown },
@@ -126,7 +122,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
         { id: "Beige", name: "Beige", image: jmevInteriorBrown },
       ],
     };
-    
+
     return interiorColorMap[exteriorColorId] || [];
   };
 
@@ -249,9 +245,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
               </h2>
             </div>
             <div className="ml-28 flex justify-center">
-              <button
-                className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default"
-              >
+              <button className="px-8 py-3 text-sm font-semibold rounded-md bg-black text-white cursor-default">
                 JMEV
               </button>
             </div>
@@ -338,28 +332,30 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       INTERIOR COLOR <span className="text-red-500">*</span>
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                      {getInteriorColorsForExterior(selectedExteriorColor).map((color) => (
-                        <div
-                          key={color.id}
-                          className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
-                            selectedInteriorColor === color.id
-                              ? "ring-2 ring-blue-500 bg-blue-50"
-                              : "hover:shadow-lg"
-                          }`}
-                          onClick={() => setSelectedInteriorColor(color.id)}
-                        >
-                          <div className="mb-4 overflow-hidden rounded">
-                            <img
-                              src={color.image}
-                              alt={color.name}
-                              className="w-full h-32 object-contain"
-                            />
+                      {getInteriorColorsForExterior(selectedExteriorColor).map(
+                        (color) => (
+                          <div
+                            key={color.id}
+                            className={`bg-white p-6 rounded-lg shadow-md cursor-pointer transition-all duration-300 ${
+                              selectedInteriorColor === color.id
+                                ? "ring-2 ring-blue-500 bg-blue-50"
+                                : "hover:shadow-lg"
+                            }`}
+                            onClick={() => setSelectedInteriorColor(color.id)}
+                          >
+                            <div className="mb-4 overflow-hidden rounded">
+                              <img
+                                src={color.image}
+                                alt={color.name}
+                                className="w-full h-32 object-contain"
+                              />
+                            </div>
+                            <p className="text-gray-800 text-center font-semibold">
+                              {color.name}
+                            </p>
                           </div>
-                          <p className="text-gray-800 text-center font-semibold">
-                            {color.name}
-                          </p>
-                        </div>
-                      ))}
+                        )
+                      )}
                     </div>
                   </>
                 )}
@@ -549,7 +545,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Address as per CNIC */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                     Address As Per CNIC <span className="text-red-500">*</span>
+                      Address As Per CNIC{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -656,7 +653,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                   {/* Status (filter non-filter) */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Status (filter non-filter)
+                      Status (filler non-filler)
                     </label>
                     <select
                       value={formData.statusFilter}
@@ -665,7 +662,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       }
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
                     >
-                      <option value="">Yes or No</option>
+                      <option value="" disabled> Yes or No</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -685,7 +682,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                           e.target.value
                         )
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm disabled:bg-gray-100"
                     />
                   </div>
 
@@ -700,11 +698,12 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       onChange={(e) =>
                         handleInputChange("ntnNumber", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm disabled:bg-gray-100"
                     />
                   </div>
 
-                  {/* Advance Payment */}
+                  {/* Advance Payment - Fixed */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Advance Payment <span className="text-red-500">*</span>
@@ -714,7 +713,8 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       onChange={(e) =>
                         handleInputChange("advancePayment", e.target.value)
                       }
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white"
+                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white disabled:bg-gray-100"
                     >
                       <option value="">Select</option>
                       <option value="10">10%</option>
@@ -977,7 +977,9 @@ const OrderReview: React.FC<{
                   </span>
                   <div className="w-12 h-8 rounded">
                     <img
-                      src={selectedInteriorColorDetails?.image || jmevInteriorBlack}
+                      src={
+                        selectedInteriorColorDetails?.image || jmevInteriorBlack
+                      }
                       alt={
                         selectedInteriorColorDetails?.name ||
                         "Selected interior color"
