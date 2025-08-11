@@ -6,6 +6,7 @@ import ZeekrPage from "./zeekr";
 import RiddaraPage from "./riddara";
 import ForthingPage from "./forthing";
 import JmevPage from "./jmev";
+import News from "../pages/newsAndInsights";
 
 // Hero banners
 import ZeekrBanner from "../assets/HeroBanner/ZeekrBanner.png";
@@ -149,9 +150,36 @@ const Homepage = () => {
     },
   ];
 
+  // News data with navigation capability
+  const newsItems = [
+    {
+      id: 1,
+      title: "CSM & GEELY Signed MOU To Launch Zeekr In Pakistan",
+      image: CSMGeely,
+      slug: "csm-geely-mou-zeekr-pakistan"
+    },
+    {
+      id: 2,
+      title: "Dealer Meetup Organized By Capital Smart City At Serena Hotel, Islamabad",
+      image: sareena,
+      slug: "dealer-meetup-serena-hotel-islamabad"
+    },
+    {
+      id: 3,
+      title: "Zeging Excellence For Pakistan's Automotive Future",
+      image: autoMob,
+      slug: "pakistan-automotive-future-excellence"
+    }
+  ];
+
   // Handle car image click navigation
-  const handleCarClick = (page: any) => {
+  const handleCarClick = (page: string) => {
     setCurrentPage(page);
+  };
+
+  // Handle news card click navigation
+  const handleNewsClick = () => {
+    setCurrentPage("news");
   };
 
   // Handle back to home
@@ -203,6 +231,10 @@ const Homepage = () => {
 
   if (currentPage === "jmev") {
     return <JmevPage {...({ onBack: handleBackToHome } as any)} />;
+  }
+
+  if (currentPage === "news") {
+    return <News {...({ onBack: handleBackToHome } as any)} />;
   }
 
   // Default homepage render
@@ -492,7 +524,7 @@ const Homepage = () => {
         ))}
       </section>
 
-      {/* News & Insights */}
+      {/* News & Insights - Updated with navigation */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -505,43 +537,27 @@ const Homepage = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={CSMGeely}
-                alt="News 1"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h4 className="font-bold text-gray-900 mb-2">
-                  CSM & GEELY Signed MOU To Launch Zeekr In Pakistan
-                </h4>
+            {newsItems.map((newsItem) => (
+              <div 
+                key={newsItem.id} 
+                className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300"
+                onClick={handleNewsClick}
+              >
+                <img
+                  src={newsItem.image}
+                  alt={newsItem.title}
+                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-6">
+                  <h4 className="font-bold text-gray-900 mb-2 hover:text-blue-800 transition-colors duration-300">
+                    {newsItem.title}
+                  </h4>
+                </div>
               </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={sareena}
-                alt="News 2"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h4 className="font-bold text-gray-900 mb-2">
-                  Dealer Meetup Organized By Capital Smart City At Serena Hotel,
-                  Islamabad
-                </h4>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={autoMob}
-                alt="News 3"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h4 className="font-bold text-gray-900 mb-2">
-                  Zeging Excellence For Pakistan's Automotive Future
-                </h4>
-              </div>
-            </div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
           </div>
         </div>
       </section>
