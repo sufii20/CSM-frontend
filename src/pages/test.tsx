@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import testDrive from "../assets/testDrive.png";
 import Newsletter from "../pages/newsLetter";
+import TermsAndConditions from "../pages/termsAndConditions";
 // import Footer from "../pages/footer";
 
 // Import images for different brands and variants
@@ -19,7 +21,6 @@ import raddaraVariant3 from "../assets/SelectModel.png";
 import forthingVariant1 from "../assets/Forthing/exterior/carBlack.png";
 import forthingVariant2 from "../assets/Forthing/exterior/carBlue.png";
 import forthingVariant3 from "../assets/Forthing/exterior/cargrey.png";
-
 // JMEV Images (from your existing code)
 import jmevVariant1 from "../assets/JMEV_page/ColorSelector/black.png";
 import jmevVariant2 from "../assets/JMEV_page/ColorSelector/blue.png";
@@ -28,6 +29,7 @@ import jmevVariant3 from "../assets/JMEV_page/ColorSelector/green.png";
 const TestDrive: React.FC = () => {
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [selectedVariant, setSelectedVariant] = useState<string>("");
+  const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -141,6 +143,34 @@ const TestDrive: React.FC = () => {
     setSelectedBrand(brandId);
     setSelectedVariant(""); // Reset variant when brand changes
   };
+
+  const handleTermsClick = () => {
+    setShowTermsAndConditions(true);
+  };
+
+  const handleBackFromTerms = () => {
+    setShowTermsAndConditions(false);
+  };
+
+  // If showing terms and conditions, render it with back button overlay
+  if (showTermsAndConditions) {
+    return (
+      <div className="relative w-full h-screen">
+        <TermsAndConditions />
+        
+        {/* Transparent back button overlay */}
+        <button
+          onClick={handleBackFromTerms}
+          className="fixed top-24 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+        >
+          <ArrowLeft className="w-5 h-5 text-gray-700" />
+          <span className="text-sm font-medium text-gray-700">
+            Back to Test Drive
+          </span>
+        </button>
+      </div>
+    );
+  }
 
   const handleSubmit = () => {
     // Basic validation
@@ -501,9 +531,13 @@ const TestDrive: React.FC = () => {
                 />
                 <span className="text-sm text-gray-700">
                   I have read and accept{" "}
-                  <a href="#" className="text-blue-500 underline">
+                  <button
+                    type="button"
+                    onClick={handleTermsClick}
+                    className="text-blue-500 underline hover:text-blue-600"
+                  >
                     Terms & Conditions
-                  </a>
+                  </button>
                 </span>
               </label>
             </div>
