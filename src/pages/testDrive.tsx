@@ -774,7 +774,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                       onChange={(e) =>
                         handleInputChange("advancePayment", e.target.value)
                       }
-                      disabled={formData.statusFilter === "No"} // <-- disable logic
+                      // disabled={formData.statusFilter === "No"} // <-- disable logic
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white disabled:bg-gray-100"
                     >
                       <option value="">Select</option>
