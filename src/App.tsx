@@ -57,6 +57,8 @@ function App() {
         return <CombinedCareer />;
       case "faqs":
         return <FAQPage />;
+      case "termsAndConditions":
+        return <TermsAndConditions />;
       case "home":
       case "homepage":
       default:

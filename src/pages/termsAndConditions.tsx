@@ -246,8 +246,9 @@ const TermsAndConditions: React.FC = () => {
           </div>
         </article>
       </div>
+
+      <Newsletter />
       <div className="border-t border-gray-300" />
-        <Newsletter />
     </main>
   );
 };

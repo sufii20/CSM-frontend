@@ -30,8 +30,8 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
     {
       links: [
         { label: 'About Us', href: '#', page: 'about' },
-        { label: 'Mission Statement', href: '#', page: 'about' },
-        { label: 'Vision Statement', href: '#', page: 'about' },
+        { label: 'Mission Statement', href: '#', page: 'termsAndConditions' },
+        { label: 'Vision Statement', href: '#', page: 'termsAndConditions' },
         { label: 'Store Locator', href: '#', page: 'locations' },
       ],
     },
@@ -93,7 +93,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
   ];
 
   const legalLinks: FooterLink[] = [
-    { label: 'Terms Of Service', href: '#' },
+    { label: 'Terms Of Service', href: '#',page :'termsAndConditions' },
     { label: 'Privacy Policy', href: '#' },
     { label: 'Trust & Safety', href: '#' },
     { label: 'Law Enforcement', href: '#' },
