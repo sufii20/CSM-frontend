@@ -48,7 +48,7 @@ function App() {
       case "about":
         return <AboutPage />;
       case "news":
-        return <News />;
+        return <News onBack={handleBackToHome} />;
       case "contact":
         return <ContactForm />;
       case "locations":

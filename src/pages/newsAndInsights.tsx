@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import news from "../assets/news.png";
 import news1 from "../assets/news1.png";
 import news2 from "../assets/news2.png";
@@ -38,9 +39,22 @@ const ShowMoreText: React.FC<ShowMoreTextProps> = ({
   );
 };
 
-const NewsPage: React.FC = () => {
+interface NewsPageProps {
+  onBack: () => void;
+}
+
+const NewsPage: React.FC<NewsPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-white">
+      {/* Back to Home Button - Fixed position moved down 3 inches (72px) */}
+      <button
+        onClick={onBack}
+        className="fixed top-24 left-6 z-50 flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+      >
+        <ArrowLeft className="w-5 h-5 text-gray-700" />
+        <span className="text-sm font-medium text-gray-700">Back to Home</span>
+      </button>
+
       {/* Hero Banner */}
       <div className="relative h-96 overflow-hidden">
         <div className="absolute inset-0">
