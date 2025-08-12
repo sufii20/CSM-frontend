@@ -17,7 +17,7 @@ import img7 from "../assets/Exterior/img5.png";
 import interiorblack from "../assets/interiorblack.png";
 import interiorbrown from "../assets/interiorbrown.png";
 import interiorgreen from "../assets/interiorgreen.png";
-import Newsletter from "../pages/newsLetter";
+// import Newsletter from "../pages/newsLetter";
 
 const bannerImage = testDrive;
 
@@ -1320,7 +1320,7 @@ const MainApp: React.FC = () => {
         />
       )}
       {/* Newsletter Section */}
-      <Newsletter />
+      {/* <Newsletter /> */}
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
       {/* <Footer /> */}

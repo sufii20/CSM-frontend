@@ -17,7 +17,7 @@ import forthingExterior5 from "../assets/Forthing/exterior/carWhite.png";
 // FORTHING Interior
 import forthingInteriorBlack from "../assets/Forthing/interior/forthing_int_black.png";
 import forthingInteriorBrown from "../assets/Forthing/interior/forthing-int.jpg";
-import Newsletter from "../pages/newsLetter";
+// import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 import TermsAndConditions from "./termsAndConditions";
 
@@ -1317,7 +1317,7 @@ const MainApp: React.FC = () => {
         />
       )}
       {/* Newsletter Section */}
-      <Newsletter />
+      {/* <Newsletter /> */}
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
       {/* <Footer /> */}

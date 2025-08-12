@@ -16,7 +16,7 @@ import jmevExterior5 from "../assets/JMEV_page/ColorSelector/Purple.png";
 // JMEV Interior
 import jmevInteriorBlack from "../assets/JMEV_page/interior/black.png";
 import jmevInteriorBrown from "../assets/JMEV_page/interior/brown.png";
-import Newsletter from "../pages/newsLetter";
+// import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 import TermsAndConditions from "./termsAndConditions";
 const bannerImage = testDrive;
@@ -150,7 +150,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
           onClick={handleBackFromTerms}
           className="fixed top-24 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
         >
-          <ArrowLeft className="w-5 h-5 text-gray-700" />
+          <ArrowLeft className="w-4 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">
             Back to Book
           </span>
@@ -1291,7 +1291,7 @@ const MainApp: React.FC = () => {
         />
       )}
       {/* Newsletter Section */}
-      <Newsletter />
+      {/* <Newsletter /> */}
       <div className="border-t border-gray-300" />
       {/* Footer Section */}
       {/* <Footer /> */}
