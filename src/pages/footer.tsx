@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
     {
       links: [
         { label: 'Contact Us', href: '#', page: 'contact' },
-        { label: 'Customer Feedback', href: '#', page: 'contact' },
+        { label: 'Global Reviews', href: '#', page: 'contact' },
         { label: 'Careers', href: '#', page: 'career' }, // Now links to careers page
         { label: 'FAQs', href: '#' , page : 'faqs' }, // Now links to FAQs page
       ],
