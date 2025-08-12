@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Upload, ChevronLeft, Download } from "lucide-react";
+import { Upload, ChevronLeft, Download, ArrowLeft } from "lucide-react";
 
 // Mock image URLs - replace with your actual images
 import testDrive from "../assets/testDrive.png";
@@ -18,7 +18,7 @@ import jmevInteriorBlack from "../assets/JMEV_page/interior/black.png";
 import jmevInteriorBrown from "../assets/JMEV_page/interior/brown.png";
 import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
-
+import TermsAndConditions from "./termsAndConditions";
 const bannerImage = testDrive;
 
 interface OrderData {
@@ -59,6 +59,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
   const [selectedInteriorColor, setSelectedInteriorColor] =
     useState<string>("");
   const [selectedBrand] = useState<string>("JMEV");
+  const [showTermsAndConditions, setShowTermsAndConditions] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -100,6 +101,14 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
     { id: "purple", name: "Purple", image: jmevExterior5 },
   ];
 
+  const handleTermsClick = () => {
+    setShowTermsAndConditions(true);
+  };
+
+  const handleBackFromTerms = () => {
+    setShowTermsAndConditions(false);
+  };
+
   // Interior colors mapped to exterior colors
   const getInteriorColorsForExterior = (exteriorColorId: string) => {
     const interiorColorMap: {
@@ -129,6 +138,26 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
 
     return interiorColorMap[exteriorColorId] || [];
   };
+
+  // If showing terms and conditions, render it with back button overlay
+  if (showTermsAndConditions) {
+    return (
+      <div className="relative w-full h-screen">
+        <TermsAndConditions />
+
+        {/* Transparent back button overlay */}
+        <button
+          onClick={handleBackFromTerms}
+          className="fixed top-24 left-6 z-[999] flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg hover:shadow-xl rounded-lg transition-all duration-300 border border-gray-200"
+        >
+          <ArrowLeft className="w-5 h-5 text-gray-700" />
+          <span className="text-sm font-medium text-gray-700">
+            Back to Book
+          </span>
+        </button>
+      </div>
+    );
+  }
 
   const handleInputChange = (
     field: string,
@@ -763,9 +792,13 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
                     />
                     <span className="text-sm text-gray-700">
                       I have read and accept{" "}
-                      <a href="#" className="text-blue-500 underline">
+                      <button
+                        type="button"
+                        onClick={handleTermsClick}
+                        className="text-blue-500 underline hover:text-blue-600"
+                      >
                         Terms & Conditions
-                      </a>
+                      </button>
                     </span>
                   </label>
                 </div>
