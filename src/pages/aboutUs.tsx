@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import your assets
@@ -22,7 +22,7 @@ import Newsletter from "../pages/newsLetter";
 // import Footer from "../pages/footer";
 
 // Reusable heading with lines
-const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
+const SectionHeading = ({ title }: { title: string }) => (
   <div className="text-center mb-12">
     <div className="flex items-center justify-center space-x-4 md:space-x-6">
       <div className="h-px bg-gray-400 w-16 md:w-32"></div>
@@ -34,7 +34,7 @@ const SectionHeading: React.FC<{ title: string }> = ({ title }) => (
   </div>
 );
 
-export const AboutUs: React.FC = () => {
+export const AboutUs = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -69,10 +69,24 @@ export const AboutUs: React.FC = () => {
   };
 
   const leaders = [
-    { name: "ZAHID RAFIQ", position: "Chairman", img: Leader1 },
-    { name: "JAHANZAIB ZAHID", position: "Vice Chairman", img: Leader2 },
-    { name: "IMRAN ZAHID", position: "CHIEF EXECUTIVE OFFICER", img: Leader3 },
-    { name: "ABID SAEED", position: "CHIEF OPERATING OFFICER", img: Leader4 },
+    { 
+      name: "JAHANZAIB ZAHID", 
+      position: "Vice Chairman", 
+      img: Leader2, 
+      disk: "Represents the next generation of entrepreneurial excellence, carrying forward a legacy of success while forging new frontiers in sustainable mobility. Aiming to drive Pakistan into an era of innovation, spearheading a transformative ecosystem. Driven by a commitment to sustainability and technological advancement, paving the way for a future where clean energy and mobility converge seamlessly." 
+    },
+    { 
+      name: "IMRAN ZAHID", 
+      position: "CHIEF EXECUTIVE OFFICER", 
+      img: Leader3, 
+      disk: "Brings a dynamic leadership approach to the forefront of Pakistan's evolving automotive landscape. With a deep understanding of technological integration, he is driving the company's ambitious vision to establish a robust acceptance for electric vehicles. His unwavering commitment to progress, paired with a forward-thinking mindset, ensures that the company remains a catalyst for transformation in Pakistan's automotive sector. With a deep understanding of global automotive trends and local market dynamics, his leadership is instrumental in steering the company's transition from CBU business to CKD assembly." 
+    },
+    { 
+      name: "ABID SAEED", 
+      position: "CHIEF OPERATING OFFICER", 
+      img: Leader4, 
+      disk: "With over two decades of experience in the automotive sector, his expertise spans across operations, strategic planning, and market expansion, making him a driving force behind our aspiring vision for electric mobility. With a deep understanding of global automotive trends and local market dynamics, his leadership is instrumental in steering the company's transition from CBU business to CKD assembly." 
+    },
   ];
 
   return (
@@ -178,6 +192,31 @@ export const AboutUs: React.FC = () => {
       {/* Leadership Section */}
       <div className="max-w-8xl mx-auto py-16 px-4">
         <SectionHeading title="Leadership" />
+        
+        {/* Leadership CM */}
+        <div className="flex flex-col items-center justify-center max-w-4xl mx-auto mb-16">
+          <img
+            src={Leader1}
+            alt="ZAHID RAFIQ"
+            className="w-[880px] h-auto rounded-lg object-cover mb-6"
+          />
+          <div className="w-full text-center md:ml-0">
+            <p className="text-base text-gray-700 leading-relaxed text-justify mx-auto">
+              As we embark on this new journey, introducing electric vehicle brands to Pakistan, I am filled with excitement and optimism. HRL Engineering has always been at the forefront of innovation and progress, and this venture is a testament to our commitment to shaping a better future for our nation.<br/><br/>
+              With our experience in developing two of Pakistan's first smart cities and our trusted partnerships in infrastructure, and energy projects, we are well-positioned to drive positive change in the NEV automotive sector. Our foray into alternative energy is a strategic step towards reducing our reliance on fossil fuels, promoting sustainable development, and enhancing the quality of life for our countrymen.<br/><br/>
+              At Capital Smart Motors, we believe that mobility is not just about transportation; it's about transforming lives. Our leading global fellow partner brands offer cutting-edge technology, eco-friendly solutions, and unparalleled performance, empowering our customers to experience the future of mobility today.<br/><br/>
+              I would like to express my gratitude to the government, our partners and all stakeholders for their trust and support.<br/><br/>
+              Together, we can create a brighter, more sustainable future for Pakistan. I invite you to join us on this exciting journey and experience the difference we have vowed to bring forward.<br/>
+              <br/><i>Welcome to a smarter, greener, and more connected Pakistan.</i>
+            </p>
+             <h3 className="text-left text-2xl font-bold text-gray-900 mt-2 underline underline-offset-4 decoration-2 decoration-gray-400">
+              ZAHID RAFIQ
+            </h3>
+            <p className="text-left text-gray-600 mt-2 mb-6">Chairman CSM</p>
+          </div>
+        </div>
+
+        {/* Leadership CM - end */}
         <div className="space-y-16">
           {leaders.map((leader, idx) => (
             <div
@@ -197,11 +236,7 @@ export const AboutUs: React.FC = () => {
                 </h3>
                 <p className="text-lg text-gray-600 mb-6">{leader.position}</p>
                 <p className="text-base text-gray-700 leading-relaxed">
-                  Experienced leader with extensive background in automotive
-                  industry and sustainable development. Committed to driving
-                  innovation and excellence in clean energy solutions. Leading
-                  the organization towards sustainable growth and technological
-                  advancement in the automotive sector.
+                  {leader.disk}
                 </p>
               </div>
             </div>
