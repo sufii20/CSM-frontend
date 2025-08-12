@@ -105,7 +105,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">
-            Back to Forthing
+            Go Back
           </span>
         </button>
       </div>
@@ -126,7 +126,7 @@ export const Forthing: React.FC<ForthingProps> = ({ onBack }) => {
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">
-            Back to Forthing
+             Go Back
           </span>
         </button>
       </div>

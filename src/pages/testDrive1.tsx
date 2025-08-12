@@ -152,7 +152,7 @@ const EVTestDrive: React.FC<{ onSubmit: (data: OrderData) => void }> = ({
         >
           <ArrowLeft className="w-4 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">
-            Back to Book
+            Go Back
           </span>
         </button>
       </div>

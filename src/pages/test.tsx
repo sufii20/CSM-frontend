@@ -165,7 +165,7 @@ const TestDrive: React.FC = () => {
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
           <span className="text-sm font-medium text-gray-700">
-            Back to Test Drive
+            Go Back
           </span>
         </button>
       </div>
